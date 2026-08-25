@@ -7,14 +7,16 @@ import {
   HelpCircle, Monitor, Server, Terminal, Database,
   Network, Globe, Layers, Shield, ShieldAlert, Lock, Eye, Skull,
   Code, Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
-  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban
+  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
+  FolderKanban, UserCheck, Lightbulb
 } from "lucide-react";
 
 const iconMap = {
   Headphones, HelpCircle, Monitor, Server, Wrench,
   Terminal, Database, Cpu, Network, Globe, Layers, Shield,
   ShieldAlert, Lock, Eye, Skull, Code, Layout, Smartphone,
-  GitBranch, Activity, Package, Bot, Cloud, BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban
+  GitBranch, Activity, Package, Bot, Cloud, BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
+  FolderKanban, UserCheck, Lightbulb
 };
 
 export default function ProfesiDetailView({ id }) {
@@ -51,40 +53,54 @@ export default function ProfesiDetailView({ id }) {
   const isPurple = groupData?.cardBorderColor.includes("purple");
   const isFuchsia = groupData?.cardBorderColor.includes("fuchsia");
   const isEmerald = groupData?.cardBorderColor.includes("emerald");
-  const isTeal = groupData?.cardBorderColor.includes("teal");
+  const isPink = groupData?.cardBorderColor.includes("pink");
+  const isRed = groupData?.cardBorderColor.includes("red");
 
   let accentText = "text-sky-400";
   let accentBorder = "border-sky-400/30";
   let accentBadgeBg = "bg-sky-950/60 border-sky-400/40 text-sky-300";
+  let gradientTitleClass = "from-sky-400 to-slate-200";
 
   if (isOrange) {
     accentText = "text-orange-400";
     accentBorder = "border-orange-500/30";
     accentBadgeBg = "bg-orange-950/60 border-orange-500/40 text-orange-300";
+    gradientTitleClass = "from-orange-400 to-slate-200";
   } else if (isAmber) {
     accentText = "text-amber-400";
     accentBorder = "border-amber-400/30";
     accentBadgeBg = "bg-amber-950/60 border-amber-400/40 text-amber-300";
+    gradientTitleClass = "from-amber-400 to-slate-200";
   } else if (isRose) {
     accentText = "text-rose-400";
     accentBorder = "border-rose-500/30";
     accentBadgeBg = "bg-rose-950/60 border-rose-500/40 text-rose-300";
+    gradientTitleClass = "from-rose-400 to-slate-200";
   } else if (isPurple) {
     accentText = "text-purple-400";
     accentBorder = "border-purple-500/30";
     accentBadgeBg = "bg-purple-950/60 border-purple-500/40 text-purple-300";
+    gradientTitleClass = "from-purple-400 to-slate-200";
   } else if (isFuchsia) {
     accentText = "text-fuchsia-400";
     accentBorder = "border-fuchsia-500/30";
     accentBadgeBg = "bg-fuchsia-950/60 border-fuchsia-500/40 text-fuchsia-300";
+    gradientTitleClass = "from-fuchsia-400 to-slate-200";
   } else if (isEmerald) {
     accentText = "text-emerald-400";
     accentBorder = "border-emerald-500/30";
     accentBadgeBg = "bg-emerald-950/60 border-emerald-500/40 text-emerald-300";
-  } else if (isTeal) {
-    accentText = "text-teal-400";
-    accentBorder = "border-teal-400/30";
-    accentBadgeBg = "bg-teal-950/60 border-teal-400/40 text-teal-300";
+    gradientTitleClass = "from-emerald-400 to-slate-200";
+  } else if (isPink) {
+    accentText = "text-pink-400";
+    accentBorder = "border-pink-500/30";
+    accentBadgeBg = "bg-pink-950/60 border-pink-500/40 text-pink-300";
+    gradientTitleClass = "from-pink-400 to-slate-200";
+  } else if (isRed) {
+    accentText = "text-red-400";
+    accentBorder = "border-red-500/30";
+    accentBadgeBg = "bg-red-950/60 border-red-500/40 text-red-300";
+    gradientTitleClass = "from-red-400 to-slate-200";
   }
 
   return (
@@ -111,7 +127,11 @@ export default function ProfesiDetailView({ id }) {
               <span className={`text-xs uppercase tracking-wider ${accentText} font-semibold`}>{categoryTitle}</span>
               <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">
                 <span className="text-white">{firstWord} </span>
-                <span className="gradient-text">{restWords}</span>
+                {restWords && (
+                  <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
+                    {restWords}
+                  </span>
+                )}
               </h1>
             </div>
           </div>
