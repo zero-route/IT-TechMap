@@ -621,7 +621,10 @@ export const categoryGroups = [
           { name: "Physical Test Devices (Android & iPhone)", purpose: "Pengujian langsung performa aplikasi pada smartphone fisik" }
         ]
       }
-        // BARIS 6: DevOps & Cloud Engineering (5 Profesi - Aksen Ungu Magenta / Fuchsia)
+    ]
+  },
+
+  // BARIS 6: DevOps & Cloud Engineering (5 Profesi - Aksen Ungu Magenta / Fuchsia)
   {
     id: "devops-group",
     title: "DevOps & Cloud Engineering",
@@ -735,8 +738,9 @@ export const categoryGroups = [
         ]
       }
     ]
-  }
-    // BARIS 7: Data & Analytics (5 Profesi - Aksen Hijau Emerald)
+  },
+
+  // BARIS 7: Data & Analytics (5 Profesi - Aksen Hijau Emerald)
   {
     id: "data-analytics-group",
     title: "Data & Analytics",
@@ -965,9 +969,6 @@ export const categoryGroups = [
           { name: "Wireless Headset & Stylus", purpose: "Interaksi fleksibel saat memimpin sesi papan visual" }
         ]
       }
-    ]
-  }
-
     ]
   }
 ];
