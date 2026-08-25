@@ -29,7 +29,7 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   const isPurple = borderColor.includes("purple");
   const isFuchsia = borderColor.includes("fuchsia");
   const isEmerald = borderColor.includes("emerald");
-  const isTeal = borderColor.includes("teal");
+  const isPink = borderColor.includes("pink");
   
   let accentTextColor = "text-sky-400";
   let accentHoverColor = "hover:text-sky-300";
@@ -52,9 +52,9 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   } else if (isEmerald) {
     accentTextColor = "text-emerald-400";
     accentHoverColor = "hover:text-emerald-300";
-  } else if (isTeal) {
-    accentTextColor = "text-teal-400";
-    accentHoverColor = "hover:text-teal-300";
+  } else if (isPink) {
+    accentTextColor = "text-pink-400";
+    accentHoverColor = "hover:text-pink-300";
   }
 
   return (

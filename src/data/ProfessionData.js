@@ -125,7 +125,7 @@ export const categoryGroups = [
         ],
         hardware: [
           { name: "Multimeter Digital", purpose: "Pengukuran arus dan tegangan perangkat" },
-          { name: "POST Diagnostics Card", purpose: "Mendeteksi kesalahan hardware motherboard" },
+          { name: "POST Diagnostics Card", purpose: "Mndeteksi kesalahan hardware motherboard" },
           { name: "Kabel Diagnostic", purpose: "Konektor universal pengujian hardware" }
         ]
       }
@@ -856,13 +856,13 @@ export const categoryGroups = [
     ]
   },
 
-  // BARIS 8: UI/UX Design & Product Management (5 Profesi - Aksen Teal)
+  // BARIS 8: UI/UX Design & Product Management (5 Profesi - Aksen Pink Kontras)
   {
     id: "design-product-group",
     title: "UI/UX Design & Product Management",
-    cardBorderColor: "border-teal-400/50 hover:border-teal-300",
+    cardBorderColor: "border-pink-500/50 hover:border-pink-400",
     cardBgColor: "bg-slate-900/60",
-    cardGlow: "shadow-[0_0_15px_rgba(45,212,191,0.15)]",
+    cardGlow: "shadow-[0_0_15px_rgba(236,72,153,0.15)]",
     professions: [
       {
         id: "ui-ux-designer",

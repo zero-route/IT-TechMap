@@ -51,7 +51,7 @@ export default function ProfesiDetailView({ id }) {
   const isPurple = groupData?.cardBorderColor.includes("purple");
   const isFuchsia = groupData?.cardBorderColor.includes("fuchsia");
   const isEmerald = groupData?.cardBorderColor.includes("emerald");
-  const isTeal = groupData?.cardBorderColor.includes("teal");
+  const isPink = groupData?.cardBorderColor.includes("pink");
 
   let accentText = "text-sky-400";
   let accentBorder = "border-sky-400/30";
@@ -81,10 +81,10 @@ export default function ProfesiDetailView({ id }) {
     accentText = "text-emerald-400";
     accentBorder = "border-emerald-500/30";
     accentBadgeBg = "bg-emerald-950/60 border-emerald-500/40 text-emerald-300";
-  } else if (isTeal) {
-    accentText = "text-teal-400";
-    accentBorder = "border-teal-400/30";
-    accentBadgeBg = "bg-teal-950/60 border-teal-400/40 text-teal-300";
+  } else if (isPink) {
+    accentText = "text-pink-400";
+    accentBorder = "border-pink-500/30";
+    accentBadgeBg = "bg-pink-950/60 border-pink-500/40 text-pink-300";
   }
 
   return (
