@@ -27,7 +27,6 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Penghematan GPU di Mobile: Langsung aktifkan jika di layar kecil agar tidak running observer
     if (window.innerWidth < 768) {
       setIsVisible(true);
       return;
@@ -37,7 +36,7 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // Langsung matikan observer setelah kartu muncul
+          observer.disconnect();
         }
       },
       { threshold: 0.05 }
@@ -107,7 +106,7 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
     gradientTitleClass = "from-red-400 to-slate-200";
   }
 
-  const delayStyle = { transitionDelay: `${index * 250}ms` };
+  const delayStyle = { transitionDelay: `${index * 230}ms` };
 
   return (
     <div
@@ -118,22 +117,39 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
       <BorderGlow
         borderRadius={16}
         coneSpread={35}
-        backgroundColor="rgba(15, 23, 42, 0.95)" /* Diubah ke solid 0.95 (Hapus backdrop-blur) */
-        className={`p-5 transition-all duration-300 ${borderColor} ${bgColor} ${shadowGlow}`}
+        backgroundColor="rgba(15, 23, 42, 0.95)"
+        className={`p-5 transition-all duration-300 group ${borderColor} ${bgColor} ${shadowGlow}`}
       >
         <div>
-          <div className="flex items-center gap-3 mb-3">
-            <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
-              <IconComponent size={22} />
+          {/* Header Kartu: Memakai justify-between agar 2 bintang berada tepat di kanan sejajar judul */}
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div className="flex items-center gap-3">
+              <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
+                <IconComponent size={22} />
+              </div>
+              <h3 className="text-lg font-bold leading-tight">
+                <span className="text-white">{firstWord} </span>
+                {restWords && (
+                  <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
+                    {restWords}
+                  </span>
+                )}
+              </h3>
             </div>
-            <h3 className="text-lg font-bold leading-tight">
-              <span className="text-white">{firstWord} </span>
-              {restWords && (
-                <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
-                  {restWords}
-                </span>
-              )}
-            </h3>
+
+            {/* Icon 2 Bintang React Bits (Sparkles) dengan Efek Shining/Glow saat Hover */}
+            <div className="relative text-white/40 group-hover:text-white transition-all duration-300 shrink-0 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]">
+              <svg 
+                className="w-6 h-6 transform group-hover:scale-110 transition-transform duration-300" 
+                viewBox="0 0 24 24" 
+                fill="currentColor"
+              >
+                {/* Bintang Besar */}
+                <path d="M9.5 2C9.5 5.58579 6.58579 8.5 3 8.5C6.58579 8.5 9.5 11.4142 9.5 15C9.5 11.4142 12.4142 8.5 16 8.5C12.4142 8.5 9.5 5.58579 9.5 2Z" />
+                {/* Bintang Kecil */}
+                <path d="M17.5 13C17.5 15.2091 15.7091 17 13.5 17C15.7091 17 17.5 18.7909 17.5 21C17.5 18.7909 19.2909 17 21.5 17C19.2909 17 17.5 15.2091 17.5 13Z" />
+              </svg>
+            </div>
           </div>
 
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
@@ -143,10 +159,10 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
 
         <Link
           href={`/profesi/${profesi.id || ''}`}
-          className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
+          className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group/link mt-2`}
         >
           Lihat lebih detail
-          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
         </Link>
       </BorderGlow>
     </div>
