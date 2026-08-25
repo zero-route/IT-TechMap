@@ -1,112 +1,69 @@
-import Link from "next/link";
-import BorderGlow from "./BorderGlow";
-import { 
-  Headphones, HelpCircle, Monitor, Server, Wrench, 
-  Terminal, Database, Cpu, Network, Globe, Layers, 
-  Shield, ShieldAlert, Lock, Eye, Skull, Code, 
-  Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
-  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
-  FolderKanban, UserCheck, Lightbulb,
-  ArrowRight 
-} from "lucide-react";
+"use client";
 
-const iconMap = {
-  Headphones, HelpCircle, Monitor, Server, Wrench, 
-  Terminal, Database, Cpu, Network, Globe, Layers, 
-  Shield, ShieldAlert, Lock, Eye, Skull, Code, 
-  Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
-  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
-  FolderKanban, UserCheck, Lightbulb
-};
+import { useRef, useCallback } from 'react';
+import './BorderGlow.css';
 
-export default function CardProfesi({ profesi, borderColor }) {
-  const IconComponent = iconMap[profesi.iconName] || Monitor;
+export default function BorderGlow({
+  children,
+  className = '',
+  borderRadius = 16,
+  coneSpread = 35,
+  backgroundColor = 'rgba(15, 23, 42, 0.6)',
+}) {
+  const cardRef = useRef(null);
 
-  const words = profesi.name.split(" ");
-  const firstWord = words[0];
-  const restWords = words.slice(1).join(" ");
+  const updateCoordinates = useCallback((clientX, clientY) => {
+    const card = cardRef.current;
+    if (!card) return;
 
-  const isOrange = borderColor.includes("orange");
-  const isAmber = borderColor.includes("amber");
-  const isRose = borderColor.includes("rose");
-  const isPurple = borderColor.includes("purple");
-  const isFuchsia = borderColor.includes("fuchsia");
-  const isEmerald = borderColor.includes("emerald");
-  const isPink = borderColor.includes("pink");
-  const isRed = borderColor.includes("red");
-  
-  let accentTextColor = "text-sky-400";
-  let accentHoverColor = "hover:text-sky-300";
-  let gradientTitleClass = "from-sky-400 to-slate-200";
+    const rect = card.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
 
-  if (isOrange) {
-    accentTextColor = "text-orange-400";
-    accentHoverColor = "hover:text-orange-300";
-    gradientTitleClass = "from-orange-400 to-slate-200";
-  } else if (isAmber) {
-    accentTextColor = "text-amber-400";
-    accentHoverColor = "hover:text-amber-300";
-    gradientTitleClass = "from-amber-400 to-slate-200";
-  } else if (isRose) {
-    accentTextColor = "text-rose-400";
-    accentHoverColor = "hover:text-rose-300";
-    gradientTitleClass = "from-rose-400 to-slate-200";
-  } else if (isPurple) {
-    accentTextColor = "text-purple-400";
-    accentHoverColor = "hover:text-purple-300";
-    gradientTitleClass = "from-purple-400 to-slate-200";
-  } else if (isFuchsia) {
-    accentTextColor = "text-fuchsia-400";
-    accentHoverColor = "hover:text-fuchsia-300";
-    gradientTitleClass = "from-fuchsia-400 to-slate-200";
-  } else if (isEmerald) {
-    accentTextColor = "text-emerald-400";
-    accentHoverColor = "hover:text-emerald-300";
-    gradientTitleClass = "from-emerald-400 to-slate-200";
-  } else if (isPink) {
-    accentTextColor = "text-pink-400";
-    accentHoverColor = "hover:text-pink-300";
-    gradientTitleClass = "from-pink-400 to-slate-200";
-  } else if (isRed) {
-    accentTextColor = "text-red-400";
-    accentHoverColor = "hover:text-red-300";
-    gradientTitleClass = "from-red-400 to-slate-200";
-  }
+    const radians = Math.atan2(y - cy, x - cx);
+    let degrees = radians * (180 / Math.PI) + 90;
+    if (degrees < 0) degrees += 360;
+
+    card.style.setProperty('--edge-proximity', '100');
+    card.style.setProperty('--cursor-angle', `${degrees.toFixed(2)}deg`);
+  }, []);
+
+  const handlePointerMove = useCallback((e) => {
+    updateCoordinates(e.clientX, e.clientY);
+  }, [updateCoordinates]);
+
+  const handleTouchMove = useCallback((e) => {
+    if (e.touches && e.touches[0]) {
+      updateCoordinates(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, [updateCoordinates]);
+
+  const handlePointerLeave = useCallback(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.setProperty('--edge-proximity', '0');
+  }, []);
 
   return (
-    <BorderGlow
-      borderRadius={16}
-      coneSpread={35}
-      backgroundColor="rgba(15, 23, 42, 0.6)"
-      className="p-5 backdrop-blur-md transition-all duration-300"
+    <div
+      ref={cardRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      onTouchStart={handleTouchMove}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handlePointerLeave}
+      className={`border-glow-card ${className}`}
+      style={{
+        '--card-bg': backgroundColor,
+        '--border-radius': `${borderRadius}px`,
+        '--cone-spread': coneSpread,
+      }}
     >
-      <div>
-        <div className="flex items-center gap-3 mb-3">
-          <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
-            <IconComponent size={22} />
-          </div>
-          <h3 className="text-lg font-bold leading-tight">
-            <span className="text-white">{firstWord} </span>
-            {restWords && (
-              <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
-                {restWords}
-              </span>
-            )}
-          </h3>
-        </div>
-
-        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
-          {profesi.summary}
-        </p>
+      <div className="border-glow-inner">
+        {children}
       </div>
-
-      <Link
-        href={`/profesi/${profesi.id}`}
-        className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
-      >
-        Lihat lebih detail
-        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-      </Link>
-    </BorderGlow>
+    </div>
   );
 }
