@@ -1,4 +1,4 @@
- import Link from "next/link";
+import Link from "next/link";
 import Navbar from "../../../src/components/common/Navbar";
 import Footer from "../../../src/components/common/Footer";
 import { categoryGroups } from "../../../src/data/ProfessionData";
@@ -34,6 +34,17 @@ const iconMap = {
   Shield: Shield,
 };
 
+// Fungsi agar Next.js mengenali semua ID profesi saat proses Build di Vercel
+export async function generateStaticParams() {
+  const paths = [];
+  categoryGroups.forEach((group) => {
+    group.professions.forEach((profesi) => {
+      paths.push({ id: profesi.id });
+    });
+  });
+  return paths;
+}
+
 export default function DetailProfesiPage({ params }) {
   const { id } = params;
   
@@ -64,7 +75,6 @@ export default function DetailProfesiPage({ params }) {
   const firstWord = words[0];
   const restWords = words.slice(1).join(" ");
 
-  // Deteksi warna aksen grup (Biru / Orange / Amber-Kuning)
   const isOrange = groupData?.cardBorderColor.includes("orange");
   const isAmber = groupData?.cardBorderColor.includes("amber");
 
@@ -97,7 +107,7 @@ export default function DetailProfesiPage({ params }) {
           <ArrowLeft size={16} /> Kembali ke Beranda
         </Link>
 
-        {/* Detail Header Box */}
+        {/* Header Box */}
         <div className={`bg-slate-900/70 backdrop-blur-md p-6 sm:p-8 rounded-2xl border ${accentBorder} mb-8 shadow-lg`}>
           <div className="flex items-start gap-4 mb-4">
             <div className={`p-3 bg-slate-800/80 border border-slate-700 ${accentText} rounded-xl shrink-0`}>
