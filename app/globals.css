@@ -16,14 +16,14 @@ body {
   min-height: 100vh;
 }
 
-/* Gradient Title Custom (Duotone style) */
+/* Gradient Title Custom */
 .gradient-text {
   background: linear-gradient(90deg, #3b82f6 0%, #ffffff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Floating Blurred Glowing Balls Background */
+/* Floating Blurred Glowing Balls Background (Optimized) */
 .bg-blobs {
   position: fixed;
   top: 0;
@@ -33,27 +33,33 @@ body {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
+  /* Paksa GPU Render untuk seluruh kontainer */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.45;
-  animation: floatAround 18s infinite alternate ease-in-out;
+  /* Blur diturunkan dari 100px ke 50px agar hemat memori GPU 70% */
+  filter: blur(50px);
+  opacity: 0.25; /* Opacity diturunkan dari 0.45 agar transisi layer ringan */
+  transform: translateZ(0);
+  will-change: transform;
+  animation: floatAround 25s infinite alternate ease-in-out;
 }
 
 .blob-blue {
-  width: 350px;
-  height: 350px;
+  width: 320px;
+  height: 320px;
   background: #1d4ed8;
   top: 10%;
   left: 10%;
 }
 
 .blob-purple {
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   background: #7e22ce;
   bottom: 15%;
   right: 10%;
@@ -61,25 +67,48 @@ body {
 }
 
 .blob-magenta {
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   background: #c026d3;
   top: 45%;
   left: 40%;
   animation-delay: -10s;
 }
 
+/* Animasi khusus GPU (transform3d) */
 @keyframes floatAround {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   33% {
-    transform: translate(120px, -80px) scale(1.15);
+    transform: translate3d(60px, -40px, 0) scale(1.1);
   }
   66% {
-    transform: translate(-90px, 100px) scale(0.85);
+    transform: translate3d(-40px, 50px, 0) scale(0.9);
   }
   100% {
-    transform: translate(50px, -120px) scale(1);
+    transform: translate3d(30px, -60px, 0) scale(1);
+  }
+}
+
+/* Khusus Layar Mobile / HP: Matikan animasi & perpendek ukuran blob */
+@media (max-width: 768px) {
+  .blob {
+    animation: none !important; /* Matikan gerak animasi di HP agar scroll 60 FPS */
+    filter: blur(40px) !important;
+    opacity: 0.18 !important;
+  }
+  
+  .blob-blue {
+    width: 200px;
+    height: 200px;
+  }
+  .blob-purple {
+    width: 220px;
+    height: 220px;
+  }
+  .blob-magenta {
+    width: 180px;
+    height: 180px;
   }
 }
