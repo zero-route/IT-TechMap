@@ -95,19 +95,14 @@ body {
   }
 }
 
- /* ==========================================
-   REACT BITS LINE SIDEBAR STYLES
+/* ==========================================
+   REACT BITS LINE SIDEBAR STYLES (PURE FIX)
    ========================================== */
 .line-sidebar {
-  --accent-color: #c084fc;
-  --text-color: #cbd5e1;
-  --marker-color: #475569;
   --marker-length: 36px;
   --marker-gap: 12px;
-  --tick-scale: 0.4;
   --max-shift: 14px;
   --item-gap: 16px;
-  --font-size: 0.95rem;
 
   position: relative;
   display: flex;
@@ -129,7 +124,7 @@ body {
 .line-sidebar__item {
   position: relative;
   cursor: pointer;
-  padding: 2px 0;
+  padding: 4px 0;
 }
 
 .line-sidebar__item::before {
@@ -142,19 +137,29 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-size: var(--font-size);
+  font-size: 0.95rem;
   line-height: 1.3;
-  color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--text-color));
+  color: #cbd5e1; /* Fallback warna teks terang */
   transform: translateX(calc(var(--effect, 0) * var(--max-shift)));
   font-weight: 500;
-  transition: color 0.15s ease;
+  transition: color 0.2s ease;
+}
+
+/* Jika item aktif/hover, langsung pakai warna ungu terang */
+.line-sidebar__item[aria-current="true"] .line-sidebar__label,
+.line-sidebar__item:hover .line-sidebar__label {
+  color: #c084fc !important;
 }
 
 .line-sidebar__index {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   margin-right: 0.6rem;
   font-size: 0.85em;
-  opacity: calc(0.6 + var(--effect, 0) * 0.4);
+  color: #64748b;
+}
+
+.line-sidebar__item[aria-current="true"] .line-sidebar__index {
+  color: #a855f7;
 }
 
 .line-sidebar__marker {
@@ -163,9 +168,15 @@ body {
   left: calc(-1 * var(--marker-length) - var(--marker-gap));
   height: 2px;
   width: var(--marker-length);
-  background-color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color));
+  background-color: #475569;
   transform-origin: left center;
   transform: translateY(-50%) scaleX(calc(0.6 + var(--effect, 0) * 0.4));
+  transition: background-color 0.2s ease;
+}
+
+.line-sidebar__item[aria-current="true"] .line-sidebar__marker,
+.line-sidebar__item:hover .line-sidebar__marker {
+  background-color: #c084fc !important;
 }
 
 .line-sidebar__item:not(:last-child)::after {
@@ -174,9 +185,8 @@ body {
   top: calc(100% + var(--item-gap) / 2);
   left: calc(-1 * var(--marker-length) - var(--marker-gap));
   height: 1px;
-  width: calc(var(--marker-length) * var(--tick-scale));
-  background-color: var(--marker-color);
-  opacity: 0.4;
-  transform: translateY(-50%) scaleX(calc(0.6 + var(--effect, 0) * 0.4));
+  width: calc(var(--marker-length) * 0.4);
+  background-color: #334155;
+  transform: translateY(-50%);
   transform-origin: left center;
 }
