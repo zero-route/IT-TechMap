@@ -34,7 +34,6 @@ const iconMap = {
   Shield: Shield,
 };
 
-// Fungsi agar Next.js mengenali semua ID profesi saat proses Build di Vercel
 export async function generateStaticParams() {
   const paths = [];
   categoryGroups.forEach((group) => {
