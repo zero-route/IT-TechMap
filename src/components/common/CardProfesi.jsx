@@ -36,31 +36,40 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   
   let accentTextColor = "text-sky-400";
   let accentHoverColor = "hover:text-sky-300";
+  let gradientTitleClass = "from-sky-400 to-slate-200";
 
   if (isOrange) {
     accentTextColor = "text-orange-400";
     accentHoverColor = "hover:text-orange-300";
+    gradientTitleClass = "from-orange-400 to-slate-200";
   } else if (isAmber) {
     accentTextColor = "text-amber-400";
     accentHoverColor = "hover:text-amber-300";
+    gradientTitleClass = "from-amber-400 to-slate-200";
   } else if (isRose) {
     accentTextColor = "text-rose-400";
     accentHoverColor = "hover:text-rose-300";
+    gradientTitleClass = "from-rose-400 to-slate-200";
   } else if (isPurple) {
     accentTextColor = "text-purple-400";
     accentHoverColor = "hover:text-purple-300";
+    gradientTitleClass = "from-purple-400 to-slate-200";
   } else if (isFuchsia) {
     accentTextColor = "text-fuchsia-400";
     accentHoverColor = "hover:text-fuchsia-300";
+    gradientTitleClass = "from-fuchsia-400 to-slate-200";
   } else if (isEmerald) {
     accentTextColor = "text-emerald-400";
     accentHoverColor = "hover:text-emerald-300";
+    gradientTitleClass = "from-emerald-400 to-slate-200";
   } else if (isPink) {
     accentTextColor = "text-pink-400";
     accentHoverColor = "hover:text-pink-300";
+    gradientTitleClass = "from-pink-400 to-slate-200";
   } else if (isRed) {
     accentTextColor = "text-red-400";
     accentHoverColor = "hover:text-red-300";
+    gradientTitleClass = "from-red-400 to-slate-200";
   }
 
   return (
@@ -72,7 +81,11 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
           </div>
           <h3 className="text-lg font-bold leading-tight">
             <span className="text-white">{firstWord} </span>
-            <span className="gradient-text">{restWords}</span>
+            {restWords && (
+              <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
+                {restWords}
+              </span>
+            )}
           </h3>
         </div>
 
