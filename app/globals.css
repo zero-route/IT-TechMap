@@ -7,6 +7,11 @@
   --foreground: #f9fafb;
 }
 
+/* 1. Efek Smooth Scroll Global */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--foreground);
   background-color: var(--background);
@@ -16,14 +21,14 @@ body {
   min-height: 100vh;
 }
 
-/* Gradient Title Custom */
+/* Custom Gradient Text */
 .gradient-text {
   background: linear-gradient(90deg, #3b82f6 0%, #ffffff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Floating Blurred Glowing Balls Background (Optimized) */
+/* Background Blobs (GPU Accelerated) */
 .bg-blobs {
   position: fixed;
   top: 0;
@@ -33,7 +38,6 @@ body {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  /* Paksa GPU Render untuk seluruh kontainer */
   transform: translateZ(0);
   will-change: transform;
 }
@@ -41,12 +45,9 @@ body {
 .blob {
   position: absolute;
   border-radius: 50%;
-  /* Blur diturunkan dari 100px ke 50px agar hemat memori GPU 70% */
   filter: blur(50px);
-  opacity: 0.25; /* Opacity diturunkan dari 0.45 agar transisi layer ringan */
+  opacity: 0.25;
   transform: translateZ(0);
-  will-change: transform;
-  animation: floatAround 25s infinite alternate ease-in-out;
 }
 
 .blob-blue {
@@ -63,7 +64,6 @@ body {
   background: #7e22ce;
   bottom: 15%;
   right: 10%;
-  animation-delay: -5s;
 }
 
 .blob-magenta {
@@ -72,69 +72,25 @@ body {
   background: #c026d3;
   top: 45%;
   left: 40%;
-  animation-delay: -10s;
 }
 
-/* Animasi khusus GPU (transform3d) */
-@keyframes floatAround {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  33% {
-    transform: translate3d(60px, -40px, 0) scale(1.1);
-  }
-  66% {
-    transform: translate3d(-40px, 50px, 0) scale(0.9);
-  }
-  100% {
-    transform: translate3d(30px, -60px, 0) scale(1);
-  }
+/* 2. Animasi Fade-In + Slide Up Halus (Durasi 0.8s) */
+.fade-up-init {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-/* Khusus Layar Mobile / HP: Matikan animasi & perpendek ukuran blob */
+.fade-up-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .blob {
-    animation: none !important; /* Matikan gerak animasi di HP agar scroll 60 FPS */
     filter: blur(40px) !important;
-    opacity: 0.18 !important;
-  }
-  
-  .blob-blue {
-    width: 200px;
-    height: 200px;
-  }
-  .blob-purple {
-    width: 220px;
-    height: 220px;
-  }
-  .blob-magenta {
-    width: 180px;
-    height: 180px;
-  }
-}
-
- /* Animasi Fade-In & Slide Up /* Ganti bagian animasi fade-in lama di globals.css dengan ini */
-.animate-fade-in-up {
-  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
-  will-change: transform, opacity;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 15px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Matikan total animasi pergerakan di HP agar instant load & anti-lag */
-@media (max-width: 768px) {
-  .animate-fade-in-up {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 0.15 !important;
   }
 }

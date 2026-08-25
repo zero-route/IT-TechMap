@@ -45,6 +45,7 @@ export default function Home() {
                         <CardProfesi
                           key={profesi.id || idx}
                           profesi={profesi}
+                          index={idx}
                           borderColor={group.cardBorderColor || ""}
                           bgColor={group.cardBgColor || ""}
                           shadowGlow={group.cardGlow || ""}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import BorderGlow from "./BorderGlow";
 import { 
@@ -21,7 +22,29 @@ const iconMap = {
   FolderKanban, UserCheck, Lightbulb
 };
 
-export default function CardProfesi({ profesi, borderColor = "", bgColor = "", shadowGlow = "" }) {
+export default function CardProfesi({ profesi, index = 0, borderColor = "", bgColor = "", shadowGlow = "" }) {
+  const cardRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Trigger animasi hanya saat kartu terlihat di layar pengguna saat di-scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Jalankan animasi sekali saja
+        }
+      },
+      { threshold: 0.15 } // Aktif ketika 15% area kartu masuk layar
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   if (!profesi || typeof profesi !== "object") return null;
 
   const iconName = profesi.iconName || "Monitor";
@@ -79,40 +102,49 @@ export default function CardProfesi({ profesi, borderColor = "", bgColor = "", s
     gradientTitleClass = "from-red-400 to-slate-200";
   }
 
+  // Staggered delay berdasarkan urutan kartu dalam grid 3-kolom
+  const delayStyle = { transitionDelay: `${(index % 3) * 120}ms` };
+
   return (
-    <BorderGlow
-      borderRadius={16}
-      coneSpread={35}
-      backgroundColor="rgba(15, 23, 42, 0.6)"
-      className={`p-5 backdrop-blur-md transition-all duration-300 animate-fade-in-up ${borderColor} ${bgColor} ${shadowGlow}`}
+    <div
+      ref={cardRef}
+      style={delayStyle}
+      className={`fade-up-init ${isVisible ? "fade-up-active" : ""}`}
     >
-      <div>
-        <div className="flex items-center gap-3 mb-3">
-          <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
-            <IconComponent size={22} />
+      <BorderGlow
+        borderRadius={16}
+        coneSpread={35}
+        backgroundColor="rgba(15, 23, 42, 0.6)"
+        className={`p-5 backdrop-blur-md transition-all duration-300 ${borderColor} ${bgColor} ${shadowGlow}`}
+      >
+        <div>
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
+              <IconComponent size={22} />
+            </div>
+            <h3 className="text-lg font-bold leading-tight">
+              <span className="text-white">{firstWord} </span>
+              {restWords && (
+                <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
+                  {restWords}
+                </span>
+              )}
+            </h3>
           </div>
-          <h3 className="text-lg font-bold leading-tight">
-            <span className="text-white">{firstWord} </span>
-            {restWords && (
-              <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
-                {restWords}
-              </span>
-            )}
-          </h3>
+
+          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+            {profesi.summary || ""}
+          </p>
         </div>
 
-        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
-          {profesi.summary || ""}
-        </p>
-      </div>
-
-      <Link
-        href={`/profesi/${profesi.id || ''}`}
-        className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
-      >
-        Lihat lebih detail
-        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-      </Link>
-    </BorderGlow>
+        <Link
+          href={`/profesi/${profesi.id || ''}`}
+          className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
+        >
+          Lihat lebih detail
+          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </BorderGlow>
+    </div>
   );
 }
