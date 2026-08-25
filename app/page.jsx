@@ -1,4 +1,4 @@
- import { categoryGroups } from "../src/data/ProfessionData";
+import { categoryGroups } from "../src/data/ProfessionData";
 import CardProfesi from "../src/components/common/CardProfesi";
 import Navbar from "../src/components/common/Navbar";
 import Footer from "../src/components/common/Footer";
@@ -26,35 +26,36 @@ export default function Home() {
         </div>
 
         <div className="space-y-12">
-          {categoryGroups.map((group) => {
-            if (!group || !group.professions) return null;
+          {Array.isArray(categoryGroups) &&
+            categoryGroups.map((group) => {
+              if (!group || !Array.isArray(group.professions)) return null;
 
-            return (
-              <section key={group.id} className="scroll-mt-20">
-                <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                  <span className="w-2 h-6 bg-slate-700 rounded-full inline-block"></span>
-                  {group.title}
-                </h2>
+              return (
+                <section key={group.id || Math.random()} className="scroll-mt-20">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <span className="w-2 h-6 bg-slate-700 rounded-full inline-block"></span>
+                    {group.title}
+                  </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {group.professions.map((profesi, index) => {
-                    // Mencegah crash jika ada item undefined di array data
-                    if (!profesi) return null;
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {group.professions.map((profesi, idx) => {
+                      // Proteksi mutlak: Jika item profesi kosong/null/undefined, jangan render sama sekali
+                      if (!profesi || typeof profesi !== "object") return null;
 
-                    return (
-                      <CardProfesi
-                        key={profesi.id || index}
-                        profesi={profesi}
-                        borderColor={group.cardBorderColor}
-                        bgColor={group.cardBgColor}
-                        shadowGlow={group.cardGlow}
-                      />
-                    );
-                  })}
-                </div>
-              </section>
-            );
-          })}
+                      return (
+                        <CardProfesi
+                          key={profesi.id || idx}
+                          profesi={profesi}
+                          borderColor={group.cardBorderColor || ""}
+                          bgColor={group.cardBgColor || ""}
+                          shadowGlow={group.cardGlow || ""}
+                        />
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            })}
         </div>
       </main>
 
