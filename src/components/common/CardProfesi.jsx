@@ -8,6 +8,10 @@ import {
   Terminal, 
   Database, 
   Cpu, 
+  Network,
+  Globe,
+  Layers,
+  Shield,
   ArrowRight 
 } from "lucide-react";
 
@@ -20,6 +24,10 @@ const iconMap = {
   Terminal: Terminal,
   Database: Database,
   Cpu: Cpu,
+  Network: Network,
+  Globe: Globe,
+  Layers: Layers,
+  Shield: Shield,
 };
 
 export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow }) {
@@ -29,10 +37,20 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   const firstWord = words[0];
   const restWords = words.slice(1).join(" ");
 
-  // Menentukan warna icon dan teks 'Lihat detail' berdasarkan grup (Biru/Orange)
+  // Menyesuaikan warna teks aksen mengikuti warna border grup (Biru / Orange / Amber-Kuning)
   const isOrange = borderColor.includes("orange");
-  const accentTextColor = isOrange ? "text-orange-400" : "text-sky-400";
-  const accentHoverColor = isOrange ? "hover:text-orange-300" : "hover:text-sky-300";
+  const isAmber = borderColor.includes("amber");
+  
+  let accentTextColor = "text-sky-400";
+  let accentHoverColor = "hover:text-sky-300";
+
+  if (isOrange) {
+    accentTextColor = "text-orange-400";
+    accentHoverColor = "hover:text-orange-300";
+  } else if (isAmber) {
+    accentTextColor = "text-amber-400";
+    accentHoverColor = "hover:text-amber-300";
+  }
 
   return (
     <div className={`p-5 rounded-xl border backdrop-blur-md transition-all duration-300 flex flex-col justify-between ${borderColor} ${bgColor} ${shadowGlow}`}>

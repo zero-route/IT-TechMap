@@ -1,4 +1,4 @@
-import Link from "next/link";
+ import Link from "next/link";
 import Navbar from "../../../src/components/common/Navbar";
 import Footer from "../../../src/components/common/Footer";
 import { categoryGroups } from "../../../src/data/ProfessionData";
@@ -12,7 +12,11 @@ import {
   Monitor, 
   Server,
   Terminal,
-  Database
+  Database,
+  Network,
+  Globe,
+  Layers,
+  Shield
 } from "lucide-react";
 
 const iconMap = {
@@ -24,6 +28,10 @@ const iconMap = {
   Terminal: Terminal,
   Database: Database,
   Cpu: Cpu,
+  Network: Network,
+  Globe: Globe,
+  Layers: Layers,
+  Shield: Shield,
 };
 
 export default function DetailProfesiPage({ params }) {
@@ -56,11 +64,23 @@ export default function DetailProfesiPage({ params }) {
   const firstWord = words[0];
   const restWords = words.slice(1).join(" ");
 
-  // Deteksi warna grup
+  // Deteksi warna aksen grup (Biru / Orange / Amber-Kuning)
   const isOrange = groupData?.cardBorderColor.includes("orange");
-  const accentText = isOrange ? "text-orange-400" : "text-sky-400";
-  const accentBorder = isOrange ? "border-orange-500/30" : "border-sky-400/30";
-  const accentBadgeBg = isOrange ? "bg-orange-950/60 border-orange-500/40 text-orange-300" : "bg-sky-950/60 border-sky-400/40 text-sky-300";
+  const isAmber = groupData?.cardBorderColor.includes("amber");
+
+  let accentText = "text-sky-400";
+  let accentBorder = "border-sky-400/30";
+  let accentBadgeBg = "bg-sky-950/60 border-sky-400/40 text-sky-300";
+
+  if (isOrange) {
+    accentText = "text-orange-400";
+    accentBorder = "border-orange-500/30";
+    accentBadgeBg = "bg-orange-950/60 border-orange-500/40 text-orange-300";
+  } else if (isAmber) {
+    accentText = "text-amber-400";
+    accentBorder = "border-amber-400/30";
+    accentBadgeBg = "bg-amber-950/60 border-amber-400/40 text-amber-300";
+  }
 
   return (
     <div className="min-h-screen flex flex-col relative z-0">
@@ -121,7 +141,7 @@ export default function DetailProfesiPage({ params }) {
           </div>
         </div>
 
-        {/* 2 Kategori Tools dengan Penjelasan Fungsi */}
+        {/* 2 Kategori Tools */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Software Tools */}
           <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800">
