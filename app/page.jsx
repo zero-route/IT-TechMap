@@ -39,13 +39,13 @@ export default function Home() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {group.professions.map((profesi, idx) => {
-                      // Proteksi mutlak: Jika item profesi kosong/null/undefined, jangan render sama sekali
                       if (!profesi || typeof profesi !== "object") return null;
 
                       return (
                         <CardProfesi
                           key={profesi.id || idx}
                           profesi={profesi}
+                          index={idx} /* Kirim urutan index ke kartu */
                           borderColor={group.cardBorderColor || ""}
                           bgColor={group.cardBgColor || ""}
                           shadowGlow={group.cardGlow || ""}

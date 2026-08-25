@@ -21,14 +21,14 @@ const iconMap = {
   FolderKanban, UserCheck, Lightbulb
 };
 
-export default function CardProfesi({ profesi, borderColor = "", bgColor = "", shadowGlow = "" }) {
-  if (!profesi) return null;
+export default function CardProfesi({ profesi, index = 0, borderColor = "", bgColor = "", shadowGlow = "" }) {
+  if (!profesi || typeof profesi !== "object") return null;
 
   const iconName = profesi.iconName || "Monitor";
   const IconComponent = iconMap[iconName] || Monitor;
 
   const profesiName = profesi.name || "";
-  const words = profesiName.split(" ");
+  const words = profesiName ? profesiName.split(" ") : ["Profesi"];
   const firstWord = words[0] || "";
   const restWords = words.slice(1).join(" ");
 
@@ -79,40 +79,48 @@ export default function CardProfesi({ profesi, borderColor = "", bgColor = "", s
     gradientTitleClass = "from-red-400 to-slate-200";
   }
 
+  // Hitung delay animasi (0ms, 80ms, 160ms per baris grid 3-kolom)
+  const staggerDelay = `${(index % 3) * 80}ms`;
+
   return (
-    <BorderGlow
-      borderRadius={16}
-      coneSpread={35}
-      backgroundColor="rgba(15, 23, 42, 0.6)"
-      className={`p-5 backdrop-blur-md transition-all duration-300 ${borderColor} ${bgColor} ${shadowGlow}`}
+    <div 
+      className="animate-fade-in-up" 
+      style={{ animationDelay: staggerDelay }}
     >
-      <div>
-        <div className="flex items-center gap-3 mb-3">
-          <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
-            <IconComponent size={22} />
+      <BorderGlow
+        borderRadius={16}
+        coneSpread={35}
+        backgroundColor="rgba(15, 23, 42, 0.6)"
+        className={`p-5 backdrop-blur-md transition-all duration-300 ${borderColor} ${bgColor} ${shadowGlow}`}
+      >
+        <div>
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
+              <IconComponent size={22} />
+            </div>
+            <h3 className="text-lg font-bold leading-tight">
+              <span className="text-white">{firstWord} </span>
+              {restWords && (
+                <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
+                  {restWords}
+                </span>
+              )}
+            </h3>
           </div>
-          <h3 className="text-lg font-bold leading-tight">
-            <span className="text-white">{firstWord} </span>
-            {restWords && (
-              <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
-                {restWords}
-              </span>
-            )}
-          </h3>
+
+          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+            {profesi.summary || ""}
+          </p>
         </div>
 
-        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
-          {profesi.summary || ""}
-        </p>
-      </div>
-
-      <Link
-        href={`/profesi/${profesi.id || ""}`}
-        className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
-      >
-        Lihat lebih detail
-        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-      </Link>
-    </BorderGlow>
+        <Link
+          href={`/profesi/${profesi.id || ''}`}
+          className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
+        >
+          Lihat lebih detail
+          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </BorderGlow>
+    </div>
   );
 }
