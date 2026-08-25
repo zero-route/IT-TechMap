@@ -1,34 +1,55 @@
 import Link from "next/link";
-import Navbar from "@/components/common/Navbar";
-import Footer from "@/components/common/Footer";
-import { categoryGroups } from "@/data/ProfessionData";
-import { ArrowLeft, Cpu, Wrench } from "lucide-react";
+import Navbar from "../../../src/components/common/Navbar";
+import Footer from "../../../src/components/common/Footer";
+import { categoryGroups } from "../../../src/data/ProfessionData";
+import { 
+  ArrowLeft, 
+  Cpu, 
+  Wrench, 
+  CheckCircle2, 
+  Headphones, 
+  HelpCircle, 
+  Monitor, 
+  Server 
+} from "lucide-react";
+
+const iconMap = {
+  Headphones: Headphones,
+  HelpCircle: HelpCircle,
+  Monitor: Monitor,
+  Server: Server,
+};
 
 export default function DetailProfesiPage({ params }) {
   const { id } = params;
   
-  // Mencari data profesi
   let profesi = null;
+  let categoryTitle = "";
+  
   categoryGroups.forEach(g => {
     const found = g.professions.find(p => p.id === id);
-    if (found) profesi = found;
+    if (found) {
+      profesi = found;
+      categoryTitle = g.title;
+    }
   });
 
   if (!profesi) {
     return (
       <div className="min-h-screen text-white flex flex-col items-center justify-center">
         <p>Profesi tidak ditemukan.</p>
-        <Link href="/" className="text-blue-400 underline mt-4">Kembali ke Beranda</Link>
+        <Link href="/" className="text-sky-400 underline mt-4">Kembali ke Beranda</Link>
       </div>
     );
   }
 
+  const IconComponent = iconMap[profesi.iconName] || Monitor;
   const words = profesi.name.split(" ");
   const firstWord = words[0];
   const restWords = words.slice(1).join(" ");
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative z-0">
       <div className="bg-blobs">
         <div className="blob blob-blue"></div>
         <div className="blob blob-purple"></div>
@@ -37,64 +58,87 @@ export default function DetailProfesiPage({ params }) {
 
       <Navbar />
 
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-10">
-        <Link href="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-6">
-          <ArrowLeft size={18} /> Kembali
+      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <Link href="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-6 text-sm transition">
+          <ArrowLeft size={16} /> Kembali ke Beranda
         </Link>
 
-        {/* Title Header */}
-        <div className="bg-slate-900/70 backdrop-blur-md p-8 rounded-2xl border border-slate-800 mb-8">
-          <h1 className="text-4xl font-extrabold mb-3">
-            <span className="text-white">{firstWord} </span>
-            <span className="gradient-text">{restWords}</span>
-          </h1>
-          <p className="text-slate-300 text-lg leading-relaxed">{profesi.summary}</p>
+        {/* Detail Header Box */}
+        <div className="bg-slate-900/70 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-sky-400/30 mb-8 shadow-lg">
+          <div className="flex items-start gap-4 mb-4">
+            <div className="p-3 bg-sky-950/80 border border-sky-500/40 text-sky-400 rounded-xl shrink-0">
+              <IconComponent size={32} />
+            </div>
+            <div>
+              <span className="text-xs uppercase tracking-wider text-sky-400 font-semibold">{categoryTitle}</span>
+              <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">
+                <span className="text-white">{firstWord} </span>
+                <span className="gradient-text">{restWords}</span>
+              </h1>
+            </div>
+          </div>
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">{profesi.summary}</p>
         </div>
 
-        {/* Tingkatan Pekerjaan */}
+        {/* Tugas & Tanggung Jawab */}
+        {profesi.tasks && (
+          <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800 mb-8">
+            <h2 className="text-xl font-bold text-white mb-4">Tugas & Tanggung Jawab Utama</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {profesi.tasks.map((task, idx) => (
+                <div key={idx} className="flex items-start gap-3 bg-slate-800/40 p-3 rounded-xl border border-slate-700/50">
+                  <CheckCircle2 size={18} className="text-sky-400 shrink-0 mt-0.5" />
+                  <span className="text-slate-300 text-sm">{task}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Tingkatan / Jenjang Karier */}
         <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800 mb-8">
           <h2 className="text-xl font-bold text-white mb-4">Tingkatan / Jenjang Karier</h2>
           <div className="flex flex-wrap gap-3">
             {profesi.levels.map((lvl, index) => (
-              <span key={index} className="px-4 py-2 bg-blue-950/60 border border-blue-500/40 text-blue-300 rounded-lg text-sm font-medium">
+              <span key={index} className="px-4 py-2 bg-sky-950/60 border border-sky-400/40 text-sky-300 rounded-lg text-sm font-medium">
                 {lvl}
               </span>
             ))}
           </div>
         </div>
 
-        {/* 2 Kategori Tools: Software & Hardware */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* 2 Kategori Tools dengan Penjelasan Fungsi */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Software Tools */}
           <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800">
-            <div className="flex items-center gap-3 mb-4 text-blue-400">
-              <Cpu size={24} />
-              <h3 className="text-xl font-bold text-white">Software Tools</h3>
+            <div className="flex items-center gap-3 mb-4 text-sky-400 border-b border-slate-800 pb-3">
+              <Cpu size={22} />
+              <h3 className="text-lg font-bold text-white">Software Tools</h3>
             </div>
-            <ul className="space-y-2 text-slate-300">
+            <div className="space-y-3">
               {profesi.software.map((item, idx) => (
-                <li key={idx} className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                  {item}
-                </li>
+                <div key={idx} className="bg-slate-800/30 p-3 rounded-xl border border-slate-700/40">
+                  <span className="text-sky-300 font-semibold text-sm block">{item.name}</span>
+                  <span className="text-slate-400 text-xs">{item.purpose}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Hardware Tools */}
           <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800">
-            <div className="flex items-center gap-3 mb-4 text-sky-400">
-              <Wrench size={24} />
-              <h3 className="text-xl font-bold text-white">Hardware Tools</h3>
+            <div className="flex items-center gap-3 mb-4 text-sky-400 border-b border-slate-800 pb-3">
+              <Wrench size={22} />
+              <h3 className="text-lg font-bold text-white">Hardware Tools</h3>
             </div>
-            <ul className="space-y-2 text-slate-300">
+            <div className="space-y-3">
               {profesi.hardware.map((item, idx) => (
-                <li key={idx} className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-sky-400"></span>
-                  {item}
-                </li>
+                <div key={idx} className="bg-slate-800/30 p-3 rounded-xl border border-slate-700/40">
+                  <span className="text-sky-300 font-semibold text-sm block">{item.name}</span>
+                  <span className="text-slate-400 text-xs">{item.purpose}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </main>
