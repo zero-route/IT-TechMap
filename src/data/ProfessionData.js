@@ -736,6 +736,238 @@ export const categoryGroups = [
       }
     ]
   }
+    // BARIS 7: Data & Analytics (5 Profesi - Aksen Hijau Emerald)
+  {
+    id: "data-analytics-group",
+    title: "Data & Analytics",
+    cardBorderColor: "border-emerald-500/50 hover:border-emerald-400",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(16,185,129,0.15)]",
+    professions: [
+      {
+        id: "data-analyst",
+        name: "Data Analyst",
+        iconName: "BarChart3",
+        summary: "Menganalisis himpunan data untuk menemukan tren, pola bisnis, dan menyajikan visualisasi data sebagai dasar pengambilan keputusan.",
+        tasks: [
+          "Pembersihan (data cleansing) dan manipulasi data mentah.",
+          "Membuat dashboard laporan interaktif untuk kebutuhan bisnis.",
+          "Menyusun kueri SQL kompleks untuk mengekstraksi informasi dari database."
+        ],
+        levels: ["Junior Data Analyst", "Data Analyst", "Lead Data Analyst"],
+        software: [
+          { name: "SQL (PostgreSQL/BigQuery)", purpose: "Ekstraksi & manipulasi data relasional" },
+          { name: "Tableau / Power BI", purpose: "Visualisasi & pembuatan dashboard interaktif" },
+          { name: "Python (Pandas/NumPy)", purpose: "Analisis & olah data statistik" }
+        ],
+        hardware: [
+          { name: "High-RAM Laptop", purpose: "Pengolahan dataset berkapasitas besar di memori" },
+          { name: "Dual-Monitor Station", purpose: "Display olah kueri data dan dashboard visual simultan" }
+        ]
+      },
+      {
+        id: "data-scientist",
+        name: "Data Scientist",
+        iconName: "BrainCircuit",
+        summary: "Memanfaat algoritma matematika, pemodelan statistik, dan machine learning untuk membuat prediksi cerdas bagi pertumbuhan bisnis.",
+        tasks: [
+          "Merancang model prediktif berbasis pemodelan statistik dan AI.",
+          "Pengujian hipotesis bisnis melalui metode A/B Testing.",
+          "Eksplorasi data kompleks (Exploratory Data Analysis)."
+        ],
+        levels: ["Data Scientist", "Senior Data Scientist", "Chief Data Officer (CDO)"],
+        software: [
+          { name: "Python / R", purpose: "Pemrograman sains data & pemodelan statistik" },
+          { name: "Jupyter Notebook", purpose: "Lingkungan eksplorasi data & eksperimen model" },
+          { name: "Scikit-Learn", purpose: "Library pemodelan machine learning" }
+        ],
+        hardware: [
+          { name: "GPU Workstation", purpose: "Akselerasi pelatihan model pemodelan statistik" },
+          { name: "Cloud Compute Node", purpose: "Pemrosesan kluster data besar (Big Data)" }
+        ]
+      },
+      {
+        id: "data-engineer",
+        name: "Data Engineer",
+        iconName: "Database",
+        summary: "Membangun dan memelihara pipa alur data (ETL Pipeline) serta arsitektur Data Warehouse agar data siap diolah secara andal.",
+        tasks: [
+          "Merancang pipa otomatisasi Data Pipeline (ETL/ELT).",
+          "Mengelola infrastruktur Data Lake dan Data Warehouse terpusat.",
+          "Memastikan kualitas, ketersediaan, dan efisiensi penyimpanan data."
+        ],
+        levels: ["Junior Data Engineer", "Data Engineer", "Principal Data Architect"],
+        software: [
+          { name: "Apache Spark / PySpark", purpose: "Pemrosesan data skala besar (Big Data)" },
+          { name: "Apache Airflow", purpose: "Orkestrasi jadwal alur kerja pipa ETL" },
+          { name: "Snowflake / BigQuery", purpose: "Platform cloud data warehouse enterprise" }
+        ],
+        hardware: [
+          { name: "Multi-Node Server Cluster", purpose: "Infrastruktur pemrosesan pipa data paralel" },
+          { name: "High-Speed Storage SAN", purpose: "Penyimpanan data berkapasitas dan I/O tinggi" }
+        ]
+      },
+      {
+        id: "machine-learning-engineer",
+        name: "Machine Learning Engineer",
+        iconName: "Cpu",
+        summary: "Menjembatani sains data dan rekayasa perangkat lunak dengan me-deploy model AI/ML ke skala produksi yang dapat diakses pengguna.",
+        tasks: [
+          "Optimasi dan otomatisasi deployment model ML (MLOps).",
+          "Integrasi endpoint API model kecerdasan buatan ke dalam aplikasi.",
+          "Monitoring efisiensi latency dan akurasi model di lingkungan produksi."
+        ],
+        levels: ["ML Engineer", "Senior Machine Learning Engineer", "AI Technical Lead"],
+        software: [
+          { name: "TensorFlow / PyTorch", purpose: "Framework deep learning & jaringan saraf tiruan" },
+          { name: "MLflow / Kubeflow", purpose: "Manajemen siklus hidup MLOps & eksperimen AI" },
+          { name: "Docker & FastAPI", purpose: "Packaging & pembungkusan API service model ML" }
+        ],
+        hardware: [
+          { name: "NVIDIA RTX / A100 GPU Rig", purpose: "Akselerasi pelatihan deep learning berbasis GPU CUDA" },
+          { name: "High-Spec Server Node", purpose: "Inference server model kecerdasan buatan" }
+        ]
+      },
+      {
+        id: "business-intelligence-analyst",
+        name: "Business Intelligence Analyst",
+        iconName: "LineChart",
+        summary: "Menerjemahkan data operasional menjadi wawasan bisnis (insights) strategis yang mudah dipahami oleh pemangku kepentingan (stakeholders).",
+        tasks: [
+          "Mengembangkan metrik KPI bisnis dan laporan kinerja berkala.",
+          "Menyusun analisis tren pasar dan peluang pertumbuhan bisnis.",
+          "Menjadi jembatan komunikasi teknis data antara tim IT dan eksekutif."
+        ],
+        levels: ["BI Analyst", "Senior BI Specialist", "BI Manager / Analytics Lead"],
+        software: [
+          { name: "Power BI / Looker", purpose: "Platform pembuatan laporan visualisasi bisnis" },
+          { name: "SQL", purpose: "Kueri penggabungan tabel data operasional" },
+          { name: "Excel Advanced", purpose: "Analisis finansial & pemodelan data cepat" }
+        ],
+        hardware: [
+          { name: "Business Laptop Workstation", purpose: "Komputer portabel performa tinggi olah laporan BI" },
+          { name: "Presentation Display Monitor", purpose: "Media demo dashboard interaktif ke jajaran pimpinan" }
+        ]
+      }
+    ]
+  },
+
+  // BARIS 8: UI/UX Design & Product Management (5 Profesi - Aksen Teal)
+  {
+    id: "design-product-group",
+    title: "UI/UX Design & Product Management",
+    cardBorderColor: "border-teal-400/50 hover:border-teal-300",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(45,212,191,0.15)]",
+    professions: [
+      {
+        id: "ui-ux-designer",
+        name: "UI/UX Designer",
+        iconName: "Figma",
+        summary: "Merancang wireframe, maket visual, dan alur interaksi antarmuka digital aplikasi yang estetis sekaligus intuitif.",
+        tasks: [
+          "Membuat desain Wireframe, High-Fidelity Prototype, dan UI Kit.",
+          "Menyusun sistem panduan tata letak komponen (Design System).",
+          "Merancang alur perjalanan pengguna (User Journey) yang mulus."
+        ],
+        levels: ["Junior UI/UX Designer", "UI/UX Designer", "Lead Product Designer"],
+        software: [
+          { name: "Figma", purpose: "Tool utama perancangan UI/UX & prototip kolaboratif" },
+          { name: "Adobe XD / Sketch", purpose: "Aplikasi alternatif perancangan maket visual" },
+          { name: "Protopie / Framer", purpose: "Pembuatan prototipe interaksi tingkat lanjut" }
+        ],
+        hardware: [
+          { name: "Color-Accurate Display Monitor (4K)", purpose: "Akurasi spectrum warna profesional (sRGB/DCI-P3)" },
+          { name: "Graphics Drawing Tablet", purpose: "Input presisi penjelajahan kanvas & ilustrasi UI" }
+        ]
+      },
+      {
+        id: "ux-researcher",
+        name: "UX Researcher",
+        iconName: "Users",
+        summary: "Menggali emosi, kebutuhan, dan kendala pengguna melalui wawancara serta pengujian langsung untuk memandu arah pengembangan produk.",
+        tasks: [
+          "Menyelenggarakan wawancara pengguna (User Interview) & Usability Testing.",
+          "Menganalisis hasil tes untuk membuat dokumen User Persona & Empathy Map.",
+          "Menyajikan temuan riset perilaku pengguna ke tim desain dan produk."
+        ],
+        levels: ["UX Researcher", "Senior UX Researcher", "Head of User Research"],
+        software: [
+          { name: "Maze / Useberry", purpose: "Platform pengujian usability testing jarak jauh" },
+          { name: "Miro", purpose: "Papan kolaborasi peta pikiran & User Journey" },
+          { name: "Dovetail", purpose: "Analisis & repositori data kualitatif riset" }
+        ],
+        hardware: [
+          { name: "High-Quality Audio/Webcam Kit", purpose: "Perekaman sesi wawancara pengguna jernih" },
+          { name: "Mobile Testing Rig", purpose: "Perekam interaksi layar & ekspresi wajah pengguna" }
+        ]
+      },
+      {
+        id: "product-designer",
+        name: "Product Designer",
+        iconName: "PenTool",
+        summary: "Menggabungkan kemampuan riset UX, desain UI, dan pemahaman strategi bisnis untuk merancang solusi produk digital yang utuh.",
+        tasks: [
+          "Menyelaraskan tujuan bisnis perusahaan dengan kebutuhan pengalaman pengguna.",
+          "Pengawasan pembuatan prototipe hingga fase serah-terima ke developer.",
+          "Iterasi pengembangan desain berdasarkan metrik penggunaan produk."
+        ],
+        levels: ["Product Designer", "Senior Product Designer", "VP of Product Design"],
+        software: [
+          { name: "Figma", purpose: "Desain antarmuka & dokumentasi sistem komponen" },
+          { name: "Mixpanel / Amplitude", purpose: "Analisis metrik perilaku penggunaan produk" },
+          { name: "Notion", purpose: "Dokumentasi spesifikasi fitur produk" }
+        ],
+        hardware: [
+          { name: "MacBook Pro M-Series", purpose: "Laptop standar industri dengan efisiensi render desain" },
+          { name: "Color-Accurate External Monitor", purpose: "Akurasi representasi warna komponen desain" }
+        ]
+      },
+      {
+        id: "product-manager",
+        name: "Product Manager",
+        iconName: "Briefcase",
+        summary: "Memimpin peta jalan produk (Product Roadmap), menentukan prioritas fitur, dan mengorkestrasi eksekusi tim lintas divisi.",
+        tasks: [
+          "Menentukan visi, strategi, dan Roadmap rilis produk digital.",
+          "Menyusun dokumen persyarat produk (Product Requirement Document / PRD).",
+          "Mengoordinasikan kolaborasi tim engineer, designer, dan bisnis."
+        ],
+        levels: ["Associate Product Manager", "Product Manager", "Chief Product Officer (CPO)"],
+        software: [
+          { name: "Jira / Linear", purpose: "Manajemen alur kerja & backlog tiket pengembang" },
+          { name: "Confluence / Notion", purpose: "Pusat dokumentasi PRD & strategi produk" },
+          { name: "Productboard", purpose: "Penyusunan peta jalan fitur (Roadmapping)" }
+        ],
+        hardware: [
+          { name: "Lightweight Executive Laptop", purpose: "Komputer portabel fleksibel untuk koordinasi antar divisi" },
+          { name: "Dual Screen Setup", purpose: "Manajemen simultan Roadmap, tiket Jira, & dokumen" }
+        ]
+      },
+      {
+        id: "scrum-master",
+        name: "Scrum Master",
+        iconName: "Kanban",
+        summary: "Fasilitator metode Agile/Scrum yang memastikan tim eksekusi bekerja lancar tanpa hambatan (blocker) serta menerapkan ritme kerja cepat.",
+        tasks: [
+          "Memimpin prosesi ritme Agile (Daily Standup, Sprint Planning, Retrospective).",
+          "Menghapus hambatan teknis maupun komunikasi yang dialami tim.",
+          "Melindungi tim dari gangguan luar selama siklus Sprint berjalan."
+        ],
+        levels: ["Scrum Master (PSM/CSM)", "Senior Scrum Master", "Agile Coach"],
+        software: [
+          { name: "Jira Software", purpose: "Manajemen papan Scrum board & pemantauan Burndown Chart" },
+          { name: "Miro / Mural", purpose: "Papan visual interaktif untuk acara Sprint Retrospective" },
+          { name: "Slack / Teams", purpose: "Pusat komunikasi & koordinasi tim yang cepat" }
+        ],
+        hardware: [
+          { name: "Collaboration Workstation Laptop", purpose: "Perangkat cepat fasilitasi acara rapat online" },
+          { name: "Wireless Headset & Stylus", purpose: "Interaksi fleksibel saat memimpin sesi papan visual" }
+        ]
+      }
+    ]
+  }
+
     ]
   }
 ];

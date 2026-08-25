@@ -6,14 +6,15 @@ import {
   ArrowLeft, Cpu, Wrench, CheckCircle2, Headphones,
   HelpCircle, Monitor, Server, Terminal, Database,
   Network, Globe, Layers, Shield, ShieldAlert, Lock, Eye, Skull,
-  Code, Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud
+  Code, Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
+  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban
 } from "lucide-react";
 
 const iconMap = {
   Headphones, HelpCircle, Monitor, Server, Wrench,
   Terminal, Database, Cpu, Network, Globe, Layers, Shield,
   ShieldAlert, Lock, Eye, Skull, Code, Layout, Smartphone,
-  GitBranch, Activity, Package, Bot, Cloud
+  GitBranch, Activity, Package, Bot, Cloud, BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban
 };
 
 export default function ProfesiDetailView({ id }) {
@@ -49,6 +50,8 @@ export default function ProfesiDetailView({ id }) {
   const isRose = groupData?.cardBorderColor.includes("rose");
   const isPurple = groupData?.cardBorderColor.includes("purple");
   const isFuchsia = groupData?.cardBorderColor.includes("fuchsia");
+  const isEmerald = groupData?.cardBorderColor.includes("emerald");
+  const isTeal = groupData?.cardBorderColor.includes("teal");
 
   let accentText = "text-sky-400";
   let accentBorder = "border-sky-400/30";
@@ -74,6 +77,14 @@ export default function ProfesiDetailView({ id }) {
     accentText = "text-fuchsia-400";
     accentBorder = "border-fuchsia-500/30";
     accentBadgeBg = "bg-fuchsia-950/60 border-fuchsia-500/40 text-fuchsia-300";
+  } else if (isEmerald) {
+    accentText = "text-emerald-400";
+    accentBorder = "border-emerald-500/30";
+    accentBadgeBg = "bg-emerald-950/60 border-emerald-500/40 text-emerald-300";
+  } else if (isTeal) {
+    accentText = "text-teal-400";
+    accentBorder = "border-teal-400/30";
+    accentBadgeBg = "bg-teal-950/60 border-teal-400/40 text-teal-300";
   }
 
   return (
