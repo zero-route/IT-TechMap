@@ -26,9 +26,9 @@ export default function Home() {
         </div>
 
         <div className="space-y-12">
-          {categoryGroups.map((group) => {
-            // Filter hanya profesi yang valid (mencegah undefined)
-            const validProfessions = (group.professions || []).filter(Boolean);
+          {(categoryGroups || []).map((group) => {
+            if (!group) return null;
+            const validProfessions = (group.professions || []).filter(p => p && p.id);
 
             return (
               <section key={group.id} className="scroll-mt-20">

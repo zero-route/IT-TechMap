@@ -20,11 +20,14 @@ const iconMap = {
 };
 
 export default function CardProfesi({ profesi, borderColor = "", bgColor = "", shadowGlow = "" }) {
-  if (!profesi) return null;
+  // Proteksi utama: Jika item profesi kosong/undefined, lewati render
+  if (!profesi || typeof profesi !== "object") return null;
 
-  const IconComponent = iconMap[profesi.iconName] || Monitor;
+  const iconName = profesi.iconName || "Monitor";
+  const IconComponent = iconMap[iconName] || Monitor;
 
-  const words = (profesi.name || "").split(" ");
+  const profesiName = profesi.name || "Profesi IT";
+  const words = profesiName.split(" ");
   const firstWord = words[0] || "";
   const restWords = words.slice(1).join(" ");
 
@@ -98,12 +101,12 @@ export default function CardProfesi({ profesi, borderColor = "", bgColor = "", s
         </div>
 
         <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
-          {profesi.summary}
+          {profesi.summary || ""}
         </p>
       </div>
 
       <Link
-        href={`/profesi/${profesi.id}`}
+        href={`/profesi/${profesi.id || ''}`}
         className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
       >
         Lihat lebih detail
