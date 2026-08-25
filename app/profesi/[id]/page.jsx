@@ -3,38 +3,16 @@ import Navbar from "../../../src/components/common/Navbar";
 import Footer from "../../../src/components/common/Footer";
 import { categoryGroups } from "../../../src/data/ProfessionData";
 import { 
-  ArrowLeft, 
-  Cpu, 
-  Wrench, 
-  CheckCircle2, 
-  Headphones, 
-  HelpCircle, 
-  Monitor, 
-  Server,
-  Terminal,
-  Database,
-  Network,
-  Globe,
-  Layers,
-  Shield
+  ArrowLeft, Cpu, Wrench, CheckCircle2, Headphones, 
+  HelpCircle, Monitor, Server, Terminal, Database, 
+  Network, Globe, Layers, Shield 
 } from "lucide-react";
 
 const iconMap = {
-  Headphones: Headphones,
-  HelpCircle: HelpCircle,
-  Monitor: Monitor,
-  Server: Server,
-  Wrench: Wrench,
-  Terminal: Terminal,
-  Database: Database,
-  Cpu: Cpu,
-  Network: Network,
-  Globe: Globe,
-  Layers: Layers,
-  Shield: Shield,
+  Headphones, HelpCircle, Monitor, Server, Wrench, 
+  Terminal, Database, Cpu, Network, Globe, Layers, Shield
 };
 
-// Fungsi prabangun rute statis di Vercel
 export async function generateStaticParams() {
   const paths = [];
   categoryGroups.forEach((group) => {
@@ -108,7 +86,6 @@ export default async function DetailProfesiPage({ params }) {
           <ArrowLeft size={16} /> Kembali ke Beranda
         </Link>
 
-        {/* Header Box */}
         <div className={`bg-slate-900/70 backdrop-blur-md p-6 sm:p-8 rounded-2xl border ${accentBorder} mb-8 shadow-lg`}>
           <div className="flex items-start gap-4 mb-4">
             <div className={`p-3 bg-slate-800/80 border border-slate-700 ${accentText} rounded-xl shrink-0`}>
@@ -125,7 +102,6 @@ export default async function DetailProfesiPage({ params }) {
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">{profesi.summary}</p>
         </div>
 
-        {/* Tugas Utama */}
         {profesi.tasks && (
           <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800 mb-8">
             <h2 className="text-xl font-bold text-white mb-4">Tugas & Tanggung Jawab Utama</h2>
@@ -140,7 +116,6 @@ export default async function DetailProfesiPage({ params }) {
           </div>
         )}
 
-        {/* Jenjang Karier */}
         <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800 mb-8">
           <h2 className="text-xl font-bold text-white mb-4">Tingkatan / Jenjang Karier</h2>
           <div className="flex flex-wrap gap-3">
@@ -152,9 +127,7 @@ export default async function DetailProfesiPage({ params }) {
           </div>
         </div>
 
-        {/* 2 Kategori Tools */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Software Tools */}
           <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800">
             <div className={`flex items-center gap-3 mb-4 ${accentText} border-b border-slate-800 pb-3`}>
               <Cpu size={22} />
@@ -170,7 +143,6 @@ export default async function DetailProfesiPage({ params }) {
             </div>
           </div>
 
-          {/* Hardware Tools */}
           <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800">
             <div className={`flex items-center gap-3 mb-4 ${accentText} border-b border-slate-800 pb-3`}>
               <Wrench size={22} />
