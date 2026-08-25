@@ -1,5 +1,5 @@
 export const categoryGroups = [
-  // BARIS 1: IT Support & Service Management (Aksen Biru)
+  // BARIS 1: Support & Service Desk (5 Profesi - Aksen Biru)
   {
     id: "support-group",
     title: "IT Support & Service Management",
@@ -106,18 +106,7 @@ export const categoryGroups = [
           { name: "VoIP Gateway System", purpose: "Routing jaringan telepon call center" },
           { name: "Barcode Asset Scanner", purpose: "Pemindai fisik label inventaris aset IT" }
         ]
-      }
-    ]
-  },
-
-  // BARIS 2: System & Server Administration (Aksen Orange)
-  {
-    id: "sysadmin-group",
-    title: "System & Server Administration",
-    cardBorderColor: "border-orange-500/50 hover:border-orange-400",
-    cardBgColor: "bg-slate-900/60",
-    cardGlow: "shadow-[0_0_15px_rgba(249,115,22,0.15)]",
-    professions: [
+      },
       {
         id: "technical-support",
         name: "Technical Support",
@@ -139,7 +128,18 @@ export const categoryGroups = [
           { name: "POST Diagnostics Card", purpose: "Mendeteksi kesalahan hardware motherboard" },
           { name: "Kabel Diagnostic", purpose: "Konektor universal pengujian hardware" }
         ]
-      },
+      }
+    ]
+  },
+
+  // BARIS 2: System & Server Administration (5 Profesi - Aksen Orange)
+  {
+    id: "sysadmin-group",
+    title: "System & Server Administration",
+    cardBorderColor: "border-orange-500/50 hover:border-orange-400",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(249,115,22,0.15)]",
+    professions: [
       {
         id: "system-administrator",
         name: "System Administrator",
