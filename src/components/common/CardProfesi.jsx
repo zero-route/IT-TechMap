@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Link from "next/link";
 import BorderGlow from "./BorderGlow";
@@ -22,10 +22,8 @@ const iconMap = {
 };
 
 export default function CardProfesi({ profesi, borderColor = "", bgColor = "", shadowGlow = "" }) {
-  // Guard 1: Proteksi data kosong saat SSG build
-  if (!profesi || typeof profesi !== "object") {
-    return null;
-  }
+  // Proteksi utama jika props profesi bernilai undefined/null
+  if (!profesi) return null;
 
   const iconName = profesi.iconName || "Monitor";
   const IconComponent = iconMap[iconName] || Monitor;
