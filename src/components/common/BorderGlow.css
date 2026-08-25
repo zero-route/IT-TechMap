@@ -3,9 +3,9 @@
   --cursor-angle: 45deg;
   --edge-sensitivity: 30;
   --color-sensitivity: calc(var(--edge-sensitivity) * 1%);
-  --border-radius: 28px;
-  --glow-padding: 40px;
-  --cone-spread: 25;
+  --border-radius: 16px;
+  --glow-padding: 30px;
+  --cone-spread: 45;
   --fill-opacity: 0.5;
 
   position: relative;
@@ -15,14 +15,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: var(--card-bg, #120F17);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card-bg, rgba(15, 23, 42, 0.6));
   overflow: visible;
-  box-shadow:
-    rgba(0, 0, 0, 0.1) 0px 1px 2px,
-    rgba(0, 0, 0, 0.1) 0px 2px 4px,
-    rgba(0, 0, 0, 0.1) 0px 4px 8px,
-    rgba(0, 0, 0, 0.1) 0px 8px 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .border-glow-card .border-glow-inner {
@@ -34,36 +30,7 @@
   justify-content: space-between;
 }
 
-.border-glow-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background:
-    var(--gradient-one, transparent),
-    var(--gradient-two, transparent),
-    var(--gradient-three, transparent),
-    var(--gradient-four, transparent),
-    var(--gradient-five, transparent),
-    var(--gradient-six, transparent),
-    var(--gradient-seven, transparent),
-    var(--gradient-base, transparent);
-  background-blend-mode: overlay, overlay, overlay, overlay, overlay, overlay, normal;
-  opacity: calc(var(--edge-proximity) * 0.01);
-  transition: opacity 0.3s ease;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: 3;
-}
-
+/* Garis Pendaran Utama (Edge Light) */
 .border-glow-card .edge-light {
   position: absolute;
   inset: -1px;
@@ -80,12 +47,10 @@
   padding: 1.5px;
   background: conic-gradient(
     from var(--cursor-angle),
-    var(--glow-color, transparent) 0deg,
-    var(--glow-color-60, transparent) calc(var(--cone-spread) * 0.5deg),
-    var(--glow-color-50, transparent) calc(var(--cone-spread) * 1deg),
-    var(--glow-color-40, transparent) calc(var(--cone-spread) * 1.5deg),
-    var(--glow-color-30, transparent) calc(var(--cone-spread) * 2deg),
-    transparent calc(var(--cone-spread) * 2.5deg)
+    var(--glow-color, #38bdf8) 0deg,
+    var(--glow-color-60, #38bdf8) calc(var(--cone-spread) * 0.5deg),
+    var(--glow-color-50, #38bdf8) calc(var(--cone-spread) * 1deg),
+    transparent calc(var(--cone-spread) * 2deg)
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -99,21 +64,31 @@
   transition: opacity 0.2s ease;
 }
 
+/* Glow Bayangan Belakang (Outer Blur Glow) */
 .border-glow-card::after {
   content: '';
   position: absolute;
-  inset: calc(var(--glow-padding) * -1);
+  inset: calc(var(--glow-padding) * -0.5);
   border-radius: inherit;
   background: conic-gradient(
     from var(--cursor-angle),
-    var(--glow-color, transparent) 0deg,
-    var(--glow-color-50, transparent) calc(var(--cone-spread) * 1deg),
-    var(--glow-color-20, transparent) calc(var(--cone-spread) * 2deg),
-    transparent calc(var(--cone-spread) * 3deg)
+    var(--glow-color, #38bdf8) 0deg,
+    var(--glow-color-50, #38bdf8) calc(var(--cone-spread) * 1deg),
+    transparent calc(var(--cone-spread) * 2deg)
   );
-  filter: blur(20px);
+  filter: blur(14px);
   opacity: calc(var(--edge-proximity) * 0.01);
   transition: opacity 0.2s ease;
   pointer-events: none;
   z-index: 1;
+}
+
+/* Fallback untuk Touch / Hover HP agar Glow Selalu Menyala Terang saat Di-tap */
+.border-glow-card:hover::before,
+.border-glow-card:hover::after,
+.border-glow-card:hover .edge-light::before,
+.border-glow-card:active::before,
+.border-glow-card:active::after,
+.border-glow-card:active .edge-light::before {
+  opacity: 1 !important;
 }
