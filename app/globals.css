@@ -74,11 +74,10 @@ body {
   left: 40%;
 }
 
-/* 2. Animasi Fade-In + Slide Up Halus (Durasi 0.8s) */
 .fade-up-init {
   opacity: 0;
-  transform: translate3d(0, 32px, 0);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 16px, 0); /* Jarak pergeseran diperkecil dari 32px ke 16px */
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Durasi dipersingkat ke 0.4s */
   will-change: opacity, transform;
 }
 
@@ -87,10 +86,11 @@ body {
   transform: translate3d(0, 0, 0);
 }
 
-/* Mobile Responsiveness */
+/* Di Mobile, matikan transisi untuk kecepatan maksimal */
 @media (max-width: 768px) {
-  .blob {
-    filter: blur(40px) !important;
-    opacity: 0.15 !important;
+  .fade-up-init {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
