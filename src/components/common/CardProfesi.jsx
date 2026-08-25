@@ -105,7 +105,7 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
   }
 
   // Delay berurutan linier: Kartu 1 (0ms), Kartu 2 (100ms), Kartu 3 (200ms), Kartu 4 (300ms), Kartu 5 (400ms)
-  const delayStyle = { transitionDelay: `${index * 450}ms` };
+  const delayStyle = { transitionDelay: `${index * 250}ms` };
 
   return (
     <div
