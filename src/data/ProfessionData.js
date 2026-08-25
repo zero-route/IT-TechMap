@@ -1,9 +1,9 @@
 export const categoryGroups = [
   {
     id: "support-group",
-    title: "IT Support & Service Management",
-    borderColor: "border-sky-400/40",
-    bgColor: "bg-sky-950/20",
+    cardBorderColor: "border-sky-400/50 hover:border-sky-300",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(56,189,248,0.15)]",
     professions: [
       {
         id: "it-support",
