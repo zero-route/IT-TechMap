@@ -24,7 +24,7 @@ export default function HomePage() {
     <div>
       {/* Hero Section */}
       <section className="flex flex-col items-center gap-6 py-20 text-center sm:py-28">
-        <span className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 font-mono text-xs text-purple-300">
+        <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 font-mono text-xs text-blue-300">
           <TerminalSquare size={13} />
           $ profesi --list --field=IT
         </span>
@@ -51,7 +51,7 @@ export default function HomePage() {
       {/* Profession Grid */}
       <section id="daftar-profesi" className="pb-24">
         <div className="mb-8 flex items-center gap-2.5">
-          <Layers size={18} className="text-purple-400" />
+          <Layers size={18} className="text-blue-400" />
           <h2 className="heading-duotone text-2xl font-bold text-slate-100">
             Daftar <span className="word-accent">Profesi</span>
           </h2>

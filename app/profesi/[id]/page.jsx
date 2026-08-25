@@ -26,7 +26,7 @@ export default function ProfessionDetailPage({ params }) {
   if (!profession) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 py-24 text-center">
-        <AlertTriangle size={32} className="text-purple-400" />
+        <AlertTriangle size={32} className="text-blue-400" />
         <h1 className="text-2xl font-bold text-slate-100">Profesi tidak ditemukan</h1>
         <p className="max-w-sm text-sm text-slate-500">
           Profesi yang kamu cari mungkin sudah berubah nama atau belum tersedia di IT-TechMap.

@@ -4,8 +4,8 @@ import { Search, X } from "lucide-react";
 export default function SearchBar({ value, onChange, resultCount }) {
   return (
     <div className="mx-auto w-full max-w-2xl">
-      <div className="glass-panel flex items-center gap-3 px-4 py-3 transition-shadow duration-300 focus-within:shadow-neon-sm focus-within:border-purple-400/50">
-        <Search size={18} className="shrink-0 text-purple-400" />
+      <div className="glass-panel flex items-center gap-3 px-4 py-3 transition-shadow duration-300 focus-within:shadow-neon-sm focus-within:border-blue-400/50">
+        <Search size={18} className="shrink-0 text-blue-400" />
         <input
           type="text"
           value={value}
@@ -17,7 +17,7 @@ export default function SearchBar({ value, onChange, resultCount }) {
           <button
             onClick={() => onChange("")}
             aria-label="Bersihkan pencarian"
-            className="shrink-0 rounded-full p-1 text-slate-500 transition-colors hover:text-purple-300"
+            className="shrink-0 rounded-full p-1 text-slate-500 transition-colors hover:text-blue-300"
           >
             <X size={16} />
           </button>

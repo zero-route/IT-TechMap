@@ -6,7 +6,7 @@ const ProfessionData = [
     id: "it-support",
     title: "IT Support",
     category: "Operasional & Layanan",
-    image: "https://placehold.co/800x600/161221/a855f7?text=IT+Support&font=jetbrains-mono",
+    image: "https://placehold.co/800x600/161221/3b82f6?text=IT+Support&font=jetbrains-mono",
     overview:
       "Garda terdepan dunia IT yang menangani operasional harian, troubleshoot hardware/software, manajemen inventaris, dan memberikan bantuan teknis langsung kepada end-user.",
     tasks: [
@@ -41,7 +41,7 @@ const ProfessionData = [
     id: "network-engineer",
     title: "Network Engineer",
     category: "Infrastruktur",
-    image: "https://placehold.co/800x600/161221/e879f9?text=Network+Engineer&font=jetbrains-mono",
+    image: "https://placehold.co/800x600/161221/6366f1?text=Network+Engineer&font=jetbrains-mono",
     overview:
       "Spesialis yang merancang, mengonfigurasi, menguji, dan memelihara infrastruktur jaringan komputer mulai dari skala LAN, WAN, hingga Data Center.",
     tasks: [
@@ -110,7 +110,7 @@ const ProfessionData = [
     id: "cyber-security-analyst",
     title: "Cyber Security Analyst",
     category: "Keamanan Siber",
-    image: "https://placehold.co/800x600/161221/a855f7?text=Cyber+Security&font=jetbrains-mono",
+    image: "https://placehold.co/800x600/161221/3b82f6?text=Cyber+Security&font=jetbrains-mono",
     overview:
       "Ahli keamanan yang melindungi aset digital perusahaan (Blue Team) sekaligus menguji celah keamanan sistem lewat simulasi serangan nyata (Red Team/Pentest).",
     tasks: [
@@ -144,7 +144,7 @@ const ProfessionData = [
     id: "devops-engineer",
     title: "DevOps Engineer",
     category: "Otomasi & Rilis",
-    image: "https://placehold.co/800x600/161221/e879f9?text=DevOps&font=jetbrains-mono",
+    image: "https://placehold.co/800x600/161221/6366f1?text=DevOps&font=jetbrains-mono",
     overview:
       "Menjembatani tim developer dan operasional lewat otomasi pipeline CI/CD, containerization, serta pengawasan performa sistem secara berkelanjutan.",
     tasks: [
@@ -205,6 +205,3 @@ const ProfessionData = [
       ],
     },
   },
-];
-
-export default ProfessionData;

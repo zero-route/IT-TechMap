@@ -10,8 +10,8 @@ module.exports = {
           card: "#161221",
         },
         neon: {
-          purple: "#a855f7",
-          fuchsia: "#e879f9",
+          blue: "#3b82f6",
+          indigo: "#6366f1",
           cyan: "#22d3ee",
         },
       },
@@ -20,13 +20,13 @@ module.exports = {
         mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        "neon-sm": "0 0 12px 0 rgba(168, 85, 247, 0.25)",
-        "neon-md": "0 0 32px 0 rgba(168, 85, 247, 0.25)",
-        "neon-lg": "0 0 64px 0 rgba(168, 85, 247, 0.3)",
+        "neon-sm": "0 0 12px 0 rgba(59, 130, 246, 0.25)",
+        "neon-md": "0 0 32px 0 rgba(59, 130, 246, 0.25)",
+        "neon-lg": "0 0 64px 0 rgba(59, 130, 246, 0.3)",
       },
       backgroundImage: {
         "grid-cyber":
-          "linear-gradient(rgba(168,85,247,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.07) 1px, transparent 1px)",
+          "linear-gradient(rgba(59,130,246,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.07) 1px, transparent 1px)",
       },
       backgroundSize: {
         grid: "40px 40px",

@@ -9,7 +9,7 @@ export default function DetailHeader({ profession }) {
     <section className="pt-8">
       <Link
         href="/"
-        className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-purple-300"
+        className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-blue-300"
       >
         <ArrowLeft size={16} />
         Kembali ke daftar profesi
@@ -26,7 +26,7 @@ export default function DetailHeader({ profession }) {
         </div>
 
         <div className="flex flex-col justify-center gap-4 p-6 md:col-span-3 md:p-10">
-          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 font-mono text-xs text-purple-300">
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 font-mono text-xs text-blue-300">
             <Cpu size={12} />
             {category}
           </span>

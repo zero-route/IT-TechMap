@@ -14,14 +14,14 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-purple-500/10 bg-base-950/70 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-blue-500/10 bg-base-950/70 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-purple-500/30 bg-purple-500/10 text-purple-300 transition-all group-hover:shadow-neon-sm">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-blue-500/30 bg-blue-500/10 text-blue-300 transition-all group-hover:shadow-neon-sm">
             <TerminalSquare size={18} />
           </span>
           <span className="font-mono text-lg font-bold tracking-tight text-slate-100">
-            IT<span className="text-purple-400">-TechMap</span>
+            IT<span className="text-blue-400">-TechMap</span>
           </span>
         </Link>
 
@@ -30,7 +30,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-slate-400 transition-colors hover:text-purple-300"
+              className="text-sm font-medium text-slate-400 transition-colors hover:text-blue-300"
             >
               {link.label}
             </a>
@@ -43,7 +43,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="rounded-lg border border-purple-500/20 p-2 text-slate-200 md:hidden"
+          className="rounded-lg border border-blue-500/20 p-2 text-slate-200 md:hidden"
           aria-label="Buka menu navigasi"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
@@ -51,14 +51,14 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-purple-500/10 bg-base-950/95 px-4 py-4 md:hidden">
+        <div className="border-t border-blue-500/10 bg-base-950/95 px-4 py-4 md:hidden">
           <nav className="flex flex-col gap-3">
             {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-sm font-medium text-slate-300 hover:text-purple-300"
+                className="text-sm font-medium text-slate-300 hover:text-blue-300"
               >
                 {link.label}
               </a>

@@ -8,7 +8,7 @@ export default function ToolSection({ tools }) {
     <section className="mt-6">
       <div className="glass-panel p-6 md:p-8">
         <h2 className="mb-6 flex items-center gap-2 text-lg font-bold text-slate-100">
-          <Wrench size={19} className="text-purple-400" />
+          <Wrench size={19} className="text-blue-400" />
           Perangkat Kerja
         </h2>
 
