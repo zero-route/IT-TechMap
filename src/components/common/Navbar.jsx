@@ -4,7 +4,7 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Terminal } from "lucide-react";
 import { categoryGroups } from "../../data/ProfessionData";
-import "./LineSidebar.css";
+import "./LineSideBar.css";
 
 const FALLOFF_CURVES = {
   linear: (p) => p,
@@ -14,9 +14,8 @@ const FALLOFF_CURVES = {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // References untuk logika LineSidebar React Bits
   const listRef = useRef(null);
   const itemRefs = useRef([]);
   const targetsRef = useRef([]);
@@ -27,7 +26,6 @@ export default function Navbar() {
 
   activeRef.current = activeIndex;
 
-  // Single rAF loop dari kode LineSidebar kamu
   const runFrame = useCallback((now) => {
     const dt = Math.min((now - lastRef.current) / 1000, 0.05);
     lastRef.current = now;
@@ -73,7 +71,7 @@ export default function Navbar() {
         if (!el) continue;
         const center = el.offsetTop + el.offsetHeight / 2;
         const distance = Math.abs(pointerY - center);
-        targetsRef.current[i] = ease(Math.max(0, 1 - distance / 100));
+        targetsRef.current[i] = ease(Math.max(0, 1 - distance / 90));
       }
       startLoop();
     },
@@ -85,17 +83,32 @@ export default function Navbar() {
     startLoop();
   }, [startLoop]);
 
-  // Lock scroll background saat menu overlay aktif
+  const handleTouchMove = useCallback(
+    (e) => {
+      if (e.touches && e.touches[0]) {
+        handlePointerMove(e.touches[0]);
+      }
+    },
+    [handlePointerMove]
+  );
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      // Force set properti awal agar tidak tersembunyi
+      itemRefs.current.forEach((el, i) => {
+        if (el) {
+          const initVal = activeIndex === i ? "1.0000" : "0.0000";
+          el.style.setProperty("--effect", initVal);
+          currentRef.current[i] = activeIndex === i ? 1 : 0;
+        }
+      });
       startLoop();
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [isOpen, startLoop]);
+  }, [isOpen, activeIndex, startLoop]);
 
-  // Auto detect active item saat user scroll halaman utama
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 250;
@@ -129,10 +142,9 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80">
+    <header className="sticky top-0 z-50 bg-slate-950/90 border-b border-slate-800/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo Brand */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="p-2 bg-sky-500/10 border border-sky-500/30 rounded-lg group-hover:border-sky-400 transition-colors">
               <Terminal size={20} className="text-sky-400" />
@@ -142,17 +154,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-            <Link href="/" className="hover:text-white transition-colors">
-              Beranda
-            </Link>
-            <a href="#support-group" className="hover:text-white transition-colors">
-              Peta Kategori
-            </a>
-          </nav>
-
-          {/* Hamburger Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2.5 text-slate-300 hover:text-white bg-slate-900 border border-slate-800 rounded-lg transition-colors focus:outline-none"
@@ -163,21 +164,22 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* FULLSCREEN OVERLAY DENGAN REACT BITS LINE SIDEBAR */}
+      {/* OVERLAY MENU REACT BITS FIX */}
       {isOpen && (
-        <div className="fixed inset-0 top-16 bg-slate-950/95 backdrop-blur-2xl z-50 flex flex-col justify-between overflow-y-auto p-6 sm:p-10 animate-fade-in-up">
-          <div className="max-w-lg mx-auto w-full my-auto py-4">
-            <p className="text-xs uppercase tracking-widest font-bold text-slate-500 mb-8 pl-12">
+        <div className="fixed inset-0 top-16 bg-slate-950 z-50 flex flex-col justify-between overflow-y-auto p-6 sm:p-10">
+          <div className="max-w-md mx-auto w-full my-auto py-4">
+            <p className="text-xs uppercase tracking-widest font-bold text-slate-500 mb-6 pl-12">
               Kategori Profesi IT
             </p>
 
-            {/* Komponen LineSidebar Asli React Bits */}
-            <nav className="line-sidebar line-sidebar--markers line-sidebar--scale-tick">
+            <nav className="line-sidebar">
               <ul
                 ref={listRef}
                 className="line-sidebar__list"
                 onPointerMove={handlePointerMove}
                 onPointerLeave={handlePointerLeave}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handlePointerLeave}
               >
                 {categoryGroups.map((group, index) => (
                   <li
