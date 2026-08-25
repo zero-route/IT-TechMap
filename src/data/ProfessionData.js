@@ -2,7 +2,7 @@ export const categoryGroups = [
   {
     id: "support-group",
     title: "IT Support & Service Management",
-    borderColor: "border-sky-400/40", // Border biru muda
+    borderColor: "border-sky-400/40",
     bgColor: "bg-sky-950/20",
     professions: [
       {
