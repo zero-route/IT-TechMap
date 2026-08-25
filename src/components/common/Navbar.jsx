@@ -1,122 +1,25 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Terminal } from "lucide-react";
 import { categoryGroups } from "../../data/ProfessionData";
 
-const FALLOFF_CURVES = {
-  linear: (p) => p,
-  smooth: (p) => p * p * (3 - 2 * p),
-};
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeId, setActiveId] = useState("");
 
-  const listRef = useRef(null);
-  const itemRefs = useRef([]);
-  const targetsRef = useRef([]);
-  const currentRef = useRef([]);
-  const rafRef = useRef(null);
-  const lastRef = useRef(0);
-  const activeRef = useRef(activeIndex);
-
-  activeRef.current = activeIndex;
-
-  const runFrame = useCallback((now) => {
-    const dt = Math.min((now - lastRef.current) / 1000, 0.05);
-    lastRef.current = now;
-    const tau = 80 / 1000;
-    const k = 1 - Math.exp(-dt / tau);
-
-    let moving = false;
-    const items = itemRefs.current;
-    for (let i = 0; i < items.length; i++) {
-      const el = items[i];
-      if (!el) continue;
-      const target = Math.max(targetsRef.current[i] || 0, activeRef.current === i ? 1 : 0);
-      const cur = currentRef.current[i] || 0;
-      const next = cur + (target - cur) * k;
-      const settled = Math.abs(target - next) < 0.0015;
-      const value = settled ? target : next;
-      currentRef.current[i] = value;
-      el.style.setProperty("--effect", value.toFixed(4));
-      if (!settled) moving = true;
-    }
-
-    rafRef.current = moving ? requestAnimationFrame(runFrame) : null;
-  }, []);
-
-  const startLoop = useCallback(() => {
-    if (rafRef.current != null) {
-      cancelAnimationFrame(rafRef.current);
-    }
-    lastRef.current = performance.now();
-    rafRef.current = requestAnimationFrame(runFrame);
-  }, [runFrame]);
-
-  const handlePointerMove = useCallback(
-    (e) => {
-      const list = listRef.current;
-      if (!list) return;
-      const rect = list.getBoundingClientRect();
-      const pointerY = e.clientY - rect.top;
-      const ease = FALLOFF_CURVES.smooth;
-      const items = itemRefs.current;
-      for (let i = 0; i < items.length; i++) {
-        const el = items[i];
-        if (!el) continue;
-        const center = el.offsetTop + el.offsetHeight / 2;
-        const distance = Math.abs(pointerY - center);
-        targetsRef.current[i] = ease(Math.max(0, 1 - distance / 120));
-      }
-      startLoop();
-    },
-    [startLoop]
-  );
-
-  const handlePointerLeave = useCallback(() => {
-    targetsRef.current = targetsRef.current.map(() => 0);
-    startLoop();
-  }, [startLoop]);
-
-  const handleTouchMove = useCallback(
-    (e) => {
-      if (e.touches && e.touches[0]) {
-        handlePointerMove(e.touches[0]);
-      }
-    },
-    [handlePointerMove]
-  );
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      itemRefs.current.forEach((el, i) => {
-        if (el) {
-          const val = activeIndex === i ? 1 : 0;
-          currentRef.current[i] = val;
-          el.style.setProperty("--effect", val.toString());
-        }
-      });
-      startLoop();
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [isOpen, activeIndex, startLoop]);
-
+  // Deteksi kategori aktif saat halaman di-scroll
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 250;
-      for (let i = 0; i < categoryGroups.length; i++) {
-        const group = categoryGroups[i];
+      const scrollPosition = window.scrollY + 200;
+      for (const group of categoryGroups) {
         const element = document.getElementById(group.id);
         if (element) {
           const top = element.offsetTop;
           const height = element.offsetHeight;
           if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveIndex(i);
+            setActiveId(group.id);
             break;
           }
         }
@@ -127,8 +30,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleItemClick = (index, targetId) => {
-    setActiveIndex(index);
+  const handleItemClick = (targetId) => {
+    setActiveId(targetId);
     setIsOpen(false);
     setTimeout(() => {
       const element = document.getElementById(targetId);
@@ -139,9 +42,10 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-950 border-b border-slate-800">
+    <header className="sticky top-0 z-50 bg-slate-950/95 border-b border-slate-800/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
+          {/* Logo Brand */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="p-2 bg-sky-500/10 border border-sky-500/30 rounded-lg group-hover:border-sky-400 transition-colors">
               <Terminal size={20} className="text-sky-400" />
@@ -151,6 +55,7 @@ export default function Navbar() {
             </span>
           </Link>
 
+          {/* Tombol Hamburger Menu */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2.5 text-slate-300 hover:text-white bg-slate-900 border border-slate-800 rounded-lg transition-colors focus:outline-none"
@@ -161,46 +66,37 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* OVERLAY NAVIGATION FULLSCREEN */}
+      {/* DROPDOWN MENU HAMBURGER (TIDAK MAKAN FULL PAGE) */}
       {isOpen && (
-        <div className="fixed inset-0 top-16 bg-slate-950 z-[9999] flex flex-col justify-between overflow-y-auto p-6 sm:p-10">
-          <div className="max-w-md mx-auto w-full my-auto py-4">
-            <p className="text-xs uppercase tracking-widest font-bold text-slate-400 mb-8 pl-12">
+        <div className="absolute top-full left-0 right-0 bg-slate-950/98 border-b border-slate-800/90 shadow-2xl p-5 sm:p-6 animate-fade-in-up">
+          <div className="max-w-7xl mx-auto">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-slate-500 mb-4 pl-1">
               Kategori Profesi IT
             </p>
 
-            <nav className="line-sidebar">
-              <ul
-                ref={listRef}
-                className="line-sidebar__list"
-                onPointerMove={handlePointerMove}
-                onPointerLeave={handlePointerLeave}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handlePointerLeave}
-              >
-                {categoryGroups.map((group, index) => (
-                  <li
-                    key={group.id}
-                    ref={(el) => (itemRefs.current[index] = el)}
-                    className="line-sidebar__item"
-                    aria-current={activeIndex === index ? "true" : undefined}
-                    onClick={() => handleItemClick(index, group.id)}
-                  >
-                    <span className="line-sidebar__marker" aria-hidden="true" />
-                    <span className="line-sidebar__label">
-                      <span className="line-sidebar__index">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className="line-sidebar__text">{group.title}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+            <div className="line-sidebar-dropdown">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-6">
+                {categoryGroups.map((group, index) => {
+                  const isActive = activeId === group.id;
+                  const formattedIndex = String(index + 1).padStart(2, "0");
 
-          <div className="text-center pt-6 border-t border-slate-900 text-slate-500 text-xs">
-            IT Profession Map &copy; 2026. Built with Next.js & React Bits.
+                  return (
+                    <div
+                      key={group.id}
+                      className="line-sidebar__item"
+                      aria-current={isActive ? "true" : undefined}
+                      onClick={() => handleItemClick(group.id)}
+                    >
+                      <span className="line-sidebar__marker" aria-hidden="true" />
+                      <span className="line-sidebar__label">
+                        <span className="line-sidebar__index">{formattedIndex}</span>
+                        <span className="line-sidebar__text">{group.title}</span>
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       )}
