@@ -12,6 +12,10 @@ import {
   Globe,
   Layers,
   Shield,
+  ShieldAlert,
+  Lock,
+  Eye,
+  Skull,
   ArrowRight 
 } from "lucide-react";
 
@@ -28,6 +32,10 @@ const iconMap = {
   Globe: Globe,
   Layers: Layers,
   Shield: Shield,
+  ShieldAlert: ShieldAlert,
+  Lock: Lock,
+  Eye: Eye,
+  Skull: Skull,
 };
 
 export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow }) {
@@ -37,9 +45,10 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   const firstWord = words[0];
   const restWords = words.slice(1).join(" ");
 
-  // Menyesuaikan warna teks aksen mengikuti warna border grup (Biru / Orange / Amber-Kuning)
+  // Menentukan warna aksen teks & tombol berdasarkan warna border grup
   const isOrange = borderColor.includes("orange");
   const isAmber = borderColor.includes("amber");
+  const isRose = borderColor.includes("rose");
   
   let accentTextColor = "text-sky-400";
   let accentHoverColor = "hover:text-sky-300";
@@ -50,6 +59,9 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   } else if (isAmber) {
     accentTextColor = "text-amber-400";
     accentHoverColor = "hover:text-amber-300";
+  } else if (isRose) {
+    accentTextColor = "text-rose-400";
+    accentHoverColor = "hover:text-rose-300";
   }
 
   return (
