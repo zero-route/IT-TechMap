@@ -969,6 +969,122 @@ export const categoryGroups = [
           { name: "Wireless Headset & Stylus", purpose: "Interaksi fleksibel saat memimpin sesi papan visual" }
         ]
       }
+        // BARIS 9: IT Management & Leadership (5 Profesi - Aksen Merah/Red)
+  {
+    id: "management-lead-group",
+    title: "IT Management & Leadership",
+    cardBorderColor: "border-red-500/50 hover:border-red-400",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(239,68,68,0.15)]",
+    professions: [
+      {
+        id: "it-project-manager",
+        name: "IT Project Manager",
+        iconName: "FolderKanban",
+        summary: "Mengelola anggaran, jadwal, alokasi tim, dan cakupan proyek IT agar selesai tepat waktu dan sesuai target bisnis.",
+        tasks: [
+          "Menyusun perencanaan cakupan proyek (Project Scope) dan alokasi resource.",
+          "Memantau mitigasi risiko proyek dan estimasi anggaran operasional.",
+          "Menjadi penghubung utama komunikasi antara tim pengembang dan klien/pemangku kepentingan."
+        ],
+        levels: ["Project Coordinator", "IT Project Manager (PMP)", "Program Manager"],
+        software: [
+          { name: "Microsoft Project / Primavera", purpose: "Perencanaan jadwal Gantt Chart & alokasi resource" },
+          { name: "Jira / Asana", purpose: "Pelacakan alur tiket & milestone proyek digital" },
+          { name: "Slack / Zoom", purpose: "Komunikasi & koordinasi harian tim proyek" }
+        ],
+        hardware: [
+          { name: "Executive Business Laptop", purpose: "Komputer portabel performa tinggi untuk presentasi & koordinasi" },
+          { name: "Dual-Display Station", purpose: "Monitoring simultan timeline proyek & laporan keuangan" }
+        ]
+      },
+      {
+        id: "it-manager",
+        name: "IT Manager",
+        iconName: "UserCheck",
+        summary: "Memimpin seluruh operasional departemen IT, mengelola tim teknis, serta memastikan infrastruktur pendukung bisnis berjalan stabil.",
+        tasks: [
+          "Mengelola anggaran belanja teknologi tahunan (CapEx & OpEx).",
+          "Supervisi harian tim IT Support, SysAdmin, dan Network Engineer.",
+          "Merancang prosedur pemulihan bencana (Disaster Recovery) & kebijakan internal IT."
+        ],
+        levels: ["IT Supervisor", "IT Manager", "Head of Information Technology"],
+        software: [
+          { name: "ServiceNow / GLPI", purpose: "Pengawasan dashboard inventaris & SLA layanan IT" },
+          { name: "SAP / ERP Software", purpose: "Manajemen pengadaan barang & perencanaan anggaran" },
+          { name: "Microsoft 365 Admin", purpose: "Tata kelola lisensi & hak akses pengguna perusahaan" }
+        ],
+        hardware: [
+          { name: "High-End Corporate Laptop", purpose: "Perangkat kerja aman khusus manajemen sistem" },
+          { name: "Conference Room Display", purpose: "Media rapat evaluasi kinerja teknis bulanan" }
+        ]
+      },
+      {
+        id: "chief-information-officer",
+        name: "Chief Information Officer (CIO)",
+        iconName: "Briefcase",
+        summary: "Eksekutif C-Level yang menyelaraskan strategi teknologi informasi secara keseluruhan dengan visi bisnis jangka panjang perusahaan.",
+        tasks: [
+          "Merancang strategi transformasi digital dan investasi teknologi perusahaan.",
+          "Memastikan kepatuhan keamanan informasi dan hukum perlindungan data.",
+          "Melaporkan evaluasi nilai bisnis efisiensi IT kepada Board of Directors (BOD)."
+        ],
+        levels: ["VP of Information Technology", "Chief Information Officer (CIO)"],
+        software: [
+          { name: "Tableau Enterprise", purpose: "Visualisasi metrik eksekutif & KPI bisnis IT" },
+          { name: "Gartner / Forrester Portal", purpose: "Riset tren adopsi teknologi dunia" },
+          { name: "Workday / Oracle ERP", purpose: "Tata kelola organisasi & keuangan eksekutif" }
+        ],
+        hardware: [
+          { name: "Ultrabook Executive", purpose: "Laptop tipis pergerakan mobilitas tinggi jajaran direksi" },
+          { name: "Secure Mobile Terminal", purpose: "Akses otentikasi ketat keputusan strategis" }
+        ]
+      },
+      {
+        id: "chief-technology-officer",
+        name: "Chief Technology Officer (CTO)",
+        iconName: "Cpu",
+        summary: "Memimpin inovasi teknologi produk, arsitektur teknis utama, dan kapabilitas rekayasa perangkat lunak perusahaan.",
+        tasks: [
+          "Menentukan tumpukan teknologi (Tech Stack) dan arsitektur produk.",
+          "Memimpin riset & pengembangan (R&D) adopsi teknologi baru (AI/Cloud).",
+          "Membangun budaya rekayasa (Engineering Culture) tim pengembang."
+        ],
+        levels: ["VP of Engineering", "Chief Technology Officer (CTO)"],
+        software: [
+          { name: "GitHub Enterprise", purpose: "Pengawasan arsitektur repositori kode perusahaan" },
+          { name: "AWS / GCP Executive Console", purpose: "Monitoring infrastruktur cloud skala besar" },
+          { name: "Linear / Jira", purpose: "Evaluasi produktivitas alur rekayasa produk" }
+        ],
+        hardware: [
+          { name: "MacBook Pro M-Series High-Spec", purpose: "Komputer kerja utama evaluasi kodingan & arsitektur" },
+          { name: "YubiKey Bio", purpose: "Hardware kunci akses keamanan infrastruktur utama" }
+        ]
+      },
+      {
+        id: "it-consultant",
+        name: "IT Consultant",
+        iconName: "Lightbulb",
+        summary: "Konsultan independen atau agensi yang memberikan nasihat pakar untuk membantu klien mengoptimalkan teknologi dan arsitektur sistem.",
+        tasks: [
+          "Melakukan analisis celah (Gap Analysis) pada sistem IT kuis/klien.",
+          "Menyusun rancangan solusi infrastruktur/software sesuai kebutuhan bisnis klien.",
+          "Memberikan rekomendasi objektif pemilihan vendor atau perbaikan operasional."
+        ],
+        levels: ["Associate Consultant", "Senior IT Consultant", "Managing Partner / Principal Consultant"],
+        software: [
+          { name: "Lucidchart / Visio", purpose: "Pembuatan diagram arsitektur sistem & alur proses bisnis" },
+          { name: "Microsoft PowerPoint", purpose: "Penyusunan dek presentasi usulan solusi ke klien" },
+          { name: "Notion / Confluence", purpose: "Repositori temuan audit & dokumentasi analisis" }
+        ],
+        hardware: [
+          { name: "Portable Workstation Laptop", purpose: "Laptop fleksibel untuk kerja on-site di lokasi klien" },
+          { name: "Wireless Presenter & Dongle Kit", purpose: "Kelengkapan presentasi proposal solusi teknis" }
+        ]
+      }
+    ]
+  }
+
     ]
   }
 ];

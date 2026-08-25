@@ -5,6 +5,7 @@ import {
   Shield, ShieldAlert, Lock, Eye, Skull, Code, 
   Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
   BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
+  FolderKanban, UserCheck, Lightbulb,
   ArrowRight 
 } from "lucide-react";
 
@@ -13,7 +14,8 @@ const iconMap = {
   Terminal, Database, Cpu, Network, Globe, Layers, 
   Shield, ShieldAlert, Lock, Eye, Skull, Code, 
   Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
-  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban
+  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
+  FolderKanban, UserCheck, Lightbulb
 };
 
 export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow }) {
@@ -30,6 +32,7 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   const isFuchsia = borderColor.includes("fuchsia");
   const isEmerald = borderColor.includes("emerald");
   const isPink = borderColor.includes("pink");
+  const isRed = borderColor.includes("red");
   
   let accentTextColor = "text-sky-400";
   let accentHoverColor = "hover:text-sky-300";
@@ -55,6 +58,9 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   } else if (isPink) {
     accentTextColor = "text-pink-400";
     accentHoverColor = "hover:text-pink-300";
+  } else if (isRed) {
+    accentTextColor = "text-red-400";
+    accentHoverColor = "hover:text-red-300";
   }
 
   return (

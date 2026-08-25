@@ -7,14 +7,16 @@ import {
   HelpCircle, Monitor, Server, Terminal, Database,
   Network, Globe, Layers, Shield, ShieldAlert, Lock, Eye, Skull,
   Code, Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
-  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban
+  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
+  FolderKanban, UserCheck, Lightbulb
 } from "lucide-react";
 
 const iconMap = {
   Headphones, HelpCircle, Monitor, Server, Wrench,
   Terminal, Database, Cpu, Network, Globe, Layers, Shield,
   ShieldAlert, Lock, Eye, Skull, Code, Layout, Smartphone,
-  GitBranch, Activity, Package, Bot, Cloud, BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban
+  GitBranch, Activity, Package, Bot, Cloud, BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
+  FolderKanban, UserCheck, Lightbulb
 };
 
 export default function ProfesiDetailView({ id }) {
@@ -52,6 +54,7 @@ export default function ProfesiDetailView({ id }) {
   const isFuchsia = groupData?.cardBorderColor.includes("fuchsia");
   const isEmerald = groupData?.cardBorderColor.includes("emerald");
   const isPink = groupData?.cardBorderColor.includes("pink");
+  const isRed = groupData?.cardBorderColor.includes("red");
 
   let accentText = "text-sky-400";
   let accentBorder = "border-sky-400/30";
@@ -85,6 +88,10 @@ export default function ProfesiDetailView({ id }) {
     accentText = "text-pink-400";
     accentBorder = "border-pink-500/30";
     accentBadgeBg = "bg-pink-950/60 border-pink-500/40 text-pink-300";
+  } else if (isRed) {
+    accentText = "text-red-400";
+    accentBorder = "border-red-500/30";
+    accentBadgeBg = "bg-red-950/60 border-red-500/40 text-red-300";
   }
 
   return (
