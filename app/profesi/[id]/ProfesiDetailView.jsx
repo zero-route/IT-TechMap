@@ -6,13 +6,14 @@ import {
   ArrowLeft, Cpu, Wrench, CheckCircle2, Headphones,
   HelpCircle, Monitor, Server, Terminal, Database,
   Network, Globe, Layers, Shield, ShieldAlert, Lock, Eye, Skull,
-  Code, Layout, Smartphone
+  Code, Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud
 } from "lucide-react";
 
 const iconMap = {
   Headphones, HelpCircle, Monitor, Server, Wrench,
   Terminal, Database, Cpu, Network, Globe, Layers, Shield,
-  ShieldAlert, Lock, Eye, Skull, Code, Layout, Smartphone
+  ShieldAlert, Lock, Eye, Skull, Code, Layout, Smartphone,
+  GitBranch, Activity, Package, Bot, Cloud
 };
 
 export default function ProfesiDetailView({ id }) {
@@ -47,6 +48,7 @@ export default function ProfesiDetailView({ id }) {
   const isAmber = groupData?.cardBorderColor.includes("amber");
   const isRose = groupData?.cardBorderColor.includes("rose");
   const isPurple = groupData?.cardBorderColor.includes("purple");
+  const isFuchsia = groupData?.cardBorderColor.includes("fuchsia");
 
   let accentText = "text-sky-400";
   let accentBorder = "border-sky-400/30";
@@ -68,6 +70,10 @@ export default function ProfesiDetailView({ id }) {
     accentText = "text-purple-400";
     accentBorder = "border-purple-500/30";
     accentBadgeBg = "bg-purple-950/60 border-purple-500/40 text-purple-300";
+  } else if (isFuchsia) {
+    accentText = "text-fuchsia-400";
+    accentBorder = "border-fuchsia-500/30";
+    accentBadgeBg = "bg-fuchsia-950/60 border-fuchsia-500/40 text-fuchsia-300";
   }
 
   return (

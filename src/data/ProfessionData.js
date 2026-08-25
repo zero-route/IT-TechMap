@@ -621,6 +621,121 @@ export const categoryGroups = [
           { name: "Physical Test Devices (Android & iPhone)", purpose: "Pengujian langsung performa aplikasi pada smartphone fisik" }
         ]
       }
+        // BARIS 6: DevOps & Cloud Engineering (5 Profesi - Aksen Ungu Magenta / Fuchsia)
+  {
+    id: "devops-group",
+    title: "DevOps & Cloud Engineering",
+    cardBorderColor: "border-fuchsia-500/50 hover:border-fuchsia-400",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(217,70,239,0.15)]",
+    professions: [
+      {
+        id: "devops-engineer",
+        name: "DevOps Engineer",
+        iconName: "GitBranch",
+        summary: "Menjembatani tim pengembang dan operasional melalui otomatisasi jalur CI/CD pipeline, kontainerisasi, dan pengelolaan infrastruktur.",
+        tasks: [
+          "Membangun alur otomatisasi rilis kode (CI/CD Pipeline).",
+          "Mengelola kluster kontainer aplikasi berbasis Docker dan Kubernetes.",
+          "Otomasi infrastruktur cloud menggunakan Infrastructure as Code (IaC)."
+        ],
+        levels: ["Junior DevOps Engineer", "DevOps Engineer", "Principal DevOps Architect"],
+        software: [
+          { name: "Docker & Kubernetes", purpose: "Platform kontainerisasi & orchestrator cluster" },
+          { name: "GitHub Actions / GitLab CI", purpose: "Otomatisasi rilis build & deployment" },
+          { name: "Terraform & Ansible", purpose: "Infrastructure as Code (IaC) & otomasi server" }
+        ],
+        hardware: [
+          { name: "YubiKey 2FA Key", purpose: "Otentikasi aman fisik ke server & CI/CD pipeline" },
+          { name: "Multi-Monitor Workstation", purpose: "Monitoring pipeline & status kluster server" }
+        ]
+      },
+      {
+        id: "site-reliability-engineer",
+        name: "Site Reliability Engineer (SRE)",
+        iconName: "Activity",
+        summary: "Mengaplikasikan disiplin rekayasa perangkat lunak pada operasional infrastruktur untuk menjaga keandalan, keterandalan (uptime), dan skalabilitas sistem.",
+        tasks: [
+          "Menentukan target Service Level Objectives (SLO) dan Error Budget.",
+          "Otomasi tugas operasional manual untuk mengurangi toil teknis.",
+          "Evaluasi paska insiden (Post-Mortem Analysis) dan manajemen downtime."
+        ],
+        levels: ["SRE Specialist", "Senior SRE", "Head of Reliability Engineering"],
+        software: [
+          { name: "Prometheus & Grafana", purpose: "Pengumpul metrik time-series & dashboard observabilitas" },
+          { name: "ELK Stack (Elasticsearch, Kibana)", purpose: "Manajemen & pencarian log terpusat" },
+          { name: "PagerDuty / Opsgenie", purpose: "Manajemen insiden darurat on-call" }
+        ],
+        hardware: [
+          { name: "Enterprise On-Call Hardware Kit", purpose: "Perangkat darurat respon insiden downtime cepat" },
+          { name: "High-Spec Workstation", purpose: "Simulasi beban kerja & Chaos Engineering" }
+        ]
+      },
+      {
+        id: "release-engineer",
+        name: "Release Engineer",
+        iconName: "Package",
+        summary: "Bertanggung jawab atas versi rilis perangkat lunak, stabilitas siklus rilis, serta manajemen cabang repositori (branching strategy).",
+        tasks: [
+          "Mengatur versi paket aplikasi (Semantic Versioning).",
+          "Memastikan proses rilis software mematuhi pengujian jaminan kualitas (QA).",
+          "Mengelola strategi penggabungan cabang kode (Git branching strategy)."
+        ],
+        levels: ["Release Coordinator", "Release Engineer", "Release Operations Manager"],
+        software: [
+          { name: "Jenkins / ArgoCD", purpose: "Automation server rilis & GitOps deployment" },
+          { name: "Helm", purpose: "Package manager untuk aplikasi Kubernetes" },
+          { name: "Artifactory / Nexus", purpose: "Manajemen repositori artefak biner software" }
+        ],
+        hardware: [
+          { name: "Hardware Security Module (HSM)", purpose: "Penandatanganan digital sertifikasi biner rilis" },
+          { name: "Encrypted Storage Drive", purpose: "Penyimpanan cadangan artefak rilis utama" }
+        ]
+      },
+      {
+        id: "automation-engineer",
+        name: "Automation Engineer",
+        iconName: "Bot",
+        summary: "Merancang skrip dan kerangka otomasi pengujian atau operasional untuk mempercepat proses uji coba software tanpa intervensi manual.",
+        tasks: [
+          "Membuat skrip otomatisasi pengujian sistem (End-to-End Testing).",
+          "Integrasi pengujian otomatis ke dalam pipeline integrasi berkelanjutan.",
+          "Analisis laporan hasil pengujian otomatis dan deteksi regresi kodingan."
+        ],
+        levels: ["Automation QA Engineer", "Senior Automation Engineer", "Automation Lead"],
+        software: [
+          { name: "Selenium / Cypress / Playwright", purpose: "Framework otomatisasi pengujian browser" },
+          { name: "Appium", purpose: "Framework otomatisasi pengujian aplikasi mobile" },
+          { name: "Postman / Newman", purpose: "Otomatisasi pengujian API endpoint" }
+        ],
+        hardware: [
+          { name: "Multi-Device Testing Hub", purpose: "Hub perangkat fisik pengujian otomatisasi paralel" },
+          { name: "High-Performance Workstation", purpose: "Eksekusi paralel runner headless browser" }
+        ]
+      },
+      {
+        id: "cloud-engineer",
+        name: "Cloud Engineer",
+        iconName: "Cloud",
+        summary: "Merancang, mengonfigurasi, dan mengelola layanan arsitektur cloud (AWS, Azure, GCP) agar aman, efisien biaya, dan scalable.",
+        tasks: [
+          "Konfigurasi resource cloud (Virtual Machines, Storage Buckets, Cloud Networks).",
+          "Optimasi biaya penggunaan komputasi cloud (Cloud Cost Optimization/FinOps).",
+          "Migrasi sistem infrastruktur lokal (On-Premise) ke platform Cloud."
+        ],
+        levels: ["Junior Cloud Engineer", "Cloud Solutions Architect", "Principal Cloud Engineer"],
+        software: [
+          { name: "AWS / Azure / GCP Console", purpose: "Dashboard & CLI platform komputasi cloud enterprise" },
+          { name: "Terraform / CloudFormation", purpose: "Penyediaan resource cloud secara otomatis" },
+          { name: "Kubernetes (EKS/GKE/AKS)", purpose: "Pengelolaan layanan kontainer cloud terkelola" }
+        ],
+        hardware: [
+          { name: "Hardware Security Key (YubiKey)", purpose: "Akses otentikasi ketat ke console cloud produksi" },
+          { name: "High-Bandwidth Station", purpose: "Konektivitas transfer data besar ke storage cloud" }
+        ]
+      }
+    ]
+  }
     ]
   }
 ];

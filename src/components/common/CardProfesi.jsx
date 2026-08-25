@@ -1,47 +1,17 @@
 import Link from "next/link";
 import { 
-  Headphones, 
-  HelpCircle, 
-  Monitor, 
-  Server, 
-  Wrench, 
-  Terminal, 
-  Database, 
-  Cpu, 
-  Network,
-  Globe,
-  Layers,
-  Shield,
-  ShieldAlert,
-  Lock,
-  Eye,
-  Skull,
-  Code,
-  Layout,
-  Smartphone,
+  Headphones, HelpCircle, Monitor, Server, Wrench, 
+  Terminal, Database, Cpu, Network, Globe, Layers, 
+  Shield, ShieldAlert, Lock, Eye, Skull, Code, 
+  Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
   ArrowRight 
 } from "lucide-react";
 
 const iconMap = {
-  Headphones: Headphones,
-  HelpCircle: HelpCircle,
-  Monitor: Monitor,
-  Server: Server,
-  Wrench: Wrench,
-  Terminal: Terminal,
-  Database: Database,
-  Cpu: Cpu,
-  Network: Network,
-  Globe: Globe,
-  Layers: Layers,
-  Shield: Shield,
-  ShieldAlert: ShieldAlert,
-  Lock: Lock,
-  Eye: Eye,
-  Skull: Skull,
-  Code: Code,
-  Layout: Layout,
-  Smartphone: Smartphone,
+  Headphones, HelpCircle, Monitor, Server, Wrench, 
+  Terminal, Database, Cpu, Network, Globe, Layers, 
+  Shield, ShieldAlert, Lock, Eye, Skull, Code, 
+  Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud
 };
 
 export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow }) {
@@ -55,6 +25,7 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   const isAmber = borderColor.includes("amber");
   const isRose = borderColor.includes("rose");
   const isPurple = borderColor.includes("purple");
+  const isFuchsia = borderColor.includes("fuchsia");
   
   let accentTextColor = "text-sky-400";
   let accentHoverColor = "hover:text-sky-300";
@@ -71,6 +42,9 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   } else if (isPurple) {
     accentTextColor = "text-purple-400";
     accentHoverColor = "hover:text-purple-300";
+  } else if (isFuchsia) {
+    accentTextColor = "text-fuchsia-400";
+    accentHoverColor = "hover:text-fuchsia-300";
   }
 
   return (
