@@ -1,117 +1,112 @@
-"use client";
+import Link from "next/link";
+import BorderGlow from "./BorderGlow";
+import { 
+  Headphones, HelpCircle, Monitor, Server, Wrench, 
+  Terminal, Database, Cpu, Network, Globe, Layers, 
+  Shield, ShieldAlert, Lock, Eye, Skull, Code, 
+  Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
+  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
+  FolderKanban, UserCheck, Lightbulb,
+  ArrowRight 
+} from "lucide-react";
 
-import { useRef, useCallback, useEffect } from 'react';
-import './BorderGlow.css';
-
-function parseHSL(hslStr) {
-  const match = hslStr.match(/([\d.]+)\s*([\d.]+)%?\s*([\d.]+)%?/);
-  if (!match) return { h: 40, s: 80, l: 80 };
-  return { h: parseFloat(match[1]), s: parseFloat(match[2]), l: parseFloat(match[3]) };
-}
-
-function buildGlowVars(glowColor, intensity) {
-  const { h, s, l } = parseHSL(glowColor);
-  const base = `${h}deg ${s}% ${l}%`;
-  const opacities = [100, 80, 70, 60, 50, 40, 30];
-  const keys = ['', '-60', '-50', '-40', '-30', '-20', '-10'];
-  const vars = {};
-  for (let i = 0; i < opacities.length; i++) {
-    vars[`--glow-color${keys[i]}`] = `hsl(${base} / ${Math.min(opacities[i] * intensity, 100)}%)`;
-  }
-  return vars;
-}
-
-const GRADIENT_POSITIONS = ['80% 55%', '69% 34%', '8% 6%', '41% 38%', '86% 85%', '82% 18%', '51% 4%'];
-const GRADIENT_KEYS = ['--gradient-one', '--gradient-two', '--gradient-three', '--gradient-four', '--gradient-five', '--gradient-six', '--gradient-seven'];
-const COLOR_MAP = [0, 1, 2, 0, 1, 2, 1];
-
-function buildGradientVars(colors) {
-  const vars = {};
-  for (let i = 0; i < 7; i++) {
-    const c = colors[Math.min(COLOR_MAP[i], colors.length - 1)];
-    vars[GRADIENT_KEYS[i]] = `radial-gradient(at ${GRADIENT_POSITIONS[i]}, ${c} 0px, transparent 50%)`;
-  }
-  vars['--gradient-base'] = `linear-gradient(${colors[0]} 0 100%)`;
-  return vars;
-}
-
-const BorderGlow = ({
-  children,
-  className = '',
-  edgeSensitivity = 30,
-  glowColor = '40 80 80',
-  backgroundColor = 'rgba(15, 23, 42, 0.6)',
-  borderRadius = 16,
-  glowRadius = 40,
-  glowIntensity = 1.0,
-  coneSpread = 45,
-  colors = ['#c084fc', '#f472b6', '#38bdf8'],
-  fillOpacity = 0.5,
-}) => {
-  const cardRef = useRef(null);
-
-  const updateCoordinates = useCallback((clientX, clientY) => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const rect = card.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-
-    const radians = Math.atan2(y - cy, x - cx);
-    let degrees = radians * (180 / Math.PI) + 90;
-    if (degrees < 0) degrees += 360;
-
-    card.style.setProperty('--edge-proximity', '100');
-    card.style.setProperty('--cursor-angle', `${degrees.toFixed(2)}deg`);
-  }, []);
-
-  const handlePointerMove = useCallback((e) => {
-    updateCoordinates(e.clientX, e.clientY);
-  }, [updateCoordinates]);
-
-  const handleTouchMove = useCallback((e) => {
-    if (e.touches && e.touches[0]) {
-      updateCoordinates(e.touches[0].clientX, e.touches[0].clientY);
-    }
-  }, [updateCoordinates]);
-
-  const handlePointerLeave = useCallback(() => {
-    const card = cardRef.current;
-    if (!card) return;
-    card.style.setProperty('--edge-proximity', '0');
-  }, []);
-
-  const glowVars = buildGlowVars(glowColor, glowIntensity);
-
-  return (
-    <div
-      ref={cardRef}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      onTouchStart={handleTouchMove}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handlePointerLeave}
-      className={`border-glow-card ${className}`}
-      style={{
-        '--card-bg': backgroundColor,
-        '--edge-sensitivity': edgeSensitivity,
-        '--border-radius': `${borderRadius}px`,
-        '--glow-padding': `${glowRadius}px`,
-        '--cone-spread': coneSpread,
-        '--fill-opacity': fillOpacity,
-        ...glowVars,
-        ...buildGradientVars(colors),
-      }}
-    >
-      <span className="edge-light" />
-      <div className="border-glow-inner">
-        {children}
-      </div>
-    </div>
-  );
+const iconMap = {
+  Headphones, HelpCircle, Monitor, Server, Wrench, 
+  Terminal, Database, Cpu, Network, Globe, Layers, 
+  Shield, ShieldAlert, Lock, Eye, Skull, Code, 
+  Layout, Smartphone, GitBranch, Activity, Package, Bot, Cloud,
+  BarChart3, BrainCircuit, LineChart, Figma, Users, PenTool, Briefcase, Kanban,
+  FolderKanban, UserCheck, Lightbulb
 };
 
-export default BorderGlow;
+export default function CardProfesi({ profesi, borderColor }) {
+  const IconComponent = iconMap[profesi.iconName] || Monitor;
+
+  const words = profesi.name.split(" ");
+  const firstWord = words[0];
+  const restWords = words.slice(1).join(" ");
+
+  const isOrange = borderColor.includes("orange");
+  const isAmber = borderColor.includes("amber");
+  const isRose = borderColor.includes("rose");
+  const isPurple = borderColor.includes("purple");
+  const isFuchsia = borderColor.includes("fuchsia");
+  const isEmerald = borderColor.includes("emerald");
+  const isPink = borderColor.includes("pink");
+  const isRed = borderColor.includes("red");
+  
+  let accentTextColor = "text-sky-400";
+  let accentHoverColor = "hover:text-sky-300";
+  let gradientTitleClass = "from-sky-400 to-slate-200";
+
+  if (isOrange) {
+    accentTextColor = "text-orange-400";
+    accentHoverColor = "hover:text-orange-300";
+    gradientTitleClass = "from-orange-400 to-slate-200";
+  } else if (isAmber) {
+    accentTextColor = "text-amber-400";
+    accentHoverColor = "hover:text-amber-300";
+    gradientTitleClass = "from-amber-400 to-slate-200";
+  } else if (isRose) {
+    accentTextColor = "text-rose-400";
+    accentHoverColor = "hover:text-rose-300";
+    gradientTitleClass = "from-rose-400 to-slate-200";
+  } else if (isPurple) {
+    accentTextColor = "text-purple-400";
+    accentHoverColor = "hover:text-purple-300";
+    gradientTitleClass = "from-purple-400 to-slate-200";
+  } else if (isFuchsia) {
+    accentTextColor = "text-fuchsia-400";
+    accentHoverColor = "hover:text-fuchsia-300";
+    gradientTitleClass = "from-fuchsia-400 to-slate-200";
+  } else if (isEmerald) {
+    accentTextColor = "text-emerald-400";
+    accentHoverColor = "hover:text-emerald-300";
+    gradientTitleClass = "from-emerald-400 to-slate-200";
+  } else if (isPink) {
+    accentTextColor = "text-pink-400";
+    accentHoverColor = "hover:text-pink-300";
+    gradientTitleClass = "from-pink-400 to-slate-200";
+  } else if (isRed) {
+    accentTextColor = "text-red-400";
+    accentHoverColor = "hover:text-red-300";
+    gradientTitleClass = "from-red-400 to-slate-200";
+  }
+
+  return (
+    <BorderGlow
+      borderRadius={16}
+      coneSpread={35}
+      backgroundColor="rgba(15, 23, 42, 0.6)"
+      className="p-5 backdrop-blur-md transition-all duration-300"
+    >
+      <div>
+        <div className="flex items-center gap-3 mb-3">
+          <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
+            <IconComponent size={22} />
+          </div>
+          <h3 className="text-lg font-bold leading-tight">
+            <span className="text-white">{firstWord} </span>
+            {restWords && (
+              <span className={`bg-gradient-to-r ${gradientTitleClass} bg-clip-text text-transparent`}>
+                {restWords}
+              </span>
+            )}
+          </h3>
+        </div>
+
+        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+          {profesi.summary}
+        </p>
+      </div>
+
+      <Link
+        href={`/profesi/${profesi.id}`}
+        className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
+      >
+        Lihat lebih detail
+        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+      </Link>
+    </BorderGlow>
+  );
+}

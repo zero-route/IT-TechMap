@@ -1,24 +1,19 @@
 .border-glow-card {
   --edge-proximity: 0;
   --cursor-angle: 45deg;
-  --edge-sensitivity: 30;
-  --color-sensitivity: calc(var(--edge-sensitivity) * 1%);
   --border-radius: 16px;
-  --glow-padding: 30px;
-  --cone-spread: 45;
-  --fill-opacity: 0.5;
+  --cone-spread: 35;
 
   position: relative;
   border-radius: var(--border-radius);
   isolation: isolate;
-  transform: translate3d(0, 0, 0.01px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: var(--card-bg, rgba(15, 23, 42, 0.6));
-  overflow: visible;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
 }
 
 .border-glow-card .border-glow-inner {
@@ -30,16 +25,8 @@
   justify-content: space-between;
 }
 
-/* Garis Pendaran Utama (Edge Light) */
-.border-glow-card .edge-light {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 4;
-}
-
-.border-glow-card .edge-light::before {
+/* Sorot Garis Kilau Putih/Bening (Shine Line Effect) */
+.border-glow-card::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -47,10 +34,10 @@
   padding: 1.5px;
   background: conic-gradient(
     from var(--cursor-angle),
-    var(--glow-color, #38bdf8) 0deg,
-    var(--glow-color-60, #38bdf8) calc(var(--cone-spread) * 0.5deg),
-    var(--glow-color-50, #38bdf8) calc(var(--cone-spread) * 1deg),
-    transparent calc(var(--cone-spread) * 2deg)
+    rgba(255, 255, 255, 0.9) 0deg,
+    rgba(255, 255, 255, 0.4) calc(var(--cone-spread) * 0.5deg),
+    rgba(255, 255, 255, 0.1) calc(var(--cone-spread) * 1deg),
+    transparent calc(var(--cone-spread) * 1.5deg)
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -61,34 +48,13 @@
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: calc(var(--edge-proximity) * 0.01);
-  transition: opacity 0.2s ease;
-}
-
-/* Glow Bayangan Belakang (Outer Blur Glow) */
-.border-glow-card::after {
-  content: '';
-  position: absolute;
-  inset: calc(var(--glow-padding) * -0.5);
-  border-radius: inherit;
-  background: conic-gradient(
-    from var(--cursor-angle),
-    var(--glow-color, #38bdf8) 0deg,
-    var(--glow-color-50, #38bdf8) calc(var(--cone-spread) * 1deg),
-    transparent calc(var(--cone-spread) * 2deg)
-  );
-  filter: blur(14px);
-  opacity: calc(var(--edge-proximity) * 0.01);
-  transition: opacity 0.2s ease;
+  transition: opacity 0.25s ease;
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
 }
 
-/* Fallback untuk Touch / Hover HP agar Glow Selalu Menyala Terang saat Di-tap */
+/* Aktifkan kilau saat di-hover/di-tap */
 .border-glow-card:hover::before,
-.border-glow-card:hover::after,
-.border-glow-card:hover .edge-light::before,
-.border-glow-card:active::before,
-.border-glow-card:active::after,
-.border-glow-card:active .edge-light::before {
+.border-glow-card:active::before {
   opacity: 1 !important;
 }
