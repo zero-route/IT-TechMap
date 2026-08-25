@@ -1,4 +1,5 @@
 export const categoryGroups = [
+  // BARIS 1: IT Support & Service Management (Aksen Biru)
   {
     id: "support-group",
     title: "IT Support & Service Management",
@@ -104,6 +105,149 @@ export const categoryGroups = [
           { name: "Workstation Computer", purpose: "Komputer performa tinggi untuk manajemen sistem" },
           { name: "VoIP Gateway System", purpose: "Routing jaringan telepon call center" },
           { name: "Barcode Asset Scanner", purpose: "Pemindai fisik label inventaris aset IT" }
+        ]
+      }
+    ]
+  },
+
+  // BARIS 2: System & Server Administration (Aksen Orange)
+  {
+    id: "sysadmin-group",
+    title: "System & Server Administration",
+    cardBorderColor: "border-orange-500/50 hover:border-orange-400",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(249,115,22,0.15)]",
+    professions: [
+      {
+        id: "technical-support",
+        name: "Technical Support",
+        iconName: "Wrench",
+        summary: "Memberikan bantuan teknis tingkat lanjut untuk masalah sistem, perangkat lunak kompleks, dan infrastruktur IT pengguna.",
+        tasks: [
+          "Melakukan diagnosa mendalam untuk masalah perangkat lunak dan hardware.",
+          "Menyediakan eskalasi dukungan teknis tingkat menengah (Tier 2/3).",
+          "Konfigurasi dan perawatan perangkat periferal sistem perusahaan."
+        ],
+        levels: ["Technical Support Tier 2", "Technical Support Specialist", "Support Team Lead"],
+        software: [
+          { name: "TeamViewer", purpose: "Remote akses sistem untuk perbaikan tingkat lanjut" },
+          { name: "Wireshark", purpose: "Inspeksi dasar lalu lintas jaringan" },
+          { name: "Sysinternals Suite", purpose: "Utility troubleshooting sistem Windows" }
+        ],
+        hardware: [
+          { name: "Multimeter Digital", purpose: "Pengukuran arus dan tegangan perangkat" },
+          { name: "POST Diagnostics Card", purpose: "Mendeteksi kesalahan hardware motherboard" },
+          { name: "Kabel Diagnostic", purpose: "Konektor universal pengujian hardware" }
+        ]
+      },
+      {
+        id: "system-administrator",
+        name: "System Administrator",
+        iconName: "Server",
+        summary: "Mengelola, mengonfigurasi, dan memelihara seluruh infrastruktur server serta ketersediaan sistem operasi perusahaan.",
+        tasks: [
+          "Pengelolaan dan instalasi OS server (Linux/Windows Server).",
+          "Otomasi pemeliharaan rutin dan manajemen cadangan data (backup).",
+          "Memastikan uptime server dan keamanan sistem dari kerentanan."
+        ],
+        levels: ["Junior SysAdmin", "System Administrator", "Senior SysAdmin / Infrastructure Lead"],
+        software: [
+          { name: "Ansible", purpose: "Otomasi konfigurasi server secara terpusat" },
+          { name: "Proxmox VE / ESXi", purpose: "Platform virtualisasi server (Hypervisor)" },
+          { name: "Nginx / Apache", purpose: "Web server dan reverse proxy" }
+        ],
+        hardware: [
+          { name: "Server Rack Mount", purpose: "Perangkat keras unit komputasi server enterprise" },
+          { name: "KVM Switch", purpose: "Pengontrol fisik multi-server dengan satu monitor/keyboard" },
+          { name: "UPS Smart", purpose: "Cadangan daya listrik darurat untuk rack server" }
+        ]
+      },
+      {
+        id: "windows-administrator",
+        name: "Windows Administrator",
+        iconName: "Monitor",
+        summary: "Spesialis dalam merancang, mengonfigurasi, dan mengelola ekosistem server berbasis Microsoft Windows Server & Active Directory.",
+        tasks: [
+          "Manajemen Active Directory Domain Services (AD DS) & Group Policy (GPO).",
+          "Pengelolaan Microsoft Exchange Server, Teams, dan IIS Web Server.",
+          "Penerapan patch keamanan sistem operasi Windows Server."
+        ],
+        levels: ["Windows Server Admin", "Senior Windows Engineer", "Active Directory Specialist"],
+        software: [
+          { name: "Active Directory (ADUC)", purpose: "Manajemen identitas dan grup domain Windows" },
+          { name: "PowerShell", purpose: "Bahasa skrip otomasi tugas administratif Windows" },
+          { name: "WSUS", purpose: "Distribusi patch pembaruan Windows Server" }
+        ],
+        hardware: [
+          { name: "Enterprise Server Unit", purpose: "Perangkat server khusus untuk Windows Domain Controller" },
+          { name: "Hardware Security Module", purpose: "Perlindungan kunci enkripsi digital server" },
+          { name: "Storage NAS/SAN", purpose: "Penyimpanan data domain terpusat" }
+        ]
+      },
+      {
+        id: "linux-administrator",
+        name: "Linux Administrator",
+        iconName: "Terminal",
+        summary: "Bertanggung jawab atas pengelolaan, keamanan, dan optimasi performa server berbasis distro Linux (Ubuntu, RHEL, Rocky, Debian).",
+        tasks: [
+          "Manajemen pengguna, hak akses file, dan konfigurasi kernel Linux.",
+          "Penulisan skrip otomasi menggunakan Shell/Bash scripting.",
+          "Pemantauan log sistem dan optimasi penggunaan resource server."
+        ],
+        levels: ["Junior Linux Admin", "Linux System Engineer", "Senior Linux System Architect"],
+        software: [
+          { name: "OpenSSH", purpose: "Akses remote CLI aman ke server Linux" },
+          { name: "Bash Scripting", purpose: "Otomasi skrip tugas administratif harian" },
+          { name: "Systemd / Journald", purpose: "Manajemen servis dan logging sistem Linux" }
+        ],
+        hardware: [
+          { name: "Serial Console Cable", purpose: "Koneksi langsung ke port console server Linux" },
+          { name: "High-RAM Server", purpose: "Server fisik dengan kapasitas RAM tinggi untuk layanan Linux" },
+          { name: "Serial Console Server", purpose: "Out-of-band remote access banyak server" }
+        ]
+      },
+      {
+        id: "database-administrator",
+        name: "Database Administrator",
+        iconName: "Database",
+        summary: "Mengelola kinerja, integritas data, keamanan, serta skema kueri dari sistem manajemen basis data (DBMS).",
+        tasks: [
+          "Merancang dan mengoptimalkan kueri SQL/NoSQL serta indeks data.",
+          "Melakukan prosedur backup, pemulihan bencana (disaster recovery), dan replikasi data.",
+          "Mengatur hak akses pengguna dan enkripsi data sensitif basis data."
+        ],
+        levels: ["Junior DBA", "Database Administrator", "Senior Database Architect"],
+        software: [
+          { name: "DBeaver / TablePlus", purpose: "Client universal pengelolaan multi-database" },
+          { name: "PostgreSQL / MySQL", purpose: "RDBMS relational database engine" },
+          { name: "MongoDB", purpose: "NoSQL document database engine" }
+        ],
+        hardware: [
+          { name: "NVMe Enterprise Storage", purpose: "Media penyimpanan i/o tinggi untuk kueri cepat" },
+          { name: "High-Performance Server", purpose: "Server khusus pemrosesan transaksi basis data" },
+          { name: "Hardware Backup Appliance", purpose: "Perangkat keras khusus penyimpanan cadangan data" }
+        ]
+      },
+      {
+        id: "server-administrator",
+        name: "Server Administrator",
+        iconName: "Cpu",
+        summary: "Berfokus pada pemeliharaan fisik hardware server, alokasi resource, temperatur pusat data (data center), dan operasional tingkat rendah.",
+        tasks: [
+          "Pemasangan fisik unit server ke rack data center dan manajemen kabel.",
+          "Monitoring suhu, catu daya, dan kesehatan komponen internal server (RAID, RAM, CPU).",
+          "Pengelolaan ketersediaan jaringan fisik dan port switch server."
+        ],
+        levels: ["Data Center Technician", "Server Administrator", "Infrastructure Operations Lead"],
+        software: [
+          { name: "Zabbix / PRTG", purpose: "Monitoring performa server & lalu lintas jaringan" },
+          { name: "iDRAC / iLO", purpose: "Out-of-band management hardware server Dell/HP" },
+          { name: "VMware ESXi", purpose: "Virtualisasi resource hardware server" }
+        ],
+        hardware: [
+          { name: "RAID Controller Card", purpose: "Pengelola redundansi & keamanan disk server" },
+          { name: "Fiber Optic Cable", purpose: "Kabel transmisi data antar server kecepatan tinggi" },
+          { name: "PDU Smart", purpose: "Pengatur dan pemantau distribusi daya listrik rack server" }
         ]
       }
     ]

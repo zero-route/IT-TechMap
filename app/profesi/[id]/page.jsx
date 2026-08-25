@@ -10,7 +10,9 @@ import {
   Headphones, 
   HelpCircle, 
   Monitor, 
-  Server 
+  Server,
+  Terminal,
+  Database
 } from "lucide-react";
 
 const iconMap = {
@@ -18,6 +20,10 @@ const iconMap = {
   HelpCircle: HelpCircle,
   Monitor: Monitor,
   Server: Server,
+  Wrench: Wrench,
+  Terminal: Terminal,
+  Database: Database,
+  Cpu: Cpu,
 };
 
 export default function DetailProfesiPage({ params }) {
@@ -25,12 +31,14 @@ export default function DetailProfesiPage({ params }) {
   
   let profesi = null;
   let categoryTitle = "";
+  let groupData = null;
   
   categoryGroups.forEach(g => {
     const found = g.professions.find(p => p.id === id);
     if (found) {
       profesi = found;
       categoryTitle = g.title;
+      groupData = g;
     }
   });
 
@@ -48,6 +56,12 @@ export default function DetailProfesiPage({ params }) {
   const firstWord = words[0];
   const restWords = words.slice(1).join(" ");
 
+  // Deteksi warna grup
+  const isOrange = groupData?.cardBorderColor.includes("orange");
+  const accentText = isOrange ? "text-orange-400" : "text-sky-400";
+  const accentBorder = isOrange ? "border-orange-500/30" : "border-sky-400/30";
+  const accentBadgeBg = isOrange ? "bg-orange-950/60 border-orange-500/40 text-orange-300" : "bg-sky-950/60 border-sky-400/40 text-sky-300";
+
   return (
     <div className="min-h-screen flex flex-col relative z-0">
       <div className="bg-blobs">
@@ -64,13 +78,13 @@ export default function DetailProfesiPage({ params }) {
         </Link>
 
         {/* Detail Header Box */}
-        <div className="bg-slate-900/70 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-sky-400/30 mb-8 shadow-lg">
+        <div className={`bg-slate-900/70 backdrop-blur-md p-6 sm:p-8 rounded-2xl border ${accentBorder} mb-8 shadow-lg`}>
           <div className="flex items-start gap-4 mb-4">
-            <div className="p-3 bg-sky-950/80 border border-sky-500/40 text-sky-400 rounded-xl shrink-0">
+            <div className={`p-3 bg-slate-800/80 border border-slate-700 ${accentText} rounded-xl shrink-0`}>
               <IconComponent size={32} />
             </div>
             <div>
-              <span className="text-xs uppercase tracking-wider text-sky-400 font-semibold">{categoryTitle}</span>
+              <span className={`text-xs uppercase tracking-wider ${accentText} font-semibold`}>{categoryTitle}</span>
               <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">
                 <span className="text-white">{firstWord} </span>
                 <span className="gradient-text">{restWords}</span>
@@ -87,7 +101,7 @@ export default function DetailProfesiPage({ params }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {profesi.tasks.map((task, idx) => (
                 <div key={idx} className="flex items-start gap-3 bg-slate-800/40 p-3 rounded-xl border border-slate-700/50">
-                  <CheckCircle2 size={18} className="text-sky-400 shrink-0 mt-0.5" />
+                  <CheckCircle2 size={18} className={`${accentText} shrink-0 mt-0.5`} />
                   <span className="text-slate-300 text-sm">{task}</span>
                 </div>
               ))}
@@ -100,7 +114,7 @@ export default function DetailProfesiPage({ params }) {
           <h2 className="text-xl font-bold text-white mb-4">Tingkatan / Jenjang Karier</h2>
           <div className="flex flex-wrap gap-3">
             {profesi.levels.map((lvl, index) => (
-              <span key={index} className="px-4 py-2 bg-sky-950/60 border border-sky-400/40 text-sky-300 rounded-lg text-sm font-medium">
+              <span key={index} className={`px-4 py-2 border rounded-lg text-sm font-medium ${accentBadgeBg}`}>
                 {lvl}
               </span>
             ))}
@@ -111,14 +125,14 @@ export default function DetailProfesiPage({ params }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Software Tools */}
           <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800">
-            <div className="flex items-center gap-3 mb-4 text-sky-400 border-b border-slate-800 pb-3">
+            <div className={`flex items-center gap-3 mb-4 ${accentText} border-b border-slate-800 pb-3`}>
               <Cpu size={22} />
               <h3 className="text-lg font-bold text-white">Software Tools</h3>
             </div>
             <div className="space-y-3">
               {profesi.software.map((item, idx) => (
                 <div key={idx} className="bg-slate-800/30 p-3 rounded-xl border border-slate-700/40">
-                  <span className="text-sky-300 font-semibold text-sm block">{item.name}</span>
+                  <span className={`${accentText} font-semibold text-sm block`}>{item.name}</span>
                   <span className="text-slate-400 text-xs">{item.purpose}</span>
                 </div>
               ))}
@@ -127,14 +141,14 @@ export default function DetailProfesiPage({ params }) {
 
           {/* Hardware Tools */}
           <div className="bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-slate-800">
-            <div className="flex items-center gap-3 mb-4 text-sky-400 border-b border-slate-800 pb-3">
+            <div className={`flex items-center gap-3 mb-4 ${accentText} border-b border-slate-800 pb-3`}>
               <Wrench size={22} />
               <h3 className="text-lg font-bold text-white">Hardware Tools</h3>
             </div>
             <div className="space-y-3">
               {profesi.hardware.map((item, idx) => (
                 <div key={idx} className="bg-slate-800/30 p-3 rounded-xl border border-slate-700/40">
-                  <span className="text-sky-300 font-semibold text-sm block">{item.name}</span>
+                  <span className={`${accentText} font-semibold text-sm block`}>{item.name}</span>
                   <span className="text-slate-400 text-xs">{item.purpose}</span>
                 </div>
               ))}

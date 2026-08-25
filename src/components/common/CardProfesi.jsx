@@ -1,11 +1,25 @@
 import Link from "next/link";
-import { Headphones, HelpCircle, Monitor, Server, ArrowRight } from "lucide-react";
+import { 
+  Headphones, 
+  HelpCircle, 
+  Monitor, 
+  Server, 
+  Wrench, 
+  Terminal, 
+  Database, 
+  Cpu, 
+  ArrowRight 
+} from "lucide-react";
 
 const iconMap = {
   Headphones: Headphones,
   HelpCircle: HelpCircle,
   Monitor: Monitor,
-  Server: Server
+  Server: Server,
+  Wrench: Wrench,
+  Terminal: Terminal,
+  Database: Database,
+  Cpu: Cpu,
 };
 
 export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow }) {
@@ -15,11 +29,16 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   const firstWord = words[0];
   const restWords = words.slice(1).join(" ");
 
+  // Menentukan warna icon dan teks 'Lihat detail' berdasarkan grup (Biru/Orange)
+  const isOrange = borderColor.includes("orange");
+  const accentTextColor = isOrange ? "text-orange-400" : "text-sky-400";
+  const accentHoverColor = isOrange ? "hover:text-orange-300" : "hover:text-sky-300";
+
   return (
     <div className={`p-5 rounded-xl border backdrop-blur-md transition-all duration-300 flex flex-col justify-between ${borderColor} ${bgColor} ${shadowGlow}`}>
       <div>
         <div className="flex items-center gap-3 mb-3">
-          <div className="p-2.5 bg-slate-800/80 border border-slate-700 text-sky-400 rounded-lg shrink-0">
+          <div className={`p-2.5 bg-slate-800/80 border border-slate-700 ${accentTextColor} rounded-lg shrink-0`}>
             <IconComponent size={22} />
           </div>
           <h3 className="text-lg font-bold leading-tight">
@@ -35,7 +54,7 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
 
       <Link
         href={`/profesi/${profesi.id}`}
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-sky-300 transition group mt-2"
+        className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
       >
         Lihat lebih detail
         <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
