@@ -1,4 +1,4 @@
-export const categoryGroups = [
+ export const categoryGroups = [
   // BARIS 1: IT Support & Service Desk (5 Profesi - Aksen Biru)
   {
     id: "support-group",
@@ -377,6 +377,132 @@ export const categoryGroups = [
           { name: "Hardware Firewall Appliance", purpose: "Perangkat keras penyaring paket data jaringan" },
           { name: "Hardware Security Module (HSM)", purpose: "Enkripsi fisik kunci kriptografi" },
           { name: "YubiKey Security Key", purpose: "Hardware otentikasi 2FA administrator" }
+        ]
+      }
+    ]
+  },
+
+  // BARIS 4: Cyber Security & Threat Intelligence (5 Profesi - Aksen Merah)
+  {
+    id: "cybersecurity-group",
+    title: "Cyber Security & Threat Intelligence",
+    cardBorderColor: "border-rose-500/50 hover:border-rose-400",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(244,63,94,0.15)]",
+    professions: [
+      {
+        id: "cyber-security-analyst",
+        name: "Cyber Security Analyst",
+        iconName: "ShieldAlert",
+        summary: "Menganalisis potensi ancaman siber, memantau indikator kompromi (IoC), dan merespon insiden keamanan digital perusahaan.",
+        tasks: [
+          "Memantau log keamanan dan aktivitas mencurigakan secara berkesinambungan.",
+          "Melakukan analisis awal pada ancaman malwares, phishing, dan serangan siber.",
+          "Menyusun rekomendasi perbaikan celah keamanan untuk tim IT.",
+          "Menangani proses respon insiden siber dasar (Incident Response)."
+        ],
+        levels: ["Junior Cyber Security Analyst", "Cyber Security Analyst (L2)", "Lead Security Analyst"],
+        software: [
+          { name: "Splunk / Elastic SIEM", purpose: "Pengumpul & penganalisis log keamanan terpusat" },
+          { name: "VirusTotal / AlienVault", purpose: "Platform riset indikator kompromi (IoC)" },
+          { name: "Wireshark", purpose: "Analisis mendalam paket data lalu lintas mencurigakan" },
+          { name: "Nmap", purpose: "Scanner port dan pemeta layanan sistem" }
+        ],
+        hardware: [
+          { name: "Faraday Bag", purpose: "Tas isolasi sinyal radio fisik untuk bukti digital barang bukti" },
+          { name: "YubiKey Hardware Key", purpose: "Otentikasi aman dua faktor (2FA) akses sistem" },
+          { name: "High-Performance Workstation", purpose: "Komputer analisis dekripsi & parsing log" }
+        ]
+      },
+      {
+        id: "security-analyst",
+        name: "Security Analyst",
+        iconName: "Lock",
+        summary: "Menguji efektivitas kebijakan keamanan, menilai risiko (Risk Assessment), serta memastikan kepatuhan standar industri siber.",
+        tasks: [
+          "Melakukan audit kepatuhan ISO 27001 dan regulasi perlindungan data.",
+          "Menilai dampak risiko keamanan pada sistem atau aplikasi baru.",
+          "Mengembangkan kebijakan keamanan informasi internal perusahaan.",
+          "Menyelenggarakan pelatihan kesadaran keamanan siber (Security Awareness) karyawan."
+        ],
+        levels: ["Security Risk Analyst", "Information Security Analyst", "Compliance & Risk Lead"],
+        software: [
+          { name: "Nessus / Qualys", purpose: "Vulnerability scanner penemu celah sistem" },
+          { name: "OpenVAS", purpose: "Scanner celah keamanan open-source" },
+          { name: "Microsoft Purview", purpose: "Platform tata kelola dan perlindungan data" }
+        ],
+        hardware: [
+          { name: "Hardware Security Module (HSM)", purpose: "Perangkat pemroses kriptografi fisik" },
+          { name: "Encrypted Flash Drive", purpose: "Penyimpanan dokumen audit berenkripsi PIN fisik" }
+        ]
+      },
+      {
+        id: "soc-analyst",
+        name: "SOC Analyst",
+        iconName: "Eye",
+        summary: "Operator baris depan di Security Operations Center yang siaga memantau sinyal alarm SIEM, mendeteksi, dan menahan serangan secara real-time.",
+        tasks: [
+          "Monitoring dashboard SIEM 24/7 untuk mendeteksi anomali keamanan.",
+          "Memilah sinyal alarm (True Positive vs False Positive).",
+          "Isolasi perangkat yang terinfeksi ransomware/malware dari jaringan.",
+          "Eskalasi insiden kritis ke tim Threat Hunting / Digital Forensics."
+        ],
+        levels: ["SOC Analyst Tier 1", "SOC Analyst Tier 2", "SOC Incident Responder Tier 3 / SOC Manager"],
+        software: [
+          { name: "Splunk Enterprise Security", purpose: "SIEM monitoring alarm keamanan real-time" },
+          { name: "CrowdStrike / Defender EDR", purpose: "Endpoint Detection and Response" },
+          { name: "TheHive / MISP", purpose: "Platform manajemen insiden siber & Threat Intel" }
+        ],
+        hardware: [
+          { name: "Multi-Monitor SOC Console", purpose: "Setup layar ganda untuk monitoring dashboard SIEM" },
+          { name: "Dedicated Incident Responder Laptop", purpose: "Laptop terisolasi khusus investigasi malware" }
+        ]
+      },
+      {
+        id: "penetration-tester",
+        name: "Penetration Tester",
+        iconName: "Terminal",
+        summary: "Spesialis Red Team yang bertugas menembus dan menguji pertahanan sistem/aplikasi secara legal melalui simulasi serangan nyata.",
+        tasks: [
+          "Melakukan uji penetrasi (Pentest) pada aplikasi web, mobile, dan jaringan.",
+          "Eksploitasi celah keamanan (Vulnerability Exploitation) untuk membuktikan risiko.",
+          "Menyusun laporan teknis temuan celah beserta rekomendasi remediasi.",
+          "Uji coba rekayasa sosial (Social Engineering / Phishing simulation)."
+        ],
+        levels: ["Junior Pentester (CPENT/OSCP)", "Senior Penetration Tester", "Red Team Lead"],
+        software: [
+          { name: "Burp Suite Professional", purpose: "Web application security testing & HTTP proxy" },
+          { name: "Metasploit Framework", purpose: "Platform eksploitasi celah keamanan" },
+          { name: "Kali Linux / Parrot OS", purpose: "OS distro khusus penetration testing" },
+          { name: "SQLmap", purpose: "Tool otomatisasi eksploitasi SQL Injection" }
+        ],
+        hardware: [
+          { name: "WiFi Pineapple", purpose: "Hardware audit Wi-Fi & simulasi rogue AP" },
+          { name: "Rubber Ducky / MalDuino", purpose: "USB keystroke injection pengetes keamanan physical" },
+          { name: "Proxmark3", purpose: "Alat analisis, kloning, & emulasi kartu RFID/NFC" }
+        ]
+      },
+      {
+        id: "ethical-hacker",
+        name: "Ethical Hacker",
+        iconName: "Skull",
+        summary: "Hacker berizin resmi (White Hat) yang membongkar kerentanan arsitektur siber secara menyeluruh untuk membantu memperkuat benteng sistem.",
+        tasks: [
+          "Melakukan riset kerentanan (Vulnerability Research) zero-day.",
+          "Simulasi peretasan mendalam pada infrastruktur kritis enterprise.",
+          "Membantu Bug Bounty program dan mereview kode aplikasi (Code Review).",
+          "Memberikan konsultasi mitigasi pertahanan sebelum diretas peretas jahat (Black Hat)."
+        ],
+        levels: ["Certified Ethical Hacker (CEH)", "Offensive Security Specialist", "Principal Security Researcher"],
+        software: [
+          { name: "Ghidra / IDA Pro", purpose: "Reverse engineering & decompiler biner malware" },
+          { name: "Aircrack-ng", purpose: "Suite penguji & cracking keamanan jaringan nirkabel" },
+          { name: "Hashcat / John the Ripper", purpose: "Tool cracking hash password berkecepatan tinggi" }
+        ],
+        hardware: [
+          { name: "Flipper Zero", purpose: "Multi-tool portabel penguji protokol RF, RFID, Sub-1GHz, & BadUSB" },
+          { name: "LAN Turtle", purpose: "Adapter Ethernet covert access untuk pivoting pentest" },
+          { name: "High-GPU Cracking Rig", purpose: "Server GPU khusus untuk audit kekuatan hash password" }
         ]
       }
     ]
