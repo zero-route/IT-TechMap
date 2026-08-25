@@ -1,14 +1,9 @@
-"use client";
-import { useState } from "react";
-import Navbar from "../src/components/common/Navbar";
-import SearchBar from "../src/components/common/SearchBar";
-import CardProfesi from "../src/components/common/CardProfesi";
-import Footer from "../src/components/common/Footer";
 import { categoryGroups } from "../src/data/ProfessionData";
+import CardProfesi from "../src/components/common/CardProfesi";
+import Navbar from "../src/components/common/Navbar";
+import Footer from "../src/components/common/Footer";
 
-export default function HomePage() {
-  const [searchTerm, setSearchTerm] = useState("");
-
+export default function Home() {
   return (
     <div className="min-h-screen flex flex-col relative z-0">
       <div className="bg-blobs">
@@ -19,37 +14,33 @@ export default function HomePage() {
 
       <Navbar />
 
-      <main className="flex-1 max-w-[90rem] w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <header className="text-center mb-10">
-          <h1 className="text-3xl sm:text-5xl font-extrabold mb-4">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
             <span className="text-white">Peta </span>
             <span className="gradient-text">Profesi IT</span>
           </h1>
-          <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             Panduan komprehensif struktur jenjang karier, tugas, dan tools ekosistem dunia IT.
           </p>
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        </header>
+        </div>
 
-        <div className="space-y-8" id="profesi">
+        <div className="space-y-12">
           {categoryGroups.map((group) => {
-            const filteredProfessions = group.professions.filter((item) =>
-              item.name.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-
-            if (filteredProfessions.length === 0) return null;
+            // Filter hanya profesi yang valid (mencegah undefined)
+            const validProfessions = (group.professions || []).filter(Boolean);
 
             return (
-              <div key={group.id} className="space-y-4">
-                <h2 className="text-xl font-bold text-white border-b border-slate-800 pb-2">
+              <section key={group.id} className="scroll-mt-20">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <span className="w-2 h-6 bg-slate-700 rounded-full inline-block"></span>
                   {group.title}
                 </h2>
-                
-                {/* 5 Kolom Sejajar Horizontal di Desktop (lg:grid-cols-5) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                  {filteredProfessions.map((profesi) => (
-                    <CardProfesi 
-                      key={profesi.id} 
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {validProfessions.map((profesi) => (
+                    <CardProfesi
+                      key={profesi.id}
                       profesi={profesi}
                       borderColor={group.cardBorderColor}
                       bgColor={group.cardBgColor}
@@ -57,7 +48,7 @@ export default function HomePage() {
                     />
                   ))}
                 </div>
-              </div>
+              </section>
             );
           })}
         </div>
