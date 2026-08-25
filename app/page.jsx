@@ -45,7 +45,6 @@ export default function Home() {
                         <CardProfesi
                           key={profesi.id || idx}
                           profesi={profesi}
-                          index={idx} /* Kirim urutan index ke kartu */
                           borderColor={group.cardBorderColor || ""}
                           bgColor={group.cardBgColor || ""}
                           shadowGlow={group.cardGlow || ""}

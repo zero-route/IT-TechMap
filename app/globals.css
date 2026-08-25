@@ -113,11 +113,16 @@ body {
   }
 }
 
- /* Animasi Fade-In & Slide Up untuk Kartu */
+ /* Animasi Fade-In & Slide Up /* Ganti bagian animasi fade-in lama di globals.css dengan ini */
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+  will-change: transform, opacity;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translate3d(0, 24px, 0);
+    transform: translate3d(0, 15px, 0);
   }
   to {
     opacity: 1;
@@ -125,9 +130,11 @@ body {
   }
 }
 
-.animate-fade-in-up {
-  opacity: 0; /* Mulai dari tersembunyi */
-  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: opacity, transform;
+/* Matikan total animasi pergerakan di HP agar instant load & anti-lag */
+@media (max-width: 768px) {
+  .animate-fade-in-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
-  
