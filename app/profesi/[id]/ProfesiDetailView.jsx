@@ -5,13 +5,14 @@ import { categoryGroups } from "../../../src/data/ProfessionData";
 import {
   ArrowLeft, Cpu, Wrench, CheckCircle2, Headphones,
   HelpCircle, Monitor, Server, Terminal, Database,
-  Network, Globe, Layers, Shield, ShieldAlert, Lock, Eye, Skull
+  Network, Globe, Layers, Shield, ShieldAlert, Lock, Eye, Skull,
+  Code, Layout, Smartphone
 } from "lucide-react";
 
 const iconMap = {
   Headphones, HelpCircle, Monitor, Server, Wrench,
   Terminal, Database, Cpu, Network, Globe, Layers, Shield,
-  ShieldAlert, Lock, Eye, Skull
+  ShieldAlert, Lock, Eye, Skull, Code, Layout, Smartphone
 };
 
 export default function ProfesiDetailView({ id }) {
@@ -45,6 +46,7 @@ export default function ProfesiDetailView({ id }) {
   const isOrange = groupData?.cardBorderColor.includes("orange");
   const isAmber = groupData?.cardBorderColor.includes("amber");
   const isRose = groupData?.cardBorderColor.includes("rose");
+  const isPurple = groupData?.cardBorderColor.includes("purple");
 
   let accentText = "text-sky-400";
   let accentBorder = "border-sky-400/30";
@@ -62,6 +64,10 @@ export default function ProfesiDetailView({ id }) {
     accentText = "text-rose-400";
     accentBorder = "border-rose-500/30";
     accentBadgeBg = "bg-rose-950/60 border-rose-500/40 text-rose-300";
+  } else if (isPurple) {
+    accentText = "text-purple-400";
+    accentBorder = "border-purple-500/30";
+    accentBadgeBg = "bg-purple-950/60 border-purple-500/40 text-purple-300";
   }
 
   return (

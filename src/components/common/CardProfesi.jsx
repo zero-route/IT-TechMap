@@ -16,6 +16,9 @@ import {
   Lock,
   Eye,
   Skull,
+  Code,
+  Layout,
+  Smartphone,
   ArrowRight 
 } from "lucide-react";
 
@@ -36,6 +39,9 @@ const iconMap = {
   Lock: Lock,
   Eye: Eye,
   Skull: Skull,
+  Code: Code,
+  Layout: Layout,
+  Smartphone: Smartphone,
 };
 
 export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow }) {
@@ -45,10 +51,10 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   const firstWord = words[0];
   const restWords = words.slice(1).join(" ");
 
-  // Menentukan warna aksen teks & tombol berdasarkan warna border grup
   const isOrange = borderColor.includes("orange");
   const isAmber = borderColor.includes("amber");
   const isRose = borderColor.includes("rose");
+  const isPurple = borderColor.includes("purple");
   
   let accentTextColor = "text-sky-400";
   let accentHoverColor = "hover:text-sky-300";
@@ -62,6 +68,9 @@ export default function CardProfesi({ profesi, borderColor, bgColor, shadowGlow 
   } else if (isRose) {
     accentTextColor = "text-rose-400";
     accentHoverColor = "hover:text-rose-300";
+  } else if (isPurple) {
+    accentTextColor = "text-purple-400";
+    accentHoverColor = "hover:text-purple-300";
   }
 
   return (

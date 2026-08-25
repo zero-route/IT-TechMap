@@ -1,4 +1,4 @@
- export const categoryGroups = [
+export const categoryGroups = [
   // BARIS 1: IT Support & Service Desk (5 Profesi - Aksen Biru)
   {
     id: "support-group",
@@ -503,6 +503,122 @@
           { name: "Flipper Zero", purpose: "Multi-tool portabel penguji protokol RF, RFID, Sub-1GHz, & BadUSB" },
           { name: "LAN Turtle", purpose: "Adapter Ethernet covert access untuk pivoting pentest" },
           { name: "High-GPU Cracking Rig", purpose: "Server GPU khusus untuk audit kekuatan hash password" }
+        ]
+      }
+    ]
+  },
+
+  // BARIS 5: Software Development & Engineering (5 Profesi - Aksen Ungu/Purple)
+  {
+    id: "software-dev-group",
+    title: "Software Development & Engineering",
+    cardBorderColor: "border-purple-500/50 hover:border-purple-400",
+    cardBgColor: "bg-slate-900/60",
+    cardGlow: "shadow-[0_0_15px_rgba(168,85,247,0.15)]",
+    professions: [
+      {
+        id: "software-developer",
+        name: "Software Developer",
+        iconName: "Code",
+        summary: "Merancang, menulis, dan memelihara aplikasi perangkat lunak berbasis algoritma serta arsitektur kode yang efisien.",
+        tasks: [
+          "Menulis kodingan bersih (clean code) sesuai kebutuhan spesifikasi aplikasi.",
+          "Melakukan debugging, refactoring, dan optimasi performa software.",
+          "Kolaborasi dengan tim produk dalam merancang alur logika program."
+        ],
+        levels: ["Junior Software Developer", "Software Engineer", "Principal Software Architect"],
+        software: [
+          { name: "VS Code / IntelliJ IDEA", purpose: "Integrated Development Environment (IDE) utama" },
+          { name: "Git & GitHub", purpose: "Version control system & kolaborasi repository kode" },
+          { name: "Postman", purpose: "Pengujian & dokumentasi endpoint API" }
+        ],
+        hardware: [
+          { name: "High-RAM Developer Laptop", purpose: "Laptop spesifikasi RAM tinggi (16GB-32GB) untuk kompilasi kode" },
+          { name: "Mechanical Keyboard", purpose: "Kenyamanan mengetik intensif dalam sesi coding panjang" }
+        ]
+      },
+      {
+        id: "back-end-developer",
+        name: "Back End Developer",
+        iconName: "Server",
+        summary: "Berfokus pada pemrosesan logika server-side, integrasi basis data, otentikasi pengguna, dan arsitektur REST/GraphQL API.",
+        tasks: [
+          "Merancang RESTful API atau GraphQL service untuk aplikasi.",
+          "Optimasi kueri database dan arsitektur penyimpanan data.",
+          "Implementasi keamanan backend, enkripsi, dan otentikasi (JWT/OAuth)."
+        ],
+        levels: ["Junior Back End Developer", "Back End Engineer", "Lead Back End Architect"],
+        software: [
+          { name: "Node.js / Go / Python", purpose: "Bahasa & runtime server-side" },
+          { name: "PostgreSQL / Redis", purpose: "Database relasional & in-memory caching" },
+          { name: "Docker", purpose: "Kontainerisasi lingkungan isolasi aplikasi" }
+        ],
+        hardware: [
+          { name: "High-Core Workstation", purpose: "Komputer komputasi banyak thread untuk eksekusi server lokal" },
+          { name: "Dual-Monitor Station", purpose: "Display terpisah untuk layar koding & log server" }
+        ]
+      },
+      {
+        id: "front-end-developer",
+        name: "Front End Developer",
+        iconName: "Layout",
+        summary: "Membangun antarmuka visual (UI) interaktif berbasis web/browser yang responsif, cepat, dan ramah pengguna.",
+        tasks: [
+          "Menerjemahkan prototipe desain (Figma) menjadi komponen kodingan HTML/CSS/JS.",
+          "Integrasi REST API backend dengan state management di sisi client.",
+          "Optimasi performa render halaman web dan aksesibilitas (SEO & Core Web Vitals)."
+        ],
+        levels: ["Junior Front End Developer", "Front End Engineer", "Frontend Specialist Lead"],
+        software: [
+          { name: "React / Next.js / Vue", purpose: "Framework/library JavaScript UI modern" },
+          { name: "Tailwind CSS", purpose: "Utility-first CSS framework styling antarmuka" },
+          { name: "Vite / Webpack", purpose: "Module bundler & development build tools" }
+        ],
+        hardware: [
+          { name: "Color-Accurate Display Monitor", purpose: "Akurasi representasi warna tampilan UI" },
+          { name: "MacBook Pro / High-Res Laptop", purpose: "Pengujian responsif lintas platform browser" }
+        ]
+      },
+      {
+        id: "full-stack-developer",
+        name: "Full Stack Developer",
+        iconName: "Layers",
+        summary: "Menguasai pengembangan alur perangkat lunak secara utuh, mulai dari antarmuka antarmuka (Frontend) hingga logika server & database (Backend).",
+        tasks: [
+          "Membangun fitur end-to-end dari tampilan UI hingga pemrosesan database.",
+          "Mengelola integrasi arsitektur client-server secara mandiri.",
+          "Deployment aplikasi ke server staging dan produksi."
+        ],
+        levels: ["Full Stack Developer", "Senior Full Stack Engineer", "Engineering Manager"],
+        software: [
+          { name: "Next.js / MERN Stack", purpose: "Framework komprehensif fullstack web" },
+          { name: "Prisma / TypeORM", purpose: "Object-Relational Mapping (ORM) database" },
+          { name: "Postman & Figma", purpose: "Design handoff & API testing" }
+        ],
+        hardware: [
+          { name: "High-Performance Developer Rig", purpose: "Rig komputer serbaguna untuk multi-tasking frontend & backend" },
+          { name: "YubiKey", purpose: "Otentikasi aman akses server produksi" }
+        ]
+      },
+      {
+        id: "mobile-developer",
+        name: "Mobile Developer",
+        iconName: "Smartphone",
+        summary: "Spesialis pembuat aplikasi seluler bawaan (Native) atau lintas platform (Cross-Platform) untuk perangkat Android dan iOS.",
+        tasks: [
+          "Mengembangkan UI/UX aplikasi mobile yang mulus & responsif.",
+          "Integrasi fitur perangkat keras HP (Kamera, GPS, Push Notification, Bluetooth).",
+          "Optimasi memori & rilis aplikasi ke Google Play Store & Apple App Store."
+        ],
+        levels: ["Junior Mobile Developer", "Mobile Engineer (Android/iOS)", "Mobile Chapter Lead"],
+        software: [
+          { name: "Flutter / React Native", purpose: "Framework pengembangan mobile lintas platform" },
+          { name: "Android Studio / Xcode", purpose: "IDE resmi & simulator OS Android/iOS" },
+          { name: "Firebase", purpose: "Platform backend-as-a-service untuk mobile app" }
+        ],
+        hardware: [
+          { name: "Mac Studio / MacBook Air M-Series", purpose: "Wajib untuk kompilasi & build aplikasi iOS di Xcode" },
+          { name: "Physical Test Devices (Android & iPhone)", purpose: "Pengujian langsung performa aplikasi pada smartphone fisik" }
         ]
       }
     ]
