@@ -1,3 +1,5 @@
+ "use client";
+
 import Link from "next/link";
 import BorderGlow from "./BorderGlow";
 import { 
@@ -20,14 +22,16 @@ const iconMap = {
 };
 
 export default function CardProfesi({ profesi, borderColor = "", bgColor = "", shadowGlow = "" }) {
-  // Proteksi utama: Jika item profesi kosong/undefined, lewati render
-  if (!profesi || typeof profesi !== "object") return null;
+  // Guard 1: Proteksi data kosong saat SSG build
+  if (!profesi || typeof profesi !== "object") {
+    return null;
+  }
 
   const iconName = profesi.iconName || "Monitor";
   const IconComponent = iconMap[iconName] || Monitor;
 
-  const profesiName = profesi.name || "Profesi IT";
-  const words = profesiName.split(" ");
+  const profesiName = profesi.name || "";
+  const words = profesiName ? profesiName.split(" ") : ["Profesi"];
   const firstWord = words[0] || "";
   const restWords = words.slice(1).join(" ");
 
