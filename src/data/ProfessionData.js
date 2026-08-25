@@ -125,7 +125,7 @@ export const categoryGroups = [
         ],
         hardware: [
           { name: "Multimeter Digital", purpose: "Pengukuran arus dan tegangan perangkat" },
-          { name: "POST Diagnostics Card", purpose: "Mndeteksi kesalahan hardware motherboard" },
+          { name: "POST Diagnostics Card", purpose: "Mendeteksi kesalahan hardware motherboard" },
           { name: "Kabel Diagnostic", purpose: "Konektor universal pengujian hardware" }
         ]
       }
@@ -969,7 +969,10 @@ export const categoryGroups = [
           { name: "Wireless Headset & Stylus", purpose: "Interaksi fleksibel saat memimpin sesi papan visual" }
         ]
       }
-        // BARIS 9: IT Management & Leadership (5 Profesi - Aksen Merah/Red)
+    ]
+  },
+
+  // BARIS 9: IT Management & Leadership (5 Profesi - Aksen Merah/Red)
   {
     id: "management-lead-group",
     title: "IT Management & Leadership",
@@ -1067,7 +1070,7 @@ export const categoryGroups = [
         iconName: "Lightbulb",
         summary: "Konsultan independen atau agensi yang memberikan nasihat pakar untuk membantu klien mengoptimalkan teknologi dan arsitektur sistem.",
         tasks: [
-          "Melakukan analisis celah (Gap Analysis) pada sistem IT kuis/klien.",
+          "Melakukan analisis celah (Gap Analysis) pada sistem IT klien.",
           "Menyusun rancangan solusi infrastruktur/software sesuai kebutuhan bisnis klien.",
           "Memberikan rekomendasi objektif pemilihan vendor atau perbaikan operasional."
         ],
@@ -1082,9 +1085,6 @@ export const categoryGroups = [
           { name: "Wireless Presenter & Dongle Kit", purpose: "Kelengkapan presentasi proposal solusi teknis" }
         ]
       }
-    ]
-  }
-
     ]
   }
 ];
