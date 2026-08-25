@@ -1,7 +1,7 @@
- import Link from "next/link";
-import Navbar from "../common/Navbar";
-import Footer from "../common/Footer";
-import { categoryGroups } from "../../data/ProfessionData";
+import Link from "next/link";
+import Navbar from "../../../src/components/common/Navbar";
+import Footer from "../../../src/components/common/Footer";
+import { categoryGroups } from "../../../src/data/ProfessionData";
 import {
   ArrowLeft, Cpu, Wrench, CheckCircle2, Headphones,
   HelpCircle, Monitor, Server, Terminal, Database,
