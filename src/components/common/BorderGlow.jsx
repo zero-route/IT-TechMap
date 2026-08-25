@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback, useEffect } from 'react';
+import { useRef, useCallback } from 'react';
 import './BorderGlow.css';
 
 function parseHSL(hslStr) {
@@ -25,10 +25,10 @@ const BorderGlow = ({
   children,
   className = '',
   edgeSensitivity = 30,
-  glowColor = '0 0 100', // Warna putih bening murni
+  glowColor = '0 0 100',
   backgroundColor = 'rgba(15, 23, 42, 0.6)',
   borderRadius = 16,
-  glowRadius = 40,
+  glowRadius = 0,
   glowIntensity = 1.0,
   coneSpread = 25,
 }) => {
