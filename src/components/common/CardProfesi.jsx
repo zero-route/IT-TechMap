@@ -27,17 +27,20 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Penghematan GPU di Mobile: Langsung aktifkan jika di layar kecil agar tidak running observer
+    if (window.innerWidth < 768) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
+          observer.disconnect(); // Langsung matikan observer setelah kartu muncul
         }
       },
-      { 
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px" // Memicu animasi lebih awal sebelum kartu benar-benar penuh di layar
-      }
+      { threshold: 0.05 }
     );
 
     if (cardRef.current) {
@@ -104,7 +107,6 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
     gradientTitleClass = "from-red-400 to-slate-200";
   }
 
-  // Delay berurutan linier: Kartu 1 (0ms), Kartu 2 (100ms), Kartu 3 (200ms), Kartu 4 (300ms), Kartu 5 (400ms)
   const delayStyle = { transitionDelay: `${index * 250}ms` };
 
   return (
@@ -116,8 +118,8 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
       <BorderGlow
         borderRadius={16}
         coneSpread={35}
-        backgroundColor="rgba(15, 23, 42, 0.6)"
-        className={`p-5 backdrop-blur-md transition-all duration-300 ${borderColor} ${bgColor} ${shadowGlow}`}
+        backgroundColor="rgba(15, 23, 42, 0.95)" /* Diubah ke solid 0.95 (Hapus backdrop-blur) */
+        className={`p-5 transition-all duration-300 ${borderColor} ${bgColor} ${shadowGlow}`}
       >
         <div>
           <div className="flex items-center gap-3 mb-3">
