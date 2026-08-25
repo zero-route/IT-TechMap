@@ -1,42 +1,46 @@
-import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, Cpu } from "lucide-react";
+import { Headphones, HelpCircle, Monitor, Server, ArrowRight } from "lucide-react";
 
-export default function CardProfesi({ profession }) {
-  const { id, title, category, image, overview } = profession;
+const iconMap = {
+  Headphones: Headphones,
+  HelpCircle: HelpCircle,
+  Monitor: Monitor,
+  Server: Server,
+};
+
+export default function CardProfesi({ profesi }) {
+  const IconComponent = iconMap[profesi.iconName] || Monitor;
+
+  // Pemisah Judul Duotone
+  const words = profesi.name.split(" ");
+  const firstWord = words[0];
+  const restWords = words.slice(1).join(" ");
 
   return (
-    <Link
-      href={`/profesi/${id}`}
-      className="group glass-panel relative flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/50 hover:shadow-neon-md"
-    >
-      <div className="relative h-40 w-full overflow-hidden">
-        <img
-          src={image}
-          alt={`Ilustrasi profesi ${title}`}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b12] via-transparent to-transparent" />
-        <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-base-950/70 px-3 py-1 font-mono text-[11px] text-blue-300 backdrop-blur-sm">
-          <Cpu size={12} />
-          {category}
-        </span>
-      </div>
+    <div className="bg-slate-900/60 backdrop-blur-md p-6 rounded-xl border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+      <div>
+        <div className="flex items-center gap-3 mb-3">
+          <div className="p-2.5 bg-blue-950/80 border border-blue-500/30 text-blue-400 rounded-lg">
+            <IconComponent size={24} />
+          </div>
+          <h3 className="text-xl font-bold">
+            <span className="text-white">{firstWord} </span>
+            <span className="gradient-text">{restWords}</span>
+          </h3>
+        </div>
 
-      <div className="flex flex-1 flex-col gap-2 p-5">
-        <h3 className="text-lg font-bold text-slate-100 transition-colors group-hover:text-blue-300">
-          {title}
-        </h3>
-        <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-slate-400">
-          {overview}
+        <p className="text-slate-400 text-sm leading-relaxed mb-4">
+          {profesi.summary}
         </p>
-
-        <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-400">
-          Lihat detail
-          <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </span>
       </div>
-    </Link>
+
+      <Link
+        href={`/profesi/${profesi.id}`}
+        className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition group mt-2"
+      >
+        Lihat lebih detail
+        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+      </Link>
+    </div>
   );
 }

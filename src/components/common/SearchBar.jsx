@@ -1,36 +1,16 @@
-import React from "react";
-import { Search, X } from "lucide-react";
+import { Search } from "lucide-react";
 
-export default function SearchBar({ value, onChange, resultCount }) {
+export default function SearchBar({ searchTerm, setSearchTerm }) {
   return (
-    <div className="mx-auto w-full max-w-2xl">
-      <div className="glass-panel flex items-center gap-3 px-4 py-3 transition-shadow duration-300 focus-within:shadow-neon-sm focus-within:border-blue-400/50">
-        <Search size={18} className="shrink-0 text-blue-400" />
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder="Cari profesi... misal: 'network' atau 'keamanan'"
-          className="w-full bg-transparent text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none"
-        />
-        {value && (
-          <button
-            onClick={() => onChange("")}
-            aria-label="Bersihkan pencarian"
-            className="shrink-0 rounded-full p-1 text-slate-500 transition-colors hover:text-blue-300"
-          >
-            <X size={16} />
-          </button>
-        )}
-      </div>
-
-      {value && (
-        <p className="mt-3 text-center font-mono text-xs text-slate-500">
-          {resultCount > 0
-            ? `${resultCount} profesi ditemukan untuk "${value}"`
-            : `Tidak ada hasil untuk "${value}"`}
-        </p>
-      )}
+    <div className="relative max-w-xl mx-auto my-6">
+      <Search className="absolute left-4 top-3.5 text-slate-400" size={20} />
+      <input
+        type="text"
+        placeholder="Cari profesi IT (misal: IT Support, Helpdesk)..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="w-full pl-12 pr-4 py-3 bg-slate-900/80 border border-slate-700/60 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
+      />
     </div>
   );
 }

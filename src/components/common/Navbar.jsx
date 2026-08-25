@@ -1,71 +1,50 @@
 "use client";
-
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { TerminalSquare, Menu, X } from "lucide-react";
+import { Menu, X, Terminal } from "lucide-react";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-
-  const links = [
-    { label: "Beranda", href: "/" },
-    { label: "Profesi", href: "/#daftar-profesi" },
-    { label: "Tentang", href: "/#tentang" },
-  ];
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-blue-500/10 bg-base-950/70 backdrop-blur-md">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-blue-500/30 bg-blue-500/10 text-blue-300 transition-all group-hover:shadow-neon-sm">
-            <TerminalSquare size={18} />
-          </span>
-          <span className="font-mono text-lg font-bold tracking-tight text-slate-100">
-            IT<span className="text-blue-400">-TechMap</span>
-          </span>
-        </Link>
+    <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#030712]/70 border-b border-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo dengan Gradient Text */}
+          <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+            <Terminal className="text-blue-500" />
+            <span className="text-white">IT</span>
+            <span className="gradient-text">Profesi Map</span>
+          </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-medium text-slate-400 transition-colors hover:text-blue-300"
+          {/* Desktop Navbar */}
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <Link href="/" className="text-gray-300 hover:text-white transition">Beranda</Link>
+            <Link href="#profesi" className="text-gray-300 hover:text-white transition">Profesi</Link>
+            <Link href="#tentang" className="text-gray-300 hover:text-white transition">Tentang</Link>
+          </div>
+
+          {/* Mobile Hamburger Button */}
+          <div className="md:hidden">
+            <button 
+              onClick={() => setIsOpen(!isOpen)} 
+              className="text-gray-300 hover:text-white p-2"
             >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <a href="/#daftar-profesi" className="btn-neon hidden md:inline-flex">
-          Jelajahi Profesi
-        </a>
-
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="rounded-lg border border-blue-500/20 p-2 text-slate-200 md:hidden"
-          aria-label="Buka menu navigasi"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
       </div>
 
-      {open && (
-        <div className="border-t border-blue-500/10 bg-base-950/95 px-4 py-4 md:hidden">
-          <nav className="flex flex-col gap-3">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="text-sm font-medium text-slate-300 hover:text-blue-300"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+      {/* Mobile Menu Content */}
+      {isOpen && (
+        <div className="md:hidden bg-[#0a0f1d] border-b border-slate-800 px-4 pt-2 pb-4 space-y-2">
+          <Link href="/" onClick={() => setIsOpen(false)} className="block py-2 text-gray-300 hover:text-white">Beranda</Link>
+          <Link href="#profesi" onClick={() => setIsOpen(false)} className="block py-2 text-gray-300 hover:text-white">Profesi</Link>
+          <Link href="#tentang" onClick={() => setIsOpen(false)} className="block py-2 text-gray-300 hover:text-white">Tentang</Link>
         </div>
       )}
-    </header>
+    </nav>
   );
 }
