@@ -22,14 +22,13 @@ const iconMap = {
 };
 
 export default function CardProfesi({ profesi, borderColor = "", bgColor = "", shadowGlow = "" }) {
-  // Proteksi utama jika props profesi bernilai undefined/null
   if (!profesi) return null;
 
   const iconName = profesi.iconName || "Monitor";
   const IconComponent = iconMap[iconName] || Monitor;
 
   const profesiName = profesi.name || "";
-  const words = profesiName ? profesiName.split(" ") : ["Profesi"];
+  const words = profesiName.split(" ");
   const firstWord = words[0] || "";
   const restWords = words.slice(1).join(" ");
 
@@ -108,7 +107,7 @@ export default function CardProfesi({ profesi, borderColor = "", bgColor = "", s
       </div>
 
       <Link
-        href={`/profesi/${profesi.id || ''}`}
+        href={`/profesi/${profesi.id || ""}`}
         className={`inline-flex items-center gap-1.5 text-xs font-semibold ${accentTextColor} ${accentHoverColor} transition group mt-2`}
       >
         Lihat lebih detail
