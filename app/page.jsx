@@ -26,31 +26,26 @@ export default function Home() {
         </div>
 
         <div className="space-y-12">
-          {(categoryGroups || []).map((group) => {
-            if (!group) return null;
-            const validProfessions = (group.professions || []).filter(p => p && p.id);
+          {categoryGroups.map((group) => (
+            <section key={group.id} className="scroll-mt-20">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <span className="w-2 h-6 bg-slate-700 rounded-full inline-block"></span>
+                {group.title}
+              </h2>
 
-            return (
-              <section key={group.id} className="scroll-mt-20">
-                <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                  <span className="w-2 h-6 bg-slate-700 rounded-full inline-block"></span>
-                  {group.title}
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {validProfessions.map((profesi) => (
-                    <CardProfesi
-                      key={profesi.id}
-                      profesi={profesi}
-                      borderColor={group.cardBorderColor}
-                      bgColor={group.cardBgColor}
-                      shadowGlow={group.cardGlow}
-                    />
-                  ))}
-                </div>
-              </section>
-            );
-          })}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {group.professions.map((profesi) => (
+                  <CardProfesi
+                    key={profesi.id}
+                    profesi={profesi}
+                    borderColor={group.cardBorderColor}
+                    bgColor={group.cardBgColor}
+                    shadowGlow={group.cardGlow}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       </main>
 
