@@ -1,5 +1,5 @@
 export const categoryGroups = [
-  // BARIS 1: IT Support & Service Desk (Aksen Biru)
+  // BARIS 1: IT Support & Service Desk (5 Profesi - Aksen Biru)
   {
     id: "support-group",
     title: "IT Support & Service Management",
@@ -132,7 +132,7 @@ export const categoryGroups = [
     ]
   },
 
-  // BARIS 2: System & Server Administration (Aksen Orange)
+  // BARIS 2: System & Server Administration (5 Profesi - Aksen Orange)
   {
     id: "sysadmin-group",
     title: "System & Server Administration",
@@ -274,17 +274,17 @@ export const categoryGroups = [
         ],
         levels: ["Junior Network Engineer", "Network Engineer (CCNA/CCNP)", "Principal Network Architect"],
         software: [
-          { name: "Wireshark", purpose: "Analisis mendalam protokol dan lalu lintas paket jaringan[span_5](start_span)"[span_5](end_span) },
-          { name: "GNS3 / EVE-NG", purpose: "Simulator & emulasi topologi jaringan kompleks[span_6](start_span)"[span_6](end_span) },
-          { name: "Cisco Packet Tracer", purpose: "Simulator konfigurasi perangkat Cisco[span_7](start_span)"[span_7](end_span) },
-          { name: "MikroTik Winbox", purpose: "Utility GUI manajemen RouterOS MikroTik[span_8](start_span)"[span_8](end_span) },
-          { name: "Zabbix / PRTG", purpose: "Monitoring performa & uptime interface jaringan[span_9](start_span)"[span_9](end_span) }
+          { name: "Wireshark", purpose: "Analisis mendalam protokol dan lalu lintas paket jaringan" },
+          { name: "GNS3 / EVE-NG", purpose: "Simulator & emulasi topologi jaringan kompleks" },
+          { name: "Cisco Packet Tracer", purpose: "Simulator konfigurasi perangkat Cisco" },
+          { name: "MikroTik Winbox", purpose: "Utility GUI manajemen RouterOS MikroTik" },
+          { name: "Zabbix / PRTG", purpose: "Monitoring performa & uptime interface jaringan" }
         ],
         hardware: [
-          { name: "Console Cable (USB to RJ45)", purpose: "Kabel akses langsung CLI ke router/switch[span_10](start_span)"[span_10](end_span) },
-          { name: "Optical Power Meter (OPM)", purpose: "Mengukur intensitas daya sinyal serat optik[span_11](start_span)"[span_11](end_span) },
-          { name: "Fiber Fusion Splicer", purpose: "Alat presisi penyambung inti kabel serat optik[span_12](start_span)"[span_12](end_span) },
-          { name: "Tone Generator & Probe", purpose: "Pelacak alur & lokasi kabel di patch panel/dinding[span_13](start_span)"[span_13](end_span) }
+          { name: "Console Cable (USB to RJ45)", purpose: "Kabel akses langsung CLI ke router/switch" },
+          { name: "Optical Power Meter (OPM)", purpose: "Mengukur intensitas daya sinyal serat optik" },
+          { name: "Fiber Fusion Splicer", purpose: "Alat presisi penyambung inti kabel serat optik" },
+          { name: "Tone Generator & Probe", purpose: "Pelacak alur & lokasi kabel di patch panel/dinding" }
         ]
       },
       {
@@ -300,14 +300,14 @@ export const categoryGroups = [
         ],
         levels: ["Network Admin Specialist", "Senior Network Administrator", "Network Operations Lead"],
         software: [
-          { name: "SolarWinds IPAM", purpose: "Manajemen dan alokasi alokasi IP address[span_14](start_span)"[span_14](end_span) },
-          { name: "PuTTY / MobaXterm", purpose: "Terminal SSH/Serial client untuk remote konfigurasi[span_15](start_span)"[span_15](end_span) },
-          { name: "PRTG Network Monitor", purpose: "Visualisasi penggunaan bandwidth jaringan real-time[span_16](start_span)"[span_16](end_span) }
+          { name: "SolarWinds IPAM", purpose: "Manajemen dan alokasi alokasi IP address" },
+          { name: "PuTTY / MobaXterm", purpose: "Terminal SSH/Serial client untuk remote konfigurasi" },
+          { name: "PRTG Network Monitor", purpose: "Visualisasi penggunaan bandwidth jaringan real-time" }
         ],
         hardware: [
-          { name: "LAN Cable Tester", purpose: "Penguji kontinuitas dan urutan kabel UTP[span_17](start_span)"[span_17](end_span) },
-          { name: "Punch Down Tool", purpose: "Menancapkan kabel UTP ke keystone jack/patch panel[span_18](start_span)"[span_18](end_span) },
-          { name: "Console Cable", purpose: "Akses konsol lokal ke switch/router[span_19](start_span)"[span_19](end_span) }
+          { name: "LAN Cable Tester", purpose: "Penguji kontinuitas dan urutan kabel UTP" },
+          { name: "Punch Down Tool", purpose: "Menancapkan kabel UTP ke keystone jack/patch panel" },
+          { name: "Console Cable", purpose: "Akses konsol lokal ke switch/router" }
         ]
       },
       {
@@ -323,14 +323,14 @@ export const categoryGroups = [
         ],
         levels: ["System Engineer", "Senior System Engineer", "Principal Systems Architect"],
         software: [
-          { name: "VMware vSphere / ESXi", purpose: "Platform virtualisasi komputasi enterprise[span_20](start_span)"[span_20](end_span) },
-          { name: "Terraform", purpose: "Penyediaan infrastruktur terprogram (IaC)[span_21](start_span)"[span_21](end_span) },
-          { name: "Ansible", purpose: "Otomasi konfigurasi sistem terdistribusi[span_22](start_span)"[span_22](end_span) }
+          { name: "VMware vSphere / ESXi", purpose: "Platform virtualisasi komputasi enterprise" },
+          { name: "Terraform", purpose: "Penyediaan infrastruktur terprogram (IaC)" },
+          { name: "Ansible", purpose: "Otomasi konfigurasi sistem terdistribusi" }
         ],
         hardware: [
-          { name: "Bladed Server Chassis", unit: "Unit komputasi server modular performa tinggi" },
+          { name: "Bladed Server Chassis", purpose: "Unit komputasi server modular performa tinggi" },
           { name: "SAN Storage Array", purpose: "Penyimpanan data area jaringan kecepatan tinggi" },
-          { name: "Hardware Security Keys", purpose: "Kunci otentikasi fisik keamanan infrastruktur[span_23](start_span)"[span_23](end_span) }
+          { name: "Hardware Security Keys", purpose: "Kunci otentikasi fisik keamanan infrastruktur" }
         ]
       },
       {
@@ -347,13 +347,13 @@ export const categoryGroups = [
         levels: ["Infrastructure Engineer", "Senior Infrastructure Specialist", "Head of Infrastructure"],
         software: [
           { name: "OpenStack", purpose: "Platform pengelola cloud infrastructure private" },
-          { name: "Zabbix Infrastructure Monitor", purpose: "Pemantauan kondisi fisik dan virtual server[span_24](start_span)"[span_24](end_span) },
-          { name: "AWS / Azure Console", purpose: "Manajemen infrastruktur hybrid cloud[span_25](start_span)"[span_25](end_span) }
+          { name: "Zabbix Infrastructure Monitor", purpose: "Pemantauan kondisi fisik dan virtual server" },
+          { name: "AWS / Azure Console", purpose: "Manajemen infrastruktur hybrid cloud" }
         ],
         hardware: [
-          { name: "Enterprise PDU & UPS", purpose: "Pengatur & penyedia cadangan daya rack server[span_26](start_span)"[span_26](end_span) },
+          { name: "Enterprise PDU & UPS", purpose: "Pengatur & penyedia cadangan daya rack server" },
           { name: "NAS / SAN Appliance", purpose: "Storage server kapasitas terabyte-petabyte" },
-          { name: "KVM Console Server", purpose: "Centralized out-of-band management[span_27](start_span)"[span_27](end_span) }
+          { name: "KVM Console Server", purpose: "Centralized out-of-band management" }
         ]
       },
       {
@@ -371,12 +371,12 @@ export const categoryGroups = [
         software: [
           { name: "Palo Alto / Fortinet Manager", purpose: "Manajemen aturan kebijakan NGFW enterprise" },
           { name: "Snort / Suricata", purpose: "Sistem pendeteksi & pencegah intrusi jaringan (IDS/IPS)" },
-          { name: "Wireshark", purpose: "Inspeksi & analisis anomali paket data[span_28](start_span)"[span_28](end_span) }
+          { name: "Wireshark", purpose: "Inspeksi & analisis anomali paket data" }
         ],
         hardware: [
           { name: "Hardware Firewall Appliance", purpose: "Perangkat keras penyaring paket data jaringan" },
-          { name: "Hardware Security Module (HSM)", purpose: "Enkripsi fisik kunci kriptografi[span_29](start_span)"[span_29](end_span) },
-          { name: "YubiKey Security Key", purpose: "Hardware otentikasi 2FA administrator[span_30](start_span)"[span_30](end_span) }
+          { name: "Hardware Security Module (HSM)", purpose: "Enkripsi fisik kunci kriptografi" },
+          { name: "YubiKey Security Key", purpose: "Hardware otentikasi 2FA administrator" }
         ]
       }
     ]
