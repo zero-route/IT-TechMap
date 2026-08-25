@@ -9,7 +9,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
 
-  // Deteksi kategori aktif saat halaman di-scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
@@ -42,7 +41,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-950/95 border-b border-slate-800/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-[#030712]/95 border-b border-slate-800/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo Brand */}
@@ -66,16 +65,16 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* DROPDOWN MENU HAMBURGER (TIDAK MAKAN FULL PAGE) */}
+      {/* DROPDOWN MENU DENGAN BACKGROUND HITAM PEKAT + BLUR */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 bg-slate-950/98 border-b border-slate-800/90 shadow-2xl p-5 sm:p-6 animate-fade-in-up">
+        <div className="absolute top-full left-0 right-0 bg-[#030712]/95 backdrop-blur-xl border-b border-slate-800/90 shadow-2xl p-6 z-[9999]">
           <div className="max-w-7xl mx-auto">
-            <p className="text-[10px] uppercase tracking-widest font-bold text-slate-500 mb-4 pl-1">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-4 pl-1">
               Kategori Profesi IT
             </p>
 
             <div className="line-sidebar-dropdown">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-6">
                 {categoryGroups.map((group, index) => {
                   const isActive = activeId === group.id;
                   const formattedIndex = String(index + 1).padStart(2, "0");
@@ -83,14 +82,27 @@ export default function Navbar() {
                   return (
                     <div
                       key={group.id}
-                      className="line-sidebar__item"
+                      className="line-sidebar__item group flex items-center cursor-pointer py-1.5 transition-all duration-200"
                       aria-current={isActive ? "true" : undefined}
                       onClick={() => handleItemClick(group.id)}
                     >
-                      <span className="line-sidebar__marker" aria-hidden="true" />
-                      <span className="line-sidebar__label">
-                        <span className="line-sidebar__index">{formattedIndex}</span>
-                        <span className="line-sidebar__text">{group.title}</span>
+                      {/* Indikator Garis Kiri */}
+                      <span className={`h-[2px] rounded-full transition-all duration-300 mr-3 ${
+                        isActive 
+                          ? "w-8 bg-purple-400 shadow-[0_0_8px_#c084fc]" 
+                          : "w-5 bg-slate-700 group-hover:w-7 group-hover:bg-purple-400"
+                      }`} />
+                      
+                      {/* Teks & Nomor Stepper */}
+                      <span className={`flex items-center text-sm font-medium transition-all duration-300 ${
+                        isActive
+                          ? "text-purple-300 font-semibold translate-x-2"
+                          : "text-slate-300 group-hover:text-purple-300 group-hover:translate-x-2"
+                      }`}>
+                        <span className="font-mono text-xs mr-2 text-slate-500 group-hover:text-purple-400">
+                          {formattedIndex}
+                        </span>
+                        {group.title}
                       </span>
                     </div>
                   );
