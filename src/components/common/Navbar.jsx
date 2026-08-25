@@ -36,6 +36,7 @@ export default function Navbar() {
     for (let i = 0; i < items.length; i++) {
       const el = items[i];
       if (!el) continue;
+      // Memastikan item yang aktif selalu mendapat nilai target minimal 1
       const target = Math.max(targetsRef.current[i] || 0, activeRef.current === i ? 1 : 0);
       const cur = currentRef.current[i] || 0;
       const next = cur + (target - cur) * k;
@@ -70,7 +71,7 @@ export default function Navbar() {
         if (!el) continue;
         const center = el.offsetTop + el.offsetHeight / 2;
         const distance = Math.abs(pointerY - center);
-        targetsRef.current[i] = ease(Math.max(0, 1 - distance / 90));
+        targetsRef.current[i] = ease(Math.max(0, 1 - distance / 150));
       }
       startLoop();
     },
@@ -94,14 +95,17 @@ export default function Navbar() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      itemRefs.current.forEach((el, i) => {
-        if (el) {
-          const initVal = activeIndex === i ? "1.0000" : "0.0000";
-          el.style.setProperty("--effect", initVal);
-          currentRef.current[i] = activeIndex === i ? 1 : 0;
-        }
-      });
-      startLoop();
+      // Set nilai default awal saat drawer dibuka
+      setTimeout(() => {
+        itemRefs.current.forEach((el, i) => {
+          if (el) {
+            const val = activeIndex === i ? 1 : 0;
+            currentRef.current[i] = val;
+            el.style.setProperty("--effect", val.toString());
+          }
+        });
+        startLoop();
+      }, 50);
     } else {
       document.body.style.overflow = "unset";
     }
@@ -140,7 +144,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-950/90 border-b border-slate-800/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-slate-950/95 border-b border-slate-800/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 group">
@@ -162,10 +166,11 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* OVERLAY NAVIGATION FULLSCREEN (FIXED VISIBILITY) */}
       {isOpen && (
-        <div className="fixed inset-0 top-16 bg-slate-950 z-50 flex flex-col justify-between overflow-y-auto p-6 sm:p-10">
+        <div className="fixed inset-x-0 top-16 bottom-0 bg-[#030712] z-[999] flex flex-col justify-between overflow-y-auto p-6 sm:p-10">
           <div className="max-w-md mx-auto w-full my-auto py-4">
-            <p className="text-xs uppercase tracking-widest font-bold text-slate-500 mb-6 pl-12">
+            <p className="text-xs uppercase tracking-widest font-bold text-slate-400 mb-8 pl-12">
               Kategori Profesi IT
             </p>
 
@@ -199,7 +204,7 @@ export default function Navbar() {
             </nav>
           </div>
 
-          <div className="text-center pt-6 border-t border-slate-900 text-slate-500 text-xs">
+          <div className="text-center pt-6 border-t border-slate-800/80 text-slate-500 text-xs">
             IT Profession Map &copy; 2026. Built with Next.js & React Bits.
           </div>
         </div>
