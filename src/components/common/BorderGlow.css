@@ -1,60 +1,70 @@
 .border-glow-card {
   --edge-proximity: 0;
   --cursor-angle: 45deg;
+  --edge-sensitivity: 30;
   --border-radius: 16px;
-  --cone-spread: 35;
+  --glow-padding: 40px;
+  --cone-spread: 25;
 
   position: relative;
   border-radius: var(--border-radius);
   isolation: isolate;
+  transform: translate3d(0, 0, 0.01px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: var(--card-bg, rgba(15, 23, 42, 0.6));
-  overflow: hidden;
-  transition: border-color 0.3s ease;
+  overflow: visible;
 }
 
-.border-glow-card .border-glow-inner {
-  position: relative;
-  z-index: 2;
-  height: 100%;
+.border-glow-card > .edge-light {
+  content: "";
+  position: absolute;
+  inset: calc(var(--glow-padding) * -1);
+  pointer-events: none;
+  z-index: 1;
+
+  -webkit-mask-image: conic-gradient(
+    from var(--cursor-angle) at center,
+    black 2.5%,
+    transparent 10%,
+    transparent 90%,
+    black 97.5%
+  );
+  mask-image: conic-gradient(
+    from var(--cursor-angle) at center,
+    black 2.5%,
+    transparent 10%,
+    transparent 90%,
+    black 97.5%
+  );
+
+  opacity: calc((var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
+  transition: opacity 0.25s ease-out;
+  mix-blend-mode: plus-lighter;
+}
+
+.border-glow-card > .edge-light::before {
+  content: "";
+  position: absolute;
+  inset: var(--glow-padding);
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px var(--glow-color, hsl(0deg 0% 100% / 100%)),
+    inset 0 0 1px 0 var(--glow-color-60, hsl(0deg 0% 100% / 60%)),
+    inset 0 0 3px 0 var(--glow-color-50, hsl(0deg 0% 100% / 50%)),
+    inset 0 0 6px 0 var(--glow-color-40, hsl(0deg 0% 100% / 40%)),
+    0 0 1px 0 var(--glow-color-60, hsl(0deg 0% 100% / 60%)),
+    0 0 3px 0 var(--glow-color-50, hsl(0deg 0% 100% / 50%)),
+    0 0 6px 0 var(--glow-color-40, hsl(0deg 0% 100% / 40%));
+}
+
+.border-glow-inner {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-/* Sorot Garis Kilau Putih/Bening (Shine Line Effect) */
-.border-glow-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: conic-gradient(
-    from var(--cursor-angle),
-    rgba(255, 255, 255, 0.9) 0deg,
-    rgba(255, 255, 255, 0.4) calc(var(--cone-spread) * 0.5deg),
-    rgba(255, 255, 255, 0.1) calc(var(--cone-spread) * 1deg),
-    transparent calc(var(--cone-spread) * 1.5deg)
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: calc(var(--edge-proximity) * 0.01);
-  transition: opacity 0.25s ease;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* Aktifkan kilau saat di-hover/di-tap */
-.border-glow-card:hover::before,
-.border-glow-card:active::before {
-  opacity: 1 !important;
+  height: 100%;
+  position: relative;
+  z-index: 2;
 }
