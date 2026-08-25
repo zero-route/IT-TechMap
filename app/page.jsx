@@ -31,7 +31,8 @@ export default function Home() {
               if (!group || !Array.isArray(group.professions)) return null;
 
               return (
-                <section key={group.id || Math.random()} className="scroll-mt-20">
+                /* Pastikan Atribut id={group.id} Terpasang di Section */
+                <section key={group.id} id={group.id} className="scroll-mt-24">
                   <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <span className="w-2 h-6 bg-slate-700 rounded-full inline-block"></span>
                     {group.title}
@@ -45,7 +46,7 @@ export default function Home() {
                         <CardProfesi
                           key={profesi.id || idx}
                           profesi={profesi}
-                          index={idx} /* Kirim urutan 0, 1, 2, 3, 4 murni */
+                          index={idx}
                           borderColor={group.cardBorderColor || ""}
                           bgColor={group.cardBgColor || ""}
                           shadowGlow={group.cardGlow || ""}

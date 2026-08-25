@@ -29,22 +29,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleItemClick = (targetId) => {
+  const handleItemClick = (e, targetId) => {
+    e.preventDefault();
     setActiveId(targetId);
     setIsOpen(false);
-    setTimeout(() => {
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
+
+    // Navigasi langsung menggunakan element.scrollIntoView
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      // Fallback navigasi URL hash standar
+      window.location.hash = `#${targetId}`;
+    }
   };
 
   return (
     <header className="sticky top-0 z-50 bg-[#030712]/95 border-b border-slate-800/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo Brand */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="p-2 bg-sky-500/10 border border-sky-500/30 rounded-lg group-hover:border-sky-400 transition-colors">
               <Terminal size={20} className="text-sky-400" />
@@ -54,7 +57,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Tombol Hamburger Menu */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2.5 text-slate-300 hover:text-white bg-slate-900 border border-slate-800 rounded-lg transition-colors focus:outline-none"
@@ -65,7 +67,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* DROPDOWN MENU DENGAN BACKGROUND HITAM PEKAT + BLUR */}
+      {/* DROPDOWN MENU DENGAN ANCHOR LINK PERSISTEN */}
       {isOpen && (
         <div className="absolute top-full left-0 right-0 bg-[#030712]/95 backdrop-blur-xl border-b border-slate-800/90 shadow-2xl p-6 z-[9999]">
           <div className="max-w-7xl mx-auto">
@@ -80,20 +82,19 @@ export default function Navbar() {
                   const formattedIndex = String(index + 1).padStart(2, "0");
 
                   return (
-                    <div
+                    <a
                       key={group.id}
+                      href={`#${group.id}`}
                       className="line-sidebar__item group flex items-center cursor-pointer py-1.5 transition-all duration-200"
                       aria-current={isActive ? "true" : undefined}
-                      onClick={() => handleItemClick(group.id)}
+                      onClick={(e) => handleItemClick(e, group.id)}
                     >
-                      {/* Indikator Garis Kiri */}
                       <span className={`h-[2px] rounded-full transition-all duration-300 mr-3 ${
                         isActive 
                           ? "w-8 bg-purple-400 shadow-[0_0_8px_#c084fc]" 
                           : "w-5 bg-slate-700 group-hover:w-7 group-hover:bg-purple-400"
                       }`} />
                       
-                      {/* Teks & Nomor Stepper */}
                       <span className={`flex items-center text-sm font-medium transition-all duration-300 ${
                         isActive
                           ? "text-purple-300 font-semibold translate-x-2"
@@ -104,7 +105,7 @@ export default function Navbar() {
                         </span>
                         {group.title}
                       </span>
-                    </div>
+                    </a>
                   );
                 })}
               </div>
