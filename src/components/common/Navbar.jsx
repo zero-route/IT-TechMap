@@ -4,7 +4,6 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Terminal } from "lucide-react";
 import { categoryGroups } from "../../data/ProfessionData";
-import "./LineSideBar.css";
 
 const FALLOFF_CURVES = {
   linear: (p) => p,
@@ -95,7 +94,6 @@ export default function Navbar() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      // Force set properti awal agar tidak tersembunyi
       itemRefs.current.forEach((el, i) => {
         if (el) {
           const initVal = activeIndex === i ? "1.0000" : "0.0000";
@@ -164,7 +162,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* OVERLAY MENU REACT BITS FIX */}
       {isOpen && (
         <div className="fixed inset-0 top-16 bg-slate-950 z-50 flex flex-col justify-between overflow-y-auto p-6 sm:p-10">
           <div className="max-w-md mx-auto w-full my-auto py-4">
