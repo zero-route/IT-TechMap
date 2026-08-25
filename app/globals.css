@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base-950 text-slate-200 font-sans antialiased;
+    background-image: radial-gradient(
+        circle at 15% 0%,
+        rgba(168, 85, 247, 0.16),
+        transparent 45%
+      ),
+      radial-gradient(circle at 85% 20%, rgba(232, 121, 249, 0.1), transparent 40%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-neon-purple/40 text-white;
+  }
+
+  :focus-visible {
+    outline: 2px solid #a855f7;
+    outline-offset: 3px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #a855f7 #161221;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d0b12;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #7e22ce;
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card base used across the app */
+  .glass-panel {
+    @apply bg-[#161221]/60 backdrop-blur-md border border-purple-500/20 rounded-2xl;
+  }
+
+  /* Duotone heading: first word soft white, second word neon gradient */
+  .heading-duotone span.word-accent {
+    @apply bg-gradient-to-r from-purple-400 to-fuchsia-500 bg-clip-text text-transparent;
+  }
+
+  .btn-neon {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-purple-500/40
+      bg-purple-500/10 px-5 py-2.5 text-sm font-semibold text-slate-100
+      transition-all duration-300 hover:bg-purple-500/20 hover:border-purple-400
+      hover:shadow-neon-sm active:scale-95;
+  }
+
+  .badge-software {
+    @apply inline-flex items-center gap-2 rounded-lg border border-purple-500/30
+      bg-purple-500/10 px-3 py-2 text-sm text-purple-100;
+  }
+
+  .badge-hardware {
+    @apply inline-flex items-center gap-2 rounded-lg border border-cyan-500/25
+      bg-slate-500/10 px-3 py-2 text-sm text-cyan-100;
+  }
+
+  .bg-grid-overlay {
+    background-image: linear-gradient(rgba(168, 85, 247, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+}
