@@ -26,16 +26,18 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
   const cardRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Trigger animasi hanya saat kartu terlihat di layar pengguna saat di-scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // Jalankan animasi sekali saja
+          observer.disconnect();
         }
       },
-      { threshold: 0.15 } // Aktif ketika 15% area kartu masuk layar
+      { 
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px" // Memicu animasi lebih awal sebelum kartu benar-benar penuh di layar
+      }
     );
 
     if (cardRef.current) {
@@ -102,8 +104,8 @@ export default function CardProfesi({ profesi, index = 0, borderColor = "", bgCo
     gradientTitleClass = "from-red-400 to-slate-200";
   }
 
-  // Staggered delay berdasarkan urutan kartu dalam grid 3-kolom
-  const delayStyle = { transitionDelay: `${(index % 3) * 120}ms` };
+  // Delay berurutan linier: Kartu 1 (0ms), Kartu 2 (100ms), Kartu 3 (200ms), Kartu 4 (300ms), Kartu 5 (400ms)
+  const delayStyle = { transitionDelay: `${index * 450}ms` };
 
   return (
     <div

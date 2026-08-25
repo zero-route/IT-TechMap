@@ -45,7 +45,7 @@ export default function Home() {
                         <CardProfesi
                           key={profesi.id || idx}
                           profesi={profesi}
-                          index={idx}
+                          index={idx} /* Kirim urutan 0, 1, 2, 3, 4 murni */
                           borderColor={group.cardBorderColor || ""}
                           bgColor={group.cardBgColor || ""}
                           shadowGlow={group.cardGlow || ""}
