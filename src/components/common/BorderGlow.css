@@ -3,7 +3,7 @@
   --cursor-angle: 45deg;
   --edge-sensitivity: 30;
   --border-radius: 16px;
-  --glow-padding: 0px; /* Diubah ke 0 agar glow tidak meluber keluar dari border-radius */
+  --glow-padding: 0px;
   --cone-spread: 25;
 
   position: relative;
@@ -15,7 +15,7 @@
   justify-content: space-between;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: var(--card-bg, rgba(15, 23, 42, 0.6));
-  overflow: hidden; /* Memastikan kilau terpotong rapi mengikuti border-radius kontainer */
+  overflow: hidden;
 }
 
 .border-glow-card > .edge-light {
@@ -50,7 +50,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit; /* Mengikuti lekukan sudut secara melengkung halus */
+  border-radius: inherit;
   box-shadow:
     inset 0 0 0 1.5px var(--glow-color, hsl(0deg 0% 100% / 100%)),
     inset 0 0 3px 0 var(--glow-color-60, hsl(0deg 0% 100% / 60%)),
