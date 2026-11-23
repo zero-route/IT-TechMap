@@ -1,7 +1,11 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800/80 bg-[#030712]/80 backdrop-blur-md py-6 text-center text-slate-500 text-sm">
-      <p>© {new Date().getFullYear()} IT Profession Map. All rights reserved.</p>
+    <footer className="site-footer page-width" id="tentang">
+      <Link href="/" className="brand footer-brand"><span className="brand-mark">IT</span><span>Profesi<span className="brand-light">Map</span></span></Link>
+      <p>Direktori untuk mengenal ragam profesi di industri teknologi.</p>
+      <span className="copyright">© {new Date().getFullYear()} IT Profesi Map</span>
     </footer>
   );
 }
